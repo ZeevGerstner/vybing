@@ -33,7 +33,6 @@ export default {
     },
     clickButton: function (data) {
       // $socket is socket.io-client instance
-      this.$socket.emit('emit_method', data)
     },
     getTime(){
       var player = this.$refs.youtube.player

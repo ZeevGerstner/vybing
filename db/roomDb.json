@@ -1,0 +1,16 @@
+{
+    "rooms": [
+        {
+            "id": "123",
+            "name": "hopa",
+            "admin": "muki",
+            "members": ["muki"]
+        },
+        {
+            "id": "456",
+            "name": "folka",
+            "admin": "puki",
+            "members": ["puki"]
+        }
+    ]
+}
