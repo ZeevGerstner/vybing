@@ -1,11 +1,15 @@
 <template>
   <div class="room">
     <h1>Hello ROOM</h1>
-
-    <youtube :video-id="videoId" :player-vars="playerVars" ref="youtube" @playing="playing"></youtube>
-    <button @click="clickButton">Button</button>
+    <div>
+      <youtube
+        :video-id="videoId"
+        :player-vars="playerVars"
+        ref="youtube"
+        @playing="playing"
+      ></youtube>
+    </div>
     {{playerVars.start}}
-    {{users.num}}
   </div>
 </template>
 
@@ -15,63 +19,45 @@ export default {
     return {
       videoId: 'ZjJdp6jrBhM',
       playerVars: {
-        autoplay: 1,
-        start: 60,
+        start: 0
       },
-      currTime:{
-        time:0
-      },
-      users:{
-        num:0
-      },
-      // isVideoReady: false,
     }
   },
   methods: {
     playing() {
       console.log('\o/ we are watching!!!')
     },
-    clickButton: function (data) {
-      // $socket is socket.io-client instance
-    },
-    getTime(){
-      var player = this.$refs.youtube.player
-      return player.getCurrentTime()
+    async playVideo() {
+      await this.player.playVideo()
     }
+  },
+  created() {
+     this.$socket.emit('getTime') 
   },
    sockets: {
         connect: function () {
-          this.$socket.emit('set-users')
             // console.log('socket connected')
         },
         getStatusTime: function () {
-            // console.log('give me time!')
-            this.getTime()
+            this.player.getCurrentTime()
             .then((time) => {
               this.$socket.emit('setStatusTime',time) 
           })
         },
         setCurrTime: function(currTime){
-          this.playerVars.start = currTime
-          this.isVideoReady = true;
-          console.log('this.playerVars.start: ', this.playerVars.start)
+          this.playerVars.start = Math.floor(currTime)
+          this.playVideo()
+          console.log('more user', this.playerVars.start)
         },
-        getUsers: function(users){
-          console.log(users)
-          this.users.num = users
-        }
+
     },
+    computed: {
+    player() {
+      return this.$refs.youtube.player
+    }
   }
+}
 
-
-
-
-
-
-
-
-  // <button @click="getTime">Time</button>
-  // <button @click="startPoint">Start</button>
 
 </script>
 
