@@ -30,24 +30,6 @@ addUserRoutes(app)
 // })
 
 
-var playlist = [
-    {
-        title: 'sasa re sasa',
-        id: '3SGOVOEgjto',
-        img: 'https://i.ytimg.com/vi/3SGOVOEgjto/hqdefault.jpg'
-    },
-    {
-        title: 'sasa to sasa',
-        id: 'iJQR3s2Py6U',
-        img: 'https://i.ytimg.com/vi/iJQR3s2Py6U/hqdefault.jpg'
-    },
-    {
-        title: 'Sasa Matic - Rastanak - (Offical video 2018)',
-        id: 'cOV-8-c15W0',
-        img: 'https://i.ytimg.com/vi/cOV-8-c15W0/hqdefault.jpg'
-    },
-]
-
 const roomService = require('./services/room.service')
 
 io.on('connection', function (socket) {
