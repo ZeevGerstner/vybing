@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "addSong",
+  name: "somgsPreview",
   props:{
     song: Object
   },
