@@ -30,8 +30,6 @@
   </div>
 </template>
 
-
-
 <script>
 "use strict";
 import addSong from "@/components/AddSong.vue";
