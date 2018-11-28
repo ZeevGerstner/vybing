@@ -57,9 +57,10 @@ io.on('connection', function (socket) {
         io.emit('setCurrTime', time)
     })
 
-    socket.on('getPlaylist', function () {
-        io.emit('LOAD_PLAYLIST', playlist)
-    })
+    // socket.on('getPlaylist', function () {
+    //     io.emit('LOAD_PLAYLIST', playlist)
+    // })
+
     socket.on('sendMsg', (newMsg) => {
         io.emit('setNewMsg', newMsg)
     })
