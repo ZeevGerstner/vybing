@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
     <button @click="isLogin = !isLogin">Login</button>
     <login-user v-if="isLogin"></login-user>  
      <button @click="isSignup = !isSignup">Signup</button>
