@@ -30,8 +30,6 @@
   </div>
 </template>
 
-
-
 <script>
 "use strict";
 import addSong from "@/components/AddSong.vue";
@@ -45,19 +43,22 @@ export default {
       playlist:[]
     };
   },
-  // mounted() {
-  //   this.playlist = this.$store.getters.getPlaylist
-  // },
+  mounted() {
+    // this.playlist = this.$store.getters.getPlaylist
+    // console.log('!!!!!!!!!S', this.$store.getters.getPlaylist)
+  },
   methods: {},
   sockets: {
-    SOCKET_LOAD_PLAYLIST: function(playlist) {
-      console.log(playlist);
+    LOAD_PLAYLIST: function(playlist) {
+      console.log(playlist)
+      this.playlist = playlist
     }
   },
   created() {
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
-    this.$store.dispatch("SOCKET_GET_PLAYLIST");
+    // this.$store.dispatch("SOCKET_GET_PLAYLIST");
+    this.$socket.emit('getPlaylist')
   },
   sockets: {
     setRoom: function(room){
