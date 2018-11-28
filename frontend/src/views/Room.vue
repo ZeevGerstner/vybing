@@ -2,7 +2,7 @@
   <div class="room">
     <h1>Hello ROOM</h1>
     <youtube-player></youtube-player>
-    <add-song>Add songi</add-song>
+    <add-song>Add songiiiii</add-song>
     <chat-room/>
   </div>
 </template>
