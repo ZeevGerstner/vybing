@@ -1,21 +1,19 @@
- /* @font-face {
+ @font-face {
      font-family: 'roboto-regular';
-     src: url(Roboto-Regular.ttf) format('truetype');
+     src: url('Roboto-Regular.ttf');
  }
 
  @font-face {
      font-family: 'roboto-medium';
-     src: url(Roboto-Medium.ttf) format('truetype');
- } */
+     src: url('Roboto-Medium.ttf');
+ }
 
 @font-face {
     font-family: 'roboto-bold';
     src: url('Roboto-Bold.ttf');
 }
 
-/* @font-face {
+@font-face {
      font-family: 'roboto-thin';
-     src: url(Roboto-Thin.ttf) format('truetype');
- } */
-
- /* @include font-face(roboto-regular, Roboto-Regular) */
+     src: url('Roboto-Thin.ttf');
+ }
