@@ -1,8 +1,9 @@
 <template>
   <li v-if="song" class="song-item">
-    <button>Add song</button> 
-    <h3>{{song.title}}</h3>
-    <img :src="song.img" />
+    <img  class="add-btn" src="../assets/imgs/add-icon.png">    
+
+    <h3 class="youtube-title">{{song.title}}</h3>
+    <img class="youtube-img" :src="song.img" />
   </li>
 </template>
 
@@ -16,20 +17,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.song-item {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 5px;
 
-  img {
-    height: 100px;
-    width: 100px;
-  }
-  button {
-    height: 50px;
-  }
-}
 
 </style>

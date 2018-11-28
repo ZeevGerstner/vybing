@@ -2,7 +2,28 @@ var app = require('express')()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
+const cors = require('cors')
 
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+
+const addUserRoutes = require('./routes/user-route')
+
+app.use(cors({
+    origin: ['http://localhost:8080'],
+    credentials: true // enable set cookie
+}));  
+app.use(bodyParser.json())
+app.use(cookieParser());
+app.use(session({
+  secret: 'puki muki',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+
+addUserRoutes(app)
 
 // app.get('/',function(res,req){
 //     res.sendFile(__dirname+'index.html')

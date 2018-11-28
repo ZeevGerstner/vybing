@@ -1,0 +1,56 @@
+.room{
+    background-color: $light-gray;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+}
+.left-room-container{
+    width: 100%;
+}
+.nav-room{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    height: 80px;
+    margin-right: 7px; 
+}
+.room-title{
+    text-align: start;
+}
+.room-details{
+    display: flex;
+    align-items: center;
+
+}
+
+.room-icon{
+    display: flex;
+    align-items: center;
+
+}
+.icon-img{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+.icon-count{
+   color: $off-white;
+    margin-left: 5px;
+}
+
+.room-genre{
+    width: 100px;
+    height: 25px;
+}
+.room-name{
+    font-family: roboto-thin;
+    color: $off-white;
+}
+.room-creator{
+    font-family: roboto-regular;
+    color: $off-white;
+}

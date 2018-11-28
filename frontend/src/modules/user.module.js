@@ -13,9 +13,8 @@ export default {
         }
     },
     actions: {
-        login({commit}, { user }){
-            console.log(user)
-            userService
+        login({commit}, { userName }){
+            userService.login(userName)
             // commit({type: setCurrUser, user})
         }
     }

@@ -7,8 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    searchMoudle
-    , userModule
+    searchMoudle,
+    userModule
   },
   actions: {
     "<ACTION_PREFIX><EVENT_NAME>"() {

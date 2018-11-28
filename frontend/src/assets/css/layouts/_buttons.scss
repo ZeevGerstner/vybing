@@ -1,7 +1,19 @@
-.btn-genre {
+.tag-genre {
     background-color: $lime-green;
     font-family: 'roboto-bold';
     border-radius: 99999px;
     margin: 5px 10px;
     border: 0;
+    text-align: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-btn{
+    font-size: 50px;
+    width: 25px;
+    margin-right: 10px;
+    cursor: pointer;
 }

@@ -1,7 +1,18 @@
 <template>
-  <div>
-    <youtube :player-vars="playerVars" ref="youtube" @playing="playing" @ready="ready"></youtube>
-    {{playlist}}
+  <div class="player-container">
+    <div class="youtube-container">
+      <youtube
+      width="200"
+      height="113"
+       :player-vars="playerVars"
+        ref="youtube" @playing="playing"
+         @ready="ready"></youtube>
+    </div>
+    <div class="player-details">
+        <h4 class="player-txt">NOW PLAYING:</h4>
+        <h2 class="song-name">KOKO SONG</h2>
+        <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
+    </div>
   </div>
 </template>
 
@@ -14,6 +25,7 @@ export default {
         start: 0,
         controls: 1,
       },
+
       playlist: ["iJQR3s2Py6U", "iJQR3s2Py6U", "cOV-8-c15W0"]
     };
   },
@@ -60,4 +72,6 @@ export default {
 search-res {
   width: 80vw;
 }
+
+
 </style>

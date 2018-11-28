@@ -1,6 +1,8 @@
 <template>
   <div class="add-song">
-    <input v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
+ 
+    <input class="add-song-input" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
+   
     <ul class="search-res">
       <song-preview v-for="song in songs" :key="song.id" :song="song" />  
     </ul>
@@ -36,8 +38,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  search-res {
-    width: 80vw;
-
-  }
+ 
 </style>
