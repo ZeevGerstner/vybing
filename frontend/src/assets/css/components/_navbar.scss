@@ -1,0 +1,63 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+
+.nav {
+    background-color: black;
+    height: 50px;
+}
+
+.nav-logo {
+    cursor: pointer;    
+}
+
+.nav-link {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav li {
+    font-family: 'roboto-bold';
+    text-transform: uppercase;
+    color: $off-white;
+    margin-right: 20px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.nav li:hover {
+    color: $lime-green;
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    font-family: 'roboto-regular';
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-indent: 30px;
+    background-color: $dark-gray;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    padding-right:20px;
+    color: $light-gray;
+}
+.search input:focus {
+    outline: 0;
+    border: 2px solid $lime-green;
+    border-radius: 5px;
+}
+
+.search .fa-search { 
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 25px;
+  color: $light-gray;
+}
+
+
+
