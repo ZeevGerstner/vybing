@@ -23,7 +23,7 @@ export default {
     methods:{
         loginUser(){
             // console.log(this.user)
-            this.$store.dispatch({type: 'login',user: this.user})
+            this.$store.dispatch({type: 'login',userName: this.user})
             .then(user => {
                 if(!user){
                     this.isWorng = true

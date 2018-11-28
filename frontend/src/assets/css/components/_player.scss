@@ -1,0 +1,22 @@
+.player-container{
+    background-color: black;
+    display: flex;
+    margin-top: 7px;
+    margin-right: 7px;
+    align-items: center;
+}
+
+.player-details{
+    color: $off-white;
+    text-align: start;
+    margin-left: 25px;
+}
+
+.song-name{
+    font-family: roboto-medium;
+}
+
+.player-txt{
+    font-family: roboto-regular;
+    opacity: 0.5;
+}
