@@ -3,6 +3,7 @@
     <h1>Hello ROOM</h1>
     <youtube-player></youtube-player>
     <add-song>Add song</add-song>
+    <chat-room/>
   </div>
 </template>
 
@@ -12,7 +13,7 @@
 'use strict'
 import addSong from "@/components/AddSong.vue";
 import youtubePlayer from '@/components/youtubePlayer.vue'
-import chatRoom from '../components/Chat'
+import chatRoom from '@/components/Chat.vue'
 
 export default {
   data() {
@@ -26,7 +27,8 @@ export default {
     },
   components: {
     addSong,
-    youtubePlayer
+    youtubePlayer,
+    chatRoom
   }
 };
 </script>
