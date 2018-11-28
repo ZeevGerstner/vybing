@@ -1,19 +1,26 @@
 <template>
-  <div class="room">
-    <h1>Hello ROOM</h1>
-    <div>
-      <youtube
-        :video-id="videoId"
-        :player-vars="playerVars"
-        ref="youtube"
-        @playing="playing"
-      ></youtube>
+  <section>
+    <div class="room">
+      <h1>Hello ROOM</h1>
+      <div>
+        <youtube
+          :video-id="videoId"
+          :player-vars="playerVars"
+          ref="youtube"
+          @playing="playing"
+        ></youtube>
+      </div>
+      {{playerVars.start}}
     </div>
-    {{playerVars.start}}
-  </div>
+    <chat-room></chat-room>
+  </section>
 </template>
 
+
+
 <script>
+import chatRoom from '../components/Chat'
+
 export default {
   data() {
     return {
@@ -33,6 +40,10 @@ export default {
   },
   created() {
      this.$socket.emit('getTime') 
+     console.log('created!!!!!!')
+  },
+  destroyed(){
+    console.log('dest1111111')
   },
    sockets: {
         connect: function () {
@@ -55,6 +66,9 @@ export default {
     player() {
       return this.$refs.youtube.player
     }
+  },
+   components: {
+    chatRoom
   }
 }
 

@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="isLogin = !isLogin">Login</button>
+    <login-user v-if="isLogin"></login-user>  
+     <button @click="isSignup = !isSignup">Signup</button>
+    <signup-user v-if="isSignup"></signup-user>   
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import loginUser from '../components/Login'
+import signupUser from '../components/Signup'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    loginUser,
+    signupUser
+  },
+  data(){
+    return{
+      isLogin: false,
+      isSignup: false
+    }
   }
 }
 </script>

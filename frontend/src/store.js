@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import userModule from './modules/user.module.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    userModule,
+  },
   state: {
 
   },
@@ -18,7 +22,7 @@ export default new Vuex.Store({
     "<ACTION_PREFIX><EVENT_NAME>"() {
       // do something
       console.log('act');
+    },
 
-    }
   }
 })

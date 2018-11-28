@@ -18,6 +18,10 @@ io.on('connection', function (socket) {
         io.emit('setCurrTime', time)
     })
 
+    socket.on('sendMsg', (newMsg) =>{
+        io.emit('setNewMsg', newMsg)
+    })
+
     socket.on('disconnect', function () {
         console.log('user disconnected')
     })
