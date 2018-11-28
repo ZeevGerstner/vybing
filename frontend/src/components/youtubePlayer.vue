@@ -1,30 +1,21 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <youtube
-      :videoId="videoId"
-      :player-vars="playerVars"
-      ref="youtube"
-      @playing="playing"
-      @ready="ready"
-      @ended="ended"
-    />
-=======
   <div class="player-container">
     <div class="youtube-container">
       <youtube
       width="200"
       height="113"
        :player-vars="playerVars"
-        ref="youtube" @playing="playing"
-         @ready="ready"></youtube>
+        ref="youtube"
+        :videoId="videoId"
+        @playing="playing"
+        @ready="ready"
+        @ended="ended"></youtube>
     </div>
     <div class="player-details">
         <h4 class="player-txt">NOW PLAYING:</h4>
         <h2 class="song-name">KOKO SONG</h2>
         <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
     </div>
->>>>>>> 4c6968278099457e37c2fb49b64bd7257e186953
   </div>
 </template>
 
@@ -55,17 +46,6 @@ export default {
       this.emitPlaylist()
       this.setSong()
     },
-<<<<<<< HEAD
-=======
-    setPlaylist() {
-      var playlist = this.$store.getters.getPlaylist;
-      var newPlaylist = playlist.map(item => {
-        return item.id;
-      });
-      
-      this.playlist = newPlaylist;
-      this.player.playVideo();
->>>>>>> 4c6968278099457e37c2fb49b64bd7257e186953
 
     setSong() {
       var videoId = this.playlist[0].id;

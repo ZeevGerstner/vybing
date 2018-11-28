@@ -1,10 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="room">
-    <h1>Hello ROOM</h1>
-    <youtube-player :playlist="playlist"/>
-    <add-song/>
-=======
   <div class="container room">
     <div class="left-room-container">
     <nav class="nav-room">
@@ -27,11 +21,10 @@
     </nav>
     <div class="room-player">
       
-      <youtube-player></youtube-player>
+      <youtube-player :playlist="playlist"></youtube-player>
     </div>
     <add-song></add-song>
     </div>
->>>>>>> 4c6968278099457e37c2fb49b64bd7257e186953
     <chat-room/>
     
   </div>
