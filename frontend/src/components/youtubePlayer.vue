@@ -21,35 +21,60 @@ export default {
   name: "youtubePlayer",
   data() {
     return {
+      videoId: '',
       playerVars: {
         start: 0,
         controls: 1,
       },
-
-      playlist: ["iJQR3s2Py6U", "iJQR3s2Py6U", "cOV-8-c15W0"]
+      playlist: [],
+      lastPlayed: 0
     };
   },
   methods: {
-    ready() {
-      console.log("ready");
+    ready(ev) {
+      this.setPlaylist();
+      // this.loadVideos();
+      this.setSong();
+      // ev.loadVideoById(this.videoId)
+      },
+    playing() {},
+    ended() {
+      let song = this.playlist[0];
+      this.playlist.splice(0, 1);
+      this.playlist.push(song);
+      this.loadVideos();
+    },
+    setPlaylist() {
+      var playlist = this.$store.getters.getPlaylist;
+      var newPlaylist = playlist.map(item => {
+        return item.id;
+      });
+      
+      this.playlist = newPlaylist;
+      this.player.playVideo();
+
+    },
+    loadVideos() {
       this.player.loadPlaylist({
         playlist: this.playlist,
-        startSeconds: this.playerVars.start,
-        // index:1,
+        startSeconds: this.playerVars.start
       });
     },
-    playing() {
-      console.log("o/ we are watching!!!");
+    setSong() {
+      this.videoId = this.playlist[0];
+      // var str = new String(this.videoId);
+      // this.player.loadVideoById(str);
+      this.playVideo();
+    },
+    async playVideo() {
+      await this.player.playVideo();
     }
   },
   created() {
-    this.$socket.emit("getPlaylist");
     this.$socket.emit("getTime");
   },
   sockets: {
-    connect: function() {
-      // console.log('socket connected')
-    },
+    connect: function() {},
     getStatusTime: function() {
       this.player.getCurrentTime().then(time => {
         this.$socket.emit("setStatusTime", time);
@@ -57,7 +82,6 @@ export default {
     },
     setCurrTime: function(currTime) {
       this.playerVars.start = Math.floor(currTime);
-      // console.log("more user", this.playerVars.start);
     }
   },
   computed: {
