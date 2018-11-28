@@ -1,7 +1,7 @@
 <template>
   <div class="room">
     <h1>Hello ROOM</h1>
-    <youtube-player/>
+    <youtube-player :playlist="playlist"/>
     <add-song/>
     <chat-room/>
   </div>
@@ -21,17 +21,20 @@ export default {
       playlist:[]
     };
   },
-  // mounted() {
-  //   this.playlist = this.$store.getters.getPlaylist
-  // },
+  mounted() {
+    // this.playlist = this.$store.getters.getPlaylist
+    // console.log('!!!!!!!!!S', this.$store.getters.getPlaylist)
+  },
   methods: {},
   sockets: {
-    SOCKET_LOAD_PLAYLIST: function(playlist) {
-      console.log(playlist);
+    LOAD_PLAYLIST: function(playlist) {
+      console.log(playlist)
+      this.playlist = playlist
     }
   },
   created() {
-    this.$store.dispatch("SOCKET_GET_PLAYLIST");
+    // this.$store.dispatch("SOCKET_GET_PLAYLIST");
+    this.$socket.emit('getPlaylist')
   },
   components: {
     addSong,

@@ -8,12 +8,12 @@
       @ready="ready"
       @ended="ended"
     />
-    <button @click="loadVideos">kkkk</button>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['playlist'],
   name: "youtubePlayer",
   data() {
     return {
@@ -22,52 +22,36 @@ export default {
         start: 0,
         controls: 1,
       },
-      playlist: [],
-      lastPlayed: 0
+      currSongTime: 0
     };
   },
   methods: {
     ready(ev) {
-      this.setPlaylist();
-      // this.loadVideos();
       this.setSong();
-      // ev.loadVideoById(this.videoId)
       },
-    playing() {},
-    ended() {
-      let song = this.playlist[0];
-      this.playlist.splice(0, 1);
-      this.playlist.push(song);
-      this.loadVideos();
-    },
-    setPlaylist() {
-      var playlist = this.$store.getters.getPlaylist;
-      var newPlaylist = playlist.map(item => {
-        return item.id;
-      });
-      this.playlist = newPlaylist;
-      this.player.playVideo();
 
+    playing() {},
+    
+    ended() {
+      var song = this.playlist.splice(0, 1);
+      this.playlist.push(song)
+      this.emitPlaylist()
+      this.setSong()
     },
-    loadVideos() {
-      this.player.loadPlaylist({
-        playlist: this.playlist,
-        startSeconds: this.playerVars.start
-      });
-    },
+
     setSong() {
-      this.videoId = this.playlist[0];
-      // var str = new String(this.videoId);
-      // this.player.loadVideoById(str);
-      this.playVideo();
+      var videoId = this.playlist[0].id;
+      this.currSongTime = 0;
+      this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
-    async playVideo() {
-      await this.player.playVideo();
+    emitPlaylist() {
+      this.$socket.emit('updatePlaylist', this.playlist)
     }
   },
   created() {
     this.$socket.emit("getTime");
   },
+
   sockets: {
     connect: function() {},
     getStatusTime: function() {
@@ -76,7 +60,7 @@ export default {
       });
     },
     setCurrTime: function(currTime) {
-      this.playerVars.start = Math.floor(currTime);
+      this.currSongTime = Math.floor(currTime);
     }
   },
   computed: {
