@@ -12,7 +12,7 @@ export default {
     return {
       playerVars: {
         start: 0,
-        controls:1,
+        controls: 1,
       },
       playlist: ["iJQR3s2Py6U", "iJQR3s2Py6U", "cOV-8-c15W0"]
     };
@@ -34,7 +34,7 @@ export default {
     this.$socket.emit("getPlaylist");
     this.$socket.emit("getTime");
   },
-    sockets: {
+  sockets: {
     connect: function() {
       // console.log('socket connected')
     },
@@ -46,13 +46,13 @@ export default {
     setCurrTime: function(currTime) {
       this.playerVars.start = Math.floor(currTime);
       // console.log("more user", this.playerVars.start);
-    },
+    }
   },
   computed: {
     player() {
       return this.$refs.youtube.player;
     }
-  },
+  }
 };
 </script>
 
