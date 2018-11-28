@@ -8,6 +8,7 @@
       @ready="ready"
       @ended="ended"
     />
+    {{playlist}}
     <button @click="loadVideos">kkkk</button>
   </div>
 </template>
@@ -45,6 +46,7 @@ export default {
       var newPlaylist = playlist.map(item => {
         return item.id;
       });
+      
       this.playlist = newPlaylist;
       this.player.playVideo();
 

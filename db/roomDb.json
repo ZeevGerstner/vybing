@@ -1,16 +1,52 @@
 {
     "rooms": [
         {
-            "id": "123",
             "name": "hopa",
             "admin": "muki",
-            "members": ["muki"]
+            "type" : "trancw",
+            "members": ["muki"],
+            "likes" : 222,
+            "playlist":[   
+                {
+                    "title": "Sasa Anni Harin | Marathi Story for Children (Marathi Goshti) | Marathi Kids Stories",
+                    "id": "j78BqJHcn1A",
+                    "img": "https://i.ytimg.com/vi/j78BqJHcn1A/hqdefault.jpg"
+                },
+                {
+                    "title": "Compilação Sasa cantando, autismo e bronha inglesa kk",
+                    "id": "OFFp51V9uXQ",
+                    "img": "https://i.ytimg.com/vi/OFFp51V9uXQ/hqdefault.jpg"
+                },
+                {
+                    "title": "Sassa - Itatago Na Lang - (Official Lyric Video)",
+                    "id": "Gjgx8uyIWT0",
+                    "img": "https://i.ytimg.com/vi/Gjgx8uyIWT0/hqdefault.jpg"
+                }
+            ]
+
         },
         {
-            "id": "456",
             "name": "folka",
             "admin": "puki",
-            "members": ["puki"]
+            "type" : "hipop",
+            "members": ["puki"],
+            "likes" : 222,
+            "playlist":[   {
+                "title": "sasa re sasa",
+                "id": "3SGOVOEgjto",
+                "img": "https://i.ytimg.com/vi/3SGOVOEgjto/hqdefault.jpg"
+            },
+            {
+                "title": "sasa to sasa",
+                "id": "iJQR3s2Py6U",
+                "img": "https://i.ytimg.com/vi/iJQR3s2Py6U/hqdefault.jpg"
+            },
+            {
+                "title": "Sasa Matic - Rastanak - (Offical video 2018)",
+                "id": "cOV-8-c15W0",
+                "img": "https://i.ytimg.com/vi/cOV-8-c15W0/hqdefault.jpg"
+            }
+        ]
         }
     ]
 }
