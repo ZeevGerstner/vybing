@@ -59,6 +59,13 @@ io.on('connection', function (socket) {
                 socket.emit('setRoomList', rooms)
             })
     })
+    socket.on('getRoomById', function(roomId){
+      
+        return roomService.getById(roomId)
+            .then(room => {
+                socket.emit('setRoom', room)
+            })
+    })
 
     socket.on('getTime', function () {
         socket.broadcast.emit('getStatusTime')

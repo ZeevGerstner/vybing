@@ -3,7 +3,7 @@
 
 
 function checkLogin({ userName }) {
-    console.log(userName)
+    // console.log(userName)
     // return mongoService.connect()
     //     .then(db => db.collection('user').findOne({ userName }))
 }

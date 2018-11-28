@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 module.exports = {
     query,
-    // getById,
+    getById,
     // remove,
     // update,
     // add,
@@ -15,6 +15,15 @@ function query() {
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');
             return roomCollection.find({}).toArray()
+        })
+}
+
+function getById(roomId) {
+    roomId = new ObjectId(roomId)
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('room');
+            return roomCollection.findOne({ _id: roomId })
         })
 }
 
@@ -37,14 +46,7 @@ function query() {
 //     })
 // }
 
-// function getById(toyId) {
-//     toyId = new ObjectId(toyId)
-//     return mongoService.connectToDB()
-//         .then(dbConn => {
-//             const toyCollection = dbConn.collection('toy');
-//             return toyCollection.findOne({ _id: toyId })
-//         })
-// }
+
 
 // function remove(toyId) {
 //     toyId = new ObjectId(toyId)

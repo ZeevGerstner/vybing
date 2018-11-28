@@ -14,11 +14,13 @@
         <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
     </div>
   </div>
+
 </template>
 
 <script>
 export default {
   name: "youtubePlayer",
+  props:['playlist'],
   data() {
     return {
       videoId: '',
@@ -26,7 +28,7 @@ export default {
         start: 0,
         controls: 1,
       },
-      playlist: [],
+      // playlist: [],
       lastPlayed: 0
     };
   },

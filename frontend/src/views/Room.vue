@@ -1,13 +1,13 @@
 <template>
-  <div class="container room">
+  <div v-if="room" class="container room">
     <div class="left-room-container">
     <nav class="nav-room">
       <div class="room-title">
-        <h2 class="room-name">ROOM Name</h2>
-        <h4 class="room-creator">creator: <span>Amit</span></h4>
+        <h2 class="room-name">{{room.name}}</h2>
+        <h4 class="room-creator">creator: <span>{{room.admin}}</span></h4>
       </div>
       <div class="room-details">
-        <div class="tag-genre room-genre">HIP HOP</div>
+        <div class="tag-genre room-genre">{{room.type}}</div>
 
         <div class="room-icon">
           <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
@@ -15,13 +15,13 @@
         </div>
         <div class="room-icon">
           <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
-          <h4 class="icon-count">78</h4>
+          <h4 class="icon-count">{{room.likes}}</h4>
         </div>
       </div>
     </nav>
     <div class="room-player">
       
-      <youtube-player></youtube-player>
+      <youtube-player :playlist="room.playlist"></youtube-player>
     </div>
     <add-song></add-song>
     </div>
@@ -41,6 +41,7 @@ import chatRoom from "@/components/Chat.vue";
 export default {
   data() {
     return {
+      room: {},
       playlist:[]
     };
   },
@@ -54,7 +55,14 @@ export default {
     }
   },
   created() {
+    const roomId = this.$route.params.roomId;
+    this.$socket.emit('getRoomById', roomId)
     this.$store.dispatch("SOCKET_GET_PLAYLIST");
+  },
+  sockets: {
+    setRoom: function(room){
+      this.room = room
+    }
   },
   components: {
     addSong,
