@@ -1,12 +1,18 @@
 <template>
- <div id="nav">
-      <h1>LOGO</h1>
+  <div class="nav">
+    <div class="nav-container flex align-center space-between container">
+      <router-link tag="div" to="/" class="nav-logo logo">Vybing</router-link>
+      <div class="search">
+        <span class="fa fa-search"></span>
+        <input placeholder="search">
+      </div>
       <div class="nav-link">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link> |
-          <router-link to="/room">Room</router-link>
+        <router-link tag="li" to="#">Genres</router-link>
+        <router-link tag="li" to="/about">Rooms</router-link>
+        <router-link tag="li" to="/room">Room</router-link>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

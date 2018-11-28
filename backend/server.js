@@ -78,6 +78,10 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log('user disconnected')
     })
+
+    socket.on('updatePlaylist', (updatedPlaylist) => {
+        io.emit('LOAD_PLAYLIST', updatedPlaylist)
+    })
 })
 
 const port = process.env.PORT || 3000
