@@ -9,10 +9,12 @@ export default {
       if(!txt) {
         commit({ type: 'setSongs', songs: [] })
       }
-      youtubeService.loadVideos(txt)
-        .then(songs => {
-          commit({ type: 'setSongs', songs })
-        })
+      else {
+        youtubeService.loadVideos(txt)
+          .then(songs => {
+            commit({ type: 'setSongs', songs })
+          })
+      }
     }
   },
   mutations: {

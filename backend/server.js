@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
     })
 
     socket.on('getPlaylist', function () {
-        socket.emit('setPlaylst', playlist)
+        io.emit('LOAD_PLAYLIST',playlist)
     })
     socket.on('sendMsg', (newMsg) => {
         io.emit('setNewMsg', newMsg)
