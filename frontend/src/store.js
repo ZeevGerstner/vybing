@@ -3,22 +3,17 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+import searchMoudle from './modules/search.module.js'
 
-  },
-  mutations: {
-    "<MUTATION_PREFIX><EVENT_NAME>"() {
-      console.log('mut');
-      
-      // do something
-    }
+export default new Vuex.Store({
+  modules: {
+    searchMoudle
   },
   actions: {
     "<ACTION_PREFIX><EVENT_NAME>"() {
       // do something
       console.log('act');
 
-    }
-  }
+    },
+  },
 })
