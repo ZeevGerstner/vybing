@@ -1,0 +1,1 @@
+export const YT_API_KEY = 'AIzaSyBM9QKJYLqPjzhah37qpOBwUaG5n_eCVj8&q'
