@@ -1,19 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import userModule from './modules/user.module.js'
+import searchMoudle from './modules/search.module.js'
 
 Vue.use(Vuex)
-
-import searchMoudle from './modules/search.module.js'
 
 export default new Vuex.Store({
   modules: {
     searchMoudle
+    , userModule
   },
   actions: {
     "<ACTION_PREFIX><EVENT_NAME>"() {
       // do something
       console.log('act');
-
     },
+
   },
+
 })

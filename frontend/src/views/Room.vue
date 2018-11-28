@@ -6,10 +6,13 @@
   </div>
 </template>
 
+
+
 <script>
 'use strict'
 import addSong from "@/components/AddSong.vue";
 import youtubePlayer from '@/components/youtubePlayer.vue'
+import chatRoom from '../components/Chat'
 
 export default {
   data() {

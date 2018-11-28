@@ -5,6 +5,7 @@ import store from './store'
 import './registerServiceWorker'
 import VueYoutube from 'vue-youtube'
 import VueSocketIO from 'vue-socket.io'
+import './assets/css/main.scss'
  
 Vue.use(new VueSocketIO({
     debug: true,
