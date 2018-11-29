@@ -1,7 +1,7 @@
 <template>
   <div class="room-item">
     <router-link class="room-item-link" tag="div" :to="'/room/'+room._id">
-      <img v-if="room.playlist.length > 1" class="youtube-img" :src="room.playlist[0].img" />
+      <img v-if="room.playlist.length > 1" class="room-item-youtube-img" :src="room.playlist[0].img" />
       
       <div class="room-details room-item-details">
       <h1 class="room-name room-item-name">{{room.name}}</h1>

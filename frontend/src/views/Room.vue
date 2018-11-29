@@ -1,29 +1,29 @@
 <template>
   <div v-if="room" class="container room">
     <div class="left-room-container">
-    <nav class="nav-room">
-      <div class="room-title">
-        <h2 class="room-name">{{room.name}}</h2>
-        <h4 class="room-creator">creator: <span>{{room.admin}}</span></h4>
-      </div>
-      <div class="room-details">
-        <div class="tag-genre room-genre">{{room.type}}</div>
+      <nav class="nav-room">
+        <div class="room-title">
+          <h2 class="room-name">{{room.name}}</h2>
+          <h4 class="room-creator">creator: <span>{{room.admin}}</span></h4>
+        </div>
+        <div class="room-details">
+          <div class="tag-genre room-genre">{{room.type}}</div>
 
-        <div class="room-icon">
-          <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
-          <h4 class="icon-count">{{room.members.length}}</h4>
+          <div class="room-icon">
+            <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
+            <!-- <h4 class="icon-count">{{room.members.length}}</h4> -->
+          </div>
+          <div class="room-icon ">
+            <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
+            <h4 class="icon-count">{{room.likes}}</h4>
+          </div>
         </div>
-        <div class="room-icon ">
-          <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
-          <h4 class="icon-count">{{room.likes}}</h4>
-        </div>
+      </nav>
+      <div class="room-player">
+        <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
       </div>
-    </nav>
-    <div class="room-player">
-      
-      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
-    </div>
-    <add-song @addSong="addSong" />>
+
+      <add-song @addSong="addSong" />
     </div>
     <chat-room/>
   </div>

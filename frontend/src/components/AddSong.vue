@@ -6,7 +6,6 @@
     <ul class="search-res">
       <song-preview v-for="song in songs" :key="song.id" :song="song" @addSong="addSong"/>  
     </ul>
-    {{songs}}
   </div>
 </template>
 

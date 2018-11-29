@@ -1,21 +1,19 @@
 .room-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     width: 210px;
     height: 300px;
     margin: 0 25px 25px 0;
     background-color: $light-gray;
     color: black;
-    justify-content: space-between;
   }
 
   .room-item-link{
     cursor: pointer;
   }
 
-  .youtube-img {
+  .room-item-youtube-img {
     width: 200px;
     height: 150px;
     margin-top: 5px;
@@ -28,7 +26,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: black;
-    flex-direction: row;
   }
 
   .room-item-name{
@@ -68,12 +65,21 @@
     font-size: 0.7em;
   }
 
-  .now-playing{
+  .now-playing {
+    font-family: 'roboto-medium';
+    font-size: 0.8em;
+    color: $off-white;
     align-self: flex-start;
-    margin-left: 5px;
+    margin: 5px 0 5px 5px;
   }
 
-  .song-title{
+  .song-title {
+    font-family: 'roboto-thin';
+    font-size: 1em;
+    color: $off-white;
     align-self: baseline;
+    overflow: hidden;
+    margin: 10px;
+    line-height: 30px;
   }
 
