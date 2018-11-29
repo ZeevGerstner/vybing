@@ -1,11 +1,13 @@
 <template>
   <section>
-    <h2>Login</h2>
     <form @submit.prevent="loginUser">
       <input placeholder="User Name" v-model="user.name" type="text">
-      <input placeholder="Password" v-model="user.pass" type="password">
+      <input placeholder="Password" v-model="user.password" type="password">
       <button>Login</button>
     </form>
+    <!-- <h2 v-if="currUser">hello {{currUSer.name}}</h2> -->
+    <router-link to="/Signup">Signup</router-link>
+    <h2 v-if="isWorng">Worng!</h2>
   </section>
 </template>
 
@@ -15,21 +17,22 @@ export default {
         return{
             user: {
                 name:'',
-                pass:''
+                password:''
             },
-            isWorng : false
+            isWorng : false,
+            currUser: {}
         }
     },
     methods:{
         loginUser(){
-            // console.log(this.user)
-            this.$store.dispatch({type: 'login',userName: this.user})
+            this.$store.dispatch({type: 'login',user: this.user})
             .then(user => {
                 if(!user){
                     this.isWorng = true
                 } else {
+                    console.log(user)
                     this.isWorng = false
-                    this.user = {name:'', pass:''}
+                    this.user = {name:'', password:''}
                 }
             })
         }

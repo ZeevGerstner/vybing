@@ -10,21 +10,29 @@
         <router-link tag="li" to="#">Genres</router-link>
         <router-link tag="li" to="/about">Rooms</router-link>
       </div>
-      <!-- <div class="login">
+      <div class="login">
         <button @click="isLogin = !isLogin">Login</button>
         <login-user v-if="isLogin"></login-user>
-        <button @click="isSignup = !isSignup">Signup</button>
-        <signup-user v-if="isSignup"></signup-user>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import loginUser from "../components/Login";
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    loginUser
+  },
+  data(){
+    return{
+      isLogin: false
+    }
   }
 }
 </script>

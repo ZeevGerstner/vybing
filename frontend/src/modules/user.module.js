@@ -2,20 +2,22 @@ import userService from '../services/user.service.js'
 
 export default {
     state: {
-        
+        currUser: {}
     },
     getters: {
-
+        getCurrUser: (state) => state.currUser,
     },
     mutations: {
-        setCurrUser(){
-
+        setCurrUser(state,{currUSer}){
+            state.currUser = currUSer
         }
     },
     actions: {
-        login({commit}, { userName }){
-            userService.login(userName)
-            // commit({type: setCurrUser, user})
+        login({commit}, { user }){
+            return userService.login(user)
+            .then(currUSer => {
+                commit({type: 'setCurrUser', currUSer})
+            })
         }
     }
 }

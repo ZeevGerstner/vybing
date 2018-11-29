@@ -10,11 +10,13 @@ function addRoutes(app) {
     })
 
     app.put('/login', (req, res) => {
-        const userName = req.body.userName
-        userService.checkLogin({ userName })
+        const user = req.body.user
+        console.log(user)
+        return userService.checkLogin({ user })
             .then(user => {
-                req.session.user = user
-                res.json(user)
+                // req.session.user = user
+                // console.log(res)
+                return res.JSON.string (user)
             })
     })
 }

@@ -11,15 +11,11 @@
 </template>
 
 <script>
-import loginUser from "../components/Login";
-import signupUser from "../components/Signup";
 import roomPreview from '../components/RoomPreview'
 
 export default {
   name: "home",
   components: {
-    loginUser,
-    signupUser,
     roomPreview
   },
   data() {
