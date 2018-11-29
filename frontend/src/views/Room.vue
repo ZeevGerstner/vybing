@@ -23,7 +23,8 @@
       
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <add-song @addSong="addSong" />>
+    <playlist-cmp :playlist="room.playlist"></playlist-cmp>
+    <!-- <add-song @addSong="addSong" /> -->
     </div>
     <chat-room/>
   </div>
@@ -34,24 +35,20 @@
 import addSong from "@/components/AddSong.vue";
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 import chatRoom from "@/components/Chat.vue";
+import playlistCmp from '@/components/PlaylistCmp.vue'
 
 export default {
   data() {
     return {
-      room: {
-        playlist: []
-      },
+      room: null,
     };
   },
   methods: {
-    updatePlaylist(playlist) {
+    updatePlaylist(playlist){
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
-    }
-  },
-  methods: {
+    },
     addSong(song){
       console.log(song);
-      
     }
   },
   sockets: {
@@ -74,7 +71,8 @@ export default {
   components: {
     addSong,
     youtubePlayer,
-    chatRoom
+    chatRoom,
+    playlistCmp,
   }
 };
 </script>

@@ -1,5 +1,5 @@
 .flex {
-    display: flex
+    display: flex;
 }
 
 .space-between {
@@ -12,4 +12,8 @@
 
 .align-center {
     align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
 }
