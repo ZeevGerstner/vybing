@@ -23,7 +23,7 @@
       
       <youtube-player :playlist="room.playlist"></youtube-player>
     </div>
-    <add-song></add-song>
+    <add-song @addSong="addSong" />>
     </div>
     <chat-room/>
     
@@ -47,7 +47,12 @@ export default {
     // this.playlist = this.$store.getters.getPlaylist
     // console.log('!!!!!!!!!S', this.$store.getters.getPlaylist)
   },
-  methods: {},
+  methods: {
+    addSong(song){
+      console.log(song);
+      
+    }
+  },
   sockets: {
     LOAD_PLAYLIST: function(playlist) {
       console.log(playlist)
