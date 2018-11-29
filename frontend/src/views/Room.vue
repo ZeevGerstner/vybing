@@ -74,6 +74,12 @@ export default {
       this.room.playlist = playlist
     }
   },
+  watch:{
+    '$route.params.roomId' : function(id){
+      this.$socket.emit('getRoomById', id)
+      this.$socket.emit('getPlaylist')
+    }
+  },
   components: {
     addSong,
     youtubePlayer,

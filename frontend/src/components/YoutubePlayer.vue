@@ -15,8 +15,9 @@
         <h2 class="song-name">{{playlist[0].title}}</h2>
         <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
     </div>
+    <pre style="color:white">
+    </pre>
   </div>
-
 </template>
 
 <script>
@@ -77,6 +78,16 @@ export default {
     player() {
       return this.$refs.youtube.player;
     }
+  },
+  // watch:{
+  //   '$route.params.roomId' : function(id){
+  //     this.$socket.emit('getTime');
+  //     this.setSong()
+  //     console.log('playlist:',this.playlist)
+  //   }
+  // },
+  mounted() {
+    // this.setSong()
   }
 };
 </script>
