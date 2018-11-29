@@ -63,6 +63,7 @@ export default {
   sockets: {
     setRoom: function(room){
       this.room = room
+      console.log(room)
     }
   },
   components: {

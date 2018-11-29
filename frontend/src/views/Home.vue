@@ -5,6 +5,9 @@
     <login-user v-if="isLogin"></login-user>
     <button @click="isSignup = !isSignup">Signup</button>
     <signup-user v-if="isSignup"></signup-user>
+    
+    <router-link to="/createroom">Create Room</router-link>
+
 
     <div v-if="rooms" v-for="room in rooms" :key="room._id">
       <router-link class="room-name" :to="'/room/'+room._id">{{room.name}}</router-link>

@@ -48,6 +48,12 @@ io.on('connection', function (socket) {
                 socket.emit('setRoom', room)
             })
     })
+    socket.on('createRoom', (newRoom) =>{
+        return roomService.addRoom(newRoom)
+        .then(newRoom => {
+            socket.emit('setNewRoom',newRoom.ops[0]) 
+        })
+    })
 
     socket.on('getTime', function () {
         socket.broadcast.emit('getStatusTime')
@@ -60,6 +66,9 @@ io.on('connection', function (socket) {
     // socket.on('getPlaylist', function () {
     //     io.emit('LOAD_PLAYLIST', playlist)
     // })
+
+
+   
 
     socket.on('sendMsg', (newMsg) => {
         io.emit('setNewMsg', newMsg)
