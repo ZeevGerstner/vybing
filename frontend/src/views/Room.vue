@@ -45,13 +45,16 @@ export default {
   },
   methods: {
     updatePlaylist(playlist) {
+      this.room.playlist = playlist
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
-    }
-  },
-  methods: {
+    },
     addSong(song){
       console.log(song);
-      
+      this.room.playlist.push(song)
+      var playlist = this.room.playlist
+      console.log(playlist)
+      this.$socket.emit('updatePlaylist', this.room._id, playlist)
+
     }
   },
   sockets: {

@@ -23,11 +23,12 @@
     clip-path: inset(14% 4% 15% 5%);
   }
 
-  .room-details {
+  .room-item-details {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     background-color: black;
+    flex-direction: row;
   }
 
   .room-item-name{
