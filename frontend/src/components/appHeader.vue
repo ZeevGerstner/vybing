@@ -4,7 +4,12 @@
       <router-link tag="div" to="/" class="nav-logo logo">Vybing</router-link>
       <div class="search">
         <span class="fa fa-search"></span>
-        <input placeholder="search">
+        <input @input="searchRooms" v-model="search" placeholder="search">
+        <ul class="rooms-results" v-if="isSearch">
+          <li v-for="room in roomsResults" :key="room._id" @click="goToRoomById(room._id)">
+            {{room.name}}
+          </li>
+        </ul>
       </div>
       <div class="nav-link">
         <router-link tag="li" to="#">Genres</router-link>
@@ -22,7 +27,7 @@
 import loginUser from "../components/Login";
 
 export default {
-  name: 'HelloWorld',
+  name: 'appHeader',
   props: {
     msg: String
   },
@@ -31,7 +36,29 @@ export default {
   },
   data(){
     return{
-      isLogin: false
+      isLogin: false,
+      roomsResults: [],
+      search:'',
+      isSearch: false
+    }
+  },
+  methods:{
+    searchRooms(){
+      console.log(this.search)
+      this.$socket.emit('searchRoom',this.search)
+      this.isSearch = true
+      if(this.search === '') this.isSearch = false
+    },
+    goToRoomById(roomId){
+      this.$router.push('/room/'+roomId)
+      this.search = ''
+      this.isSearch = false
+    }
+  },
+  sockets:{
+    setRoomsFilter: function (filteredRoom){
+      console.log(filteredRoom)
+      this.roomsResults = filteredRoom
     }
   }
 }

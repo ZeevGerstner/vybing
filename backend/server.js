@@ -70,6 +70,18 @@ io.on('connection', (socket) => {
         console.log('user disconnected')
     })
 
+    socket.on('searchRoom',(searchInput)=> {
+        var filter = {
+            byName: searchInput,
+            byType: ''
+        }
+        roomService.query(filter)
+        .then(filteredRooms => {
+            console.log('filter:', filteredRooms)
+            socket.emit('setRoomsFilter', filteredRooms)
+        })
+    })
+
     socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
         roomService.updatePlaylist(roomId, updatedPlaylist)
         .then(() => {

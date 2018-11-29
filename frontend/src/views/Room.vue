@@ -23,7 +23,7 @@
       
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <add-song @addSong="addSong" />>
+    <add-song @addSong="addSong" />
     </div>
     <chat-room/>
   </div>
@@ -72,6 +72,12 @@ export default {
     loadPlaylist(playlist) {
       console.log('updated playlist: ', playlist)
       this.room.playlist = playlist
+    }
+  },
+  watch:{
+    '$route.params.roomId' : function(id){
+      this.$socket.emit('getRoomById', id)
+      this.$socket.emit('getPlaylist')
     }
   },
   components: {
