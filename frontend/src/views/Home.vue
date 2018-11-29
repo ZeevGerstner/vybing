@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <router-link to="/createroom">Create Room</router-link>
+    <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
+    
     <h1 class="category-title">TOP LISTENERS</h1>
     
     <div class="room-list container">

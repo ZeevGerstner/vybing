@@ -4,9 +4,9 @@
     <input class="add-song-input" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
    
     <ul class="search-res">
-      <song-preview v-for="song in songs" :key="song.id" :song="song" />  
+      <song-preview v-for="song in songs" :key="song.id" :song="song" @addSong="addSong"/>  
     </ul>
-    
+    {{songs}}
   </div>
 </template>
 
@@ -23,7 +23,12 @@ export default {
   },
   methods: {
     searchSong() {
+      console.log(this.search.txt)
       this.$store.dispatch("searchSong", this.search.txt);
+    },
+    addSong(song){
+      // console.log(song);
+      this.$emit('addSong',song)
     }
   },
   computed: {

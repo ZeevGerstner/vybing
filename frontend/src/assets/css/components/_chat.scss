@@ -1,6 +1,6 @@
 .chat-container{
     width: 350px;
-    height: 500px;
+    height: 618px;
     background-color: black;
 }
 .chat{
@@ -18,6 +18,10 @@
     font-family: roboto-medium;
     text-align: start;
     margin-left: 25px;
+    margin-top: 25px;
+}
+.chat-form{
+    text-align: center;
 }
 
 .chat-txt-container{

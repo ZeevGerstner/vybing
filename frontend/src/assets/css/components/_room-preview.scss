@@ -19,22 +19,33 @@
     width: 200px;
     height: 150px;
     margin-top: 5px;
+    -webkit-clip-path: inset(14% 4% 15% 5%);
+    clip-path: inset(14% 4% 15% 5%);
   }
 
   .room-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+    background-color: black;
   }
+
   .room-item-name{
     font-family: 'roboto-bold';
     text-align: center;
+    margin: 10px 0;
     font-size: 1.5em;
-    margin: 5px 0 10px 0 ; 
     transition: all .3s;
   }
 
   .room-item-name:hover{
     color:$pink;
+  }
+
+  .room-icons{
+    display: flex;
+    margin-bottom: 10px;
+
   }
 
   .room-item-genre {
@@ -48,10 +59,20 @@
   .room-item-icon{
     margin-left: 2px; 
   }
-  .room-item-img {
+  .room-icon-img {
     width: 20px;
     height: 20px;
   }
   .room-item-count {
     font-size: 0.7em;
   }
+
+  .now-playing{
+    align-self: flex-start;
+    margin-left: 5px;
+  }
+
+  .song-title{
+    align-self: baseline;
+  }
+
