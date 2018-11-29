@@ -9,8 +9,13 @@
       <div class="nav-link">
         <router-link tag="li" to="#">Genres</router-link>
         <router-link tag="li" to="/about">Rooms</router-link>
-        <router-link tag="li" to="/room">Room</router-link>
       </div>
+      <!-- <div class="login">
+        <button @click="isLogin = !isLogin">Login</button>
+        <login-user v-if="isLogin"></login-user>
+        <button @click="isSignup = !isSignup">Signup</button>
+        <signup-user v-if="isSignup"></signup-user>
+      </div> -->
     </div>
   </div>
 </template>

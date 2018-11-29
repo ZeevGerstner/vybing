@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "somgsPreview",
+  name: "songPreview",
   props:{
     song: Object
   },
