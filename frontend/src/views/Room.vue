@@ -48,15 +48,12 @@ export default {
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
     }
   },
-<<<<<<< HEAD
   methods: {
     addSong(song){
       console.log(song);
       
     }
   },
-=======
->>>>>>> b3be71a4a079cd78d26e146159baaf20075f0a00
   sockets: {
   },
   created() {
