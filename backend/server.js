@@ -41,6 +41,7 @@ io.on('connection', function (socket) {
                 socket.emit('setRoomList', rooms)
             })
     })
+    
     socket.on('getRoomById', function(roomId){
       
         return roomService.getById(roomId)
@@ -57,10 +58,6 @@ io.on('connection', function (socket) {
         io.emit('setCurrTime', time)
     })
 
-    // socket.on('getPlaylist', function () {
-    //     io.emit('LOAD_PLAYLIST', playlist)
-    // })
-
     socket.on('sendMsg', (newMsg) => {
         io.emit('setNewMsg', newMsg)
     })
@@ -69,8 +66,12 @@ io.on('connection', function (socket) {
         console.log('user disconnected')
     })
 
-    socket.on('updatePlaylist', (updatedPlaylist) => {
-        io.emit('LOAD_PLAYLIST', updatedPlaylist)
+    socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
+        roomService.updatePlaylist(roomId, updatedPlaylist)
+        .then(() => {
+            console.log('PLAYLIST',updatedPlaylist)
+            // io.emit('loadPlaylist', updatedPlaylist)
+            })
     })
 })
 

@@ -21,7 +21,7 @@
     </nav>
     <div class="room-player">
       
-      <youtube-player :playlist="room.playlist"></youtube-player>
+      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
     <add-song></add-song>
     </div>
@@ -39,20 +39,17 @@ import chatRoom from "@/components/Chat.vue";
 export default {
   data() {
     return {
-      room: {},
-      playlist:[]
+      room: {
+        playlist: []
+      },
     };
   },
-  mounted() {
-    // this.playlist = this.$store.getters.getPlaylist
-    // console.log('!!!!!!!!!S', this.$store.getters.getPlaylist)
-  },
-  methods: {},
-  sockets: {
-    LOAD_PLAYLIST: function(playlist) {
-      console.log(playlist)
-      this.playlist = playlist
+  methods: {
+    updatePlaylist(playlist) {
+      this.$socket.emit('updatePlaylist', this.room._id, playlist)
     }
+  },
+  sockets: {
   },
   created() {
     const roomId = this.$route.params.roomId;
@@ -63,6 +60,10 @@ export default {
   sockets: {
     setRoom: function(room){
       this.room = room
+    },
+    loadPlaylist(playlist) {
+      console.log('updated playlist: ', playlist)
+      this.room.playlist = playlist
     }
   },
   components: {

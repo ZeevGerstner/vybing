@@ -5,6 +5,7 @@
    
     <ul class="search-res">
       <song-preview v-for="song in songs" :key="song.id" :song="song" />  
+      {{songs}}
     </ul>
     
   </div>
@@ -23,6 +24,7 @@ export default {
   },
   methods: {
     searchSong() {
+      console.log(this.search.txt)
       this.$store.dispatch("searchSong", this.search.txt);
     }
   },
