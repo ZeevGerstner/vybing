@@ -4,6 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 module.exports = {
     query,
     getById,
+    updatePlaylist,
     addRoom,
     // remove,
     // update,
@@ -25,6 +26,18 @@ function getById(roomId) {
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');
             return roomCollection.findOne({ _id: roomId })
+        })
+}
+
+function updatePlaylist(roomId, playlist) {
+    roomId = new ObjectId(roomId)
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('room');
+            return roomCollection.update(
+                { _id: roomId },
+                { $set: { "playlist": playlist }}
+            )
         })
 }
 

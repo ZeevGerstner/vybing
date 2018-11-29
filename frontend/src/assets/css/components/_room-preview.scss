@@ -19,6 +19,8 @@
     width: 200px;
     height: 150px;
     margin-top: 5px;
+    -webkit-clip-path: inset(14% 4% 15% 5%);
+    clip-path: inset(14% 4% 15% 5%);
   }
 
   .room-details {

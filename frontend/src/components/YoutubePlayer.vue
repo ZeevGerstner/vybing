@@ -6,15 +6,13 @@
       height="113"
        :player-vars="playerVars"
         ref="youtube"
-        :videoId="videoId"
         @playing="playing"
         @ready="ready"
         @ended="ended"></youtube>
     </div>
-    {{playlist}}
     <div class="player-details">
         <h4 class="player-txt">NOW PLAYING:</h4>
-        <h2 class="song-name">KOKO SONG</h2>
+        <h2 class="song-name">{{playlist[0].title}}</h2>
         <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
     </div>
   </div>
@@ -23,7 +21,7 @@
 
 <script>
 export default {
-  name: "youtubePlayer",
+  name: 'youtubePlayer',
   props:['playlist'],
   data() {
     return {
@@ -44,29 +42,31 @@ export default {
     
     ended() {
       var song = this.playlist.splice(0, 1);
+      song = song[0]
       this.playlist.push(song)
-      this.emitPlaylist()
+      this.emitUpdatePlaylist()
+      this.currSongTime = 0;
+      console.log(this.playlist, this.videoId)
       this.setSong()
     },
 
     setSong() {
-      var videoId = this.playlist[0].id;
-      this.currSongTime = 0;
+      this.videoId = this.playlist[0].id
       this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
-    emitPlaylist() {
-      this.$socket.emit('updatePlaylist', this.playlist)
+    emitUpdatePlaylist() {
+      this.$emit('updatePlaylist', this.playlist)
     }
   },
-  created() {
-    this.$socket.emit("getTime");
-  },
 
+  created() {
+    this.$socket.emit('getTime');
+  },
   sockets: {
     connect: function() {},
     getStatusTime: function() {
       this.player.getCurrentTime().then(time => {
-        this.$socket.emit("setStatusTime", time);
+        this.$socket.emit('setStatusTime', time);
       });
     },
     setCurrTime: function(currTime) {
@@ -85,6 +85,5 @@ export default {
 search-res {
   width: 80vw;
 }
-
 
 </style>
