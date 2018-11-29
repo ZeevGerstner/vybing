@@ -11,9 +11,9 @@
 
         <div class="room-icon">
           <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
-          <h4 class="icon-count">304</h4>
+          <h4 class="icon-count">{{room.members}}</h4>
         </div>
-        <div class="room-icon">
+        <div class="room-icon ">
           <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
           <h4 class="icon-count">{{room.likes}}</h4>
         </div>

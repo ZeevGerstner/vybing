@@ -32,16 +32,16 @@ addUserRoutes(app)
 
 const roomService = require('./services/room.service')
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     console.log('user connected')
 
-    socket.on('getRoomList', function () {
+    socket.on('getRoomList', () => {
         return roomService.query()
             .then(rooms => {
                 socket.emit('setRoomList', rooms)
             })
     })
-    socket.on('getRoomById', function(roomId){
+    socket.on('getRoomById', (roomId) => {
       
         return roomService.getById(roomId)
             .then(room => {
@@ -49,11 +49,11 @@ io.on('connection', function (socket) {
             })
     })
 
-    socket.on('getTime', function () {
+    socket.on('getTime', () => {
         socket.broadcast.emit('getStatusTime')
     })
 
-    socket.on('setStatusTime', function (time) {
+    socket.on('setStatusTime', (time) => {
         io.emit('setCurrTime', time)
     })
 
@@ -65,7 +65,7 @@ io.on('connection', function (socket) {
         io.emit('setNewMsg', newMsg)
     })
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', () => {
         console.log('user disconnected')
     })
 
