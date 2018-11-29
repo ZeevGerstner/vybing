@@ -41,13 +41,7 @@ io.on('connection', (socket) => {
                 socket.emit('setRoomList', rooms)
             })
     })
-<<<<<<< HEAD
-    
-    socket.on('getRoomById', function(roomId){
-=======
     socket.on('getRoomById', (roomId) => {
->>>>>>> 1343892489bb5299e3e0d14fd553274355e3ab54
-      
         return roomService.getById(roomId)
             .then(room => {
                 socket.emit('setRoom', room)
@@ -68,16 +62,6 @@ io.on('connection', (socket) => {
         io.emit('setCurrTime', time)
     })
 
-<<<<<<< HEAD
-=======
-    // socket.on('getPlaylist', function () {
-    //     io.emit('LOAD_PLAYLIST', playlist)
-    // })
-
-
-   
-
->>>>>>> 1343892489bb5299e3e0d14fd553274355e3ab54
     socket.on('sendMsg', (newMsg) => {
         io.emit('setNewMsg', newMsg)
     })
