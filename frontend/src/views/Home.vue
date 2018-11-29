@@ -1,26 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <button @click="isLogin = !isLogin">Login</button>
-    <login-user v-if="isLogin"></login-user>
-    <button @click="isSignup = !isSignup">Signup</button>
-    <signup-user v-if="isSignup"></signup-user>
-
-    <div v-if="rooms" v-for="room in rooms" :key="room._id">
-      <router-link class="room-name" :to="'/room/'+room._id">{{room.name}}</router-link>
+    <router-link to="/createroom">Create Room</router-link>
+    <h1 class="category-title">TOP LISTENERS</h1>
+    
+    <div class="room-list container">
+        <room-preview v-if="rooms" v-for="room in rooms" :key="room._id" :room="room" />  
     </div>
+
   </div>
 </template>
 
 <script>
 import loginUser from "../components/Login";
 import signupUser from "../components/Signup";
+import roomPreview from '../components/RoomPreview'
 
 export default {
   name: "home",
   components: {
     loginUser,
-    signupUser
+    signupUser,
+    roomPreview
   },
   data() {
     return {

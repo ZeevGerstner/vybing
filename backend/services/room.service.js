@@ -4,7 +4,8 @@ const ObjectId = require('mongodb').ObjectId;
 module.exports = {
     query,
     getById,
-    updatePlaylist
+    updatePlaylist,
+    addRoom,
     // remove,
     // update,
     // add,
@@ -39,6 +40,14 @@ function updatePlaylist(roomId, playlist) {
             )
         })
 }
+
+function addRoom(newRoom) {
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('room');
+            return roomCollection.insertOne(newRoom)
+        })
+    }
 
 // function typesQuery() {
 //     return mongoService.connectToDB()
@@ -80,10 +89,3 @@ function updatePlaylist(roomId, playlist) {
 //         })
 // }
 
-// function add(toy) {
-//     return mongoService.connectToDB()
-//         .then(dbConn => {
-//             const toyCollection = dbConn.collection('toy');
-//             return toyCollection.insertOne(toy)
-//         })
-//     }

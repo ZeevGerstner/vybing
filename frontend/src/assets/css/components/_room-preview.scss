@@ -1,0 +1,57 @@
+.room-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 210px;
+    height: 300px;
+    margin: 0 25px 25px 0;
+    background-color: $light-gray;
+    color: black;
+    justify-content: space-between;
+  }
+
+  .room-item-link{
+    cursor: pointer;
+  }
+
+  .youtube-img {
+    width: 200px;
+    height: 150px;
+    margin-top: 5px;
+  }
+
+  .room-details {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .room-item-name{
+    font-family: 'roboto-bold';
+    text-align: center;
+    font-size: 1.5em;
+    margin: 5px 0 10px 0 ; 
+    transition: all .3s;
+  }
+
+  .room-item-name:hover{
+    color:$pink;
+  }
+
+  .room-item-genre {
+    font-family: 'roboto-medium';
+    width: 80px;
+    padding: 2px;
+    text-transform: capitalize;
+    margin: 0;
+    font-size: 0.9em;
+  }
+  .room-item-icon{
+    margin-left: 2px; 
+  }
+  .room-item-img {
+    width: 20px;
+    height: 20px;
+  }
+  .room-item-count {
+    font-size: 0.7em;
+  }

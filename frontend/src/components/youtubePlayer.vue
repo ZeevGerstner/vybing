@@ -12,7 +12,7 @@
     </div>
     <div class="player-details">
         <h4 class="player-txt">NOW PLAYING:</h4>
-        <h2 class="song-name">KOKO SONG</h2>
+        <h2 class="song-name">{{playlist[0].title}}</h2>
         <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
     </div>
   </div>

@@ -11,9 +11,9 @@
 
         <div class="room-icon">
           <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
-          <h4 class="icon-count">304</h4>
+          <h4 class="icon-count">{{room.members}}</h4>
         </div>
-        <div class="room-icon">
+        <div class="room-icon ">
           <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
           <h4 class="icon-count">{{room.likes}}</h4>
         </div>
@@ -60,10 +60,14 @@ export default {
   sockets: {
     setRoom: function(room){
       this.room = room
+<<<<<<< HEAD
     },
     loadPlaylist(playlist) {
       console.log('updated playlist: ', playlist)
       this.room.playlist = playlist
+=======
+      console.log(room)
+>>>>>>> 1343892489bb5299e3e0d14fd553274355e3ab54
     }
   },
   components: {
