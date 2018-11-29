@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <form @submit.prevent="sendMsg">
+    <form class="chat-form" @submit.prevent="sendMsg">
       <input
         class="chat-input"
         placeholder="Talk with people in this room"
