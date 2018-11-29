@@ -3,9 +3,9 @@ const BASE_URL = process.env.NODE_ENV !== 'development'
     ? ''
     : '//localhost:3000'
 
-function login(userName){
+function login(user){
     return axios.put(`${BASE_URL}/login`,{
-        userName
+        user
     })
     .then(res => res.data)
 }

@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Room from './views/Room.vue'
 import Createroom from './views/CreateRoom.vue'
-
+import Signup from './components/Signup.vue'
 
 Vue.use(Router)
 
@@ -25,6 +25,11 @@ export default new Router({
       path: '/createroom',
       name: 'createroom',
       component: Createroom
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
     },
     {
       path: '/about',
