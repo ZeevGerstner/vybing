@@ -82,6 +82,18 @@ io.on('connection', (socket) => {
         })
     })
 
+    socket.on('getRoomsByGenre',(genre)=>{
+        var filter = {
+            byName: '',
+            byType: genre
+        }
+        roomService.query(filter)
+        .then(filteredRooms => {
+            console.log('filter:', filteredRooms)
+            socket.emit('setRoomsFilter', filteredRooms)
+        })
+    })
+
     socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
         roomService.updatePlaylist(roomId, updatedPlaylist)
         .then(() => {

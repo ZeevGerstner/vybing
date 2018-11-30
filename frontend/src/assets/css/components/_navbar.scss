@@ -82,3 +82,28 @@
         margin: 10px 0;
     }
 }
+
+.genres{
+    background-color: black;
+    padding: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    position: absolute;
+    top: 45px;
+    text-align: center;
+    z-index: 2;
+}
+.genre{
+    margin-right: 10px;
+    color: $lime-green;
+    text-decoration: none;
+    transition: all .3s;
+
+}
+.genre:hover{
+    color: $off-white;
+}

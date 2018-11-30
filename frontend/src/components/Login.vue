@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <form @submit.prevent="loginUser">
+  <section class="login-user">
+    <form class="login-form" @submit.prevent="loginUser">
       <input placeholder="User Name" v-model="user.name" type="text">
       <input placeholder="Password" v-model="user.password" type="password">
       <button>Login</button>

@@ -1,0 +1,17 @@
+
+
+.login-user{
+    position: absolute;
+    z-index: 2;
+    background-color: black;
+    text-align: center;
+    top: 50px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}

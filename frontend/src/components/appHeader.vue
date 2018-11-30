@@ -1,7 +1,9 @@
 <template>
   <div class="nav">
     <div class="nav-container flex align-center space-between container">
+
       <router-link tag="div" to="/" class="nav-logo logo">Vybing</router-link>
+
       <div class="search">
         <span class="fa fa-search"></span>
         <input @input="searchRooms" v-model="search" placeholder="search">
@@ -11,12 +13,18 @@
           </li>
         </ul>
       </div>
+      
       <div class="nav-link">
-        <router-link tag="li" to="#">Genres</router-link>
-        <router-link tag="li" to="/about">Rooms</router-link>
+        <li @mouseover="isGenre = true">▼Genres
+          <div @mouseover="isGenre = true" @mouseleave="isGenre = false" v-if="isGenre" class="genres">
+            <router-link class="genre" v-for="(genre, idx) in genres" :key="idx" :to="'/genre/'+genre">{{genre}}</router-link>
+          </div>
+        </li>
+        <router-link tag="li" to="/">Rooms</router-link>
       </div>
+
       <div class="login">
-        <button @click="isLogin = !isLogin">Login</button>
+        <li @click="isLogin = !isLogin">Login</li>
         <login-user v-if="isLogin"></login-user>
       </div>
     </div>
@@ -39,7 +47,9 @@ export default {
       isLogin: false,
       roomsResults: [],
       search:'',
-      isSearch: false
+      isSearch: false,
+      isGenre: false,
+      genres: ['Hip Hop', 'Rock', 'Pop', 'Funk']
     }
   },
   methods:{
@@ -72,11 +82,4 @@ export default {
 
 }
 
-
-h1 {
-  margin: 40px 0 0;
-}
-a {
-  color: #42b983;
-}
 </style>
