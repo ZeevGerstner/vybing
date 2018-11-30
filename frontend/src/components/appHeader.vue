@@ -23,7 +23,7 @@
         <router-link tag="li" to="/">Rooms</router-link>
       </div>
 
-      <div class="login">
+      <div class="nav-link login">
         <li @click="isLogin = !isLogin">Login</li>
         <login-user v-if="isLogin"></login-user>
       </div>
