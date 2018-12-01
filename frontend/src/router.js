@@ -18,7 +18,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/genre/:genreName',
+      path: '/genre/:genreName?',
       name: 'genre',
       component: Genre
     },
