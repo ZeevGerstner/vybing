@@ -15,3 +15,37 @@
     display: flex;
     flex-direction: column;
 }
+
+.go-signup-btn{
+    font-family: 'roboto-thin';
+    font-size: 1em;
+    color: #f4f4f4;
+    text-align: center;
+    padding: 5px;
+    align-self: flex-end;
+    margin-top: 9px;
+}
+
+.go-signup-btn:hover{
+    color: $lime-green;
+    cursor: pointer;
+}
+
+.login-input{
+    margin-top: 10px;
+    font-weight: bold;
+    height: 30px;
+}
+.login-btn{
+    height: 50px;
+    border: none;
+    background-color: #99cc00;
+    font-size: 20px;
+    margin-top: 10px;
+    height: 25px;
+    font-family: 'roboto-medium';
+}
+.login-btn:hover{
+    background-color: #b3ee00;
+    cursor: pointer;
+}

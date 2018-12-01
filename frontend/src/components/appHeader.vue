@@ -27,7 +27,7 @@
 
       <div class="nav-link login">
         <li @click="isLogin = !isLogin">Login</li>
-        <login-user v-if="isLogin"></login-user>
+        <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
       </div>
     </div>
   </div>
