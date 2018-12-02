@@ -23,18 +23,7 @@
     <div class="room-player">
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-<<<<<<< HEAD
-    
-    <router-link :to="`/room/${room._id}`">Playlist</router-link>
-    <router-link :to="`/room/${room._id}/addsong`">Add Song</router-link>
-    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong">
-
-    </router-view>
-    <!-- <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp> -->
-    <!-- <add-song @addSong="addSong" /> -->
-=======
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
->>>>>>> 1da993e015988efef6207a6d7278e18243c7bdef
     </div>
     <chat-room :room="room"/>
   </div>
