@@ -15,24 +15,23 @@
 
 <script>
 export default {
-    data(){
-        return{
-            newUser: {
-                name:'',
-                pass:''
-            }
-        }
-    },
-    methods:{
-        signupUser(){
-            console.log(this.newUser)
-            this.newUser = {name:'', pass:''}
-        }
+  data () {
+    return {
+      newUser: {
+        name: '',
+        pass: ''
+      }
     }
+  },
+  methods: {
+    signupUser () {
+      console.log(this.newUser)
+      this.newUser = { name: '', pass: '' }
+    }
+  }
 
 }
 </script>
 
 <style>
-
 </style>
