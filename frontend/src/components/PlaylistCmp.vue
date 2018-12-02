@@ -1,16 +1,19 @@
 <template>
     <div>
         <ul class="search-res">
-            <li class="song-item space-between" v-for="song in playlistToShow" :key="song.id">
-                <div class="playlist-controls flex flex-column">
-                    <button class="playlist-up-arrow" @click="moveSong('up', song)"><i class="fas fa-arrow-circle-up"></i></button>
-                    <button class="playlist-down-arrow" @click="moveSong('down', song)"><i class="fas fa-arrow-circle-down"></i></button>
-                </div>
-                <div class="playlist-video-details">
-                    <img class="youtube-img" :src="song.img"/>
-                    <h3 class="youtube-title">{{song.title}}</h3>
-                </div>
-            </li>
+            <div class="add-song-btn flex justify-center align-center" @click="routeAddSong"><i class="fas fa-plus"></i></div>
+            <div class="playlist-container">
+                <li class="song-item space-between" v-for="song in playlistToShow" :key="song.id">
+                    <div class="playlist-controls flex flex-column">
+                        <button class="playlist-up-arrow" @click="moveSong('up', song)"><i class="fas fa-arrow-circle-up control-arrows"></i></button>
+                        <button class="playlist-down-arrow" @click="moveSong('down', song)"><i class="fas fa-arrow-circle-down control-arrows"></i></button>
+                    </div>
+                    <div class="playlist-video-details">
+                        <img class="youtube-img" :src="song.img"/>
+                        <h3 class="youtube-title">{{song.title}}</h3>
+                    </div>
+                </li>
+            </div>
         </ul>
     </div>
 </template>
@@ -50,6 +53,12 @@ export default {
             this.playlist[newIndex] = temp
             this.newPlaylist = this.playlist.slice()
             this.$emit('moveSong', this.newPlaylist)
+        },
+
+        routeAddSong() {
+            var roomId = this.$route.params.roomId
+            console.log(roomId)
+            this.$router.push(`/room/${roomId}/addsong`)
         }
     }
 }
@@ -66,11 +75,21 @@ button {
     align-items: center;
 }
 
-.fas {
+.control-arrows {
     color: #99cc00;
     font-size: 1.4rem;
     cursor: pointer;
     background-color: transparent;
 }
 
+.add-song-btn {
+    background-color: #99cc00;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    border: 2px solid white;
+    top: 88%;
+}
 </style>
