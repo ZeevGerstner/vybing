@@ -3,14 +3,16 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const cors = require('cors')
+const history = require('connect-history-api-fallback');
+
 
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
 const addUserRoutes = require('./routes/user-route')
+const connectSocket = require('./services/socket.service')
 
-app.use(express.static('public'));
 
 app.use(cors({
     origin: ['http://localhost:8080'],
@@ -26,119 +28,16 @@ app.use(session({
 }))
 
 
-
 addUserRoutes(app)
+connectSocket(io)
 
-// app.get('/',function(res,req){
-//     res.sendFile(__dirname+'index.html')
-// })
-const gRooms = [];
-
-const roomService = require('./services/room.service')
-const userService = require('./services/user.service')
-
-io.on('connection', (socket) => {
-    console.log('user connected')
-    var userRoom;
-
-    socket.on('chatRoomJoined', (room)=>{
-        var currRoom = gRooms.find(curr => curr._id === room._id)
-        if(currRoom){
-            userRoom = currRoom
-        } else{
-            userRoom = room
-            gRooms.push(room)
-        }
-        socket.join(userRoom._id)
-    })
-
-    socket.on('sendMsg', (newMsg) => {
-        io.to(userRoom._id).emit('setNewMsg', newMsg)
-    })
-
-    socket.on('getRoomList', () => {
-        return roomService.query()
-            .then(rooms => {
-                socket.emit('setRoomList', rooms)
-            })
-    })
-    socket.on('getRoomById', (roomId) => {
-        return roomService.getById(roomId)
-            .then(room => {
-                socket.emit('setRoom', room)
-            })
-    })
-    socket.on('createRoom', (newRoom) => {
-        return roomService.addRoom(newRoom)
-            .then(newRoom => {
-                socket.emit('setNewRoom', newRoom.ops[0])
-            })
-    })
-
-    socket.on('getTime', () => {
-        socket.broadcast.emit('getStatusTime')
-    })
-
-    socket.on('setStatusTime', (time) => {
-        io.emit('setCurrTime', time)
-    })
+app.use(history())
+app.use(express.static('public'));
 
 
-    socket.on('disconnect', () => {
-        console.log('user disconnected')
-    })
 
-    socket.on('searchRoom', (filter) => {
-        
-        roomService.query(filter)
-            .then(filteredRooms => {
-                console.log('filter:', filteredRooms)
-                socket.emit('setRoomsFilter', filteredRooms)
-            })
-    })
- 
-    socket.on('getRoomsByGenre', (genre) => {
-        var filter = {
-            byName: '',
-            byType: genre
-        }
-        roomService.query(filter)
-            .then(filteredRooms => {
-                console.log('filter:', filteredRooms)
-                socket.emit('setRoomsFilter', filteredRooms)
-            })
-    })
+const port = process.env.PORT || 3000
 
-    socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
-        roomService.updatePlaylist(roomId, updatedPlaylist)
-            .then(() => {
-                // console.log('PLAYLIST', updatedPlaylist)
-                return roomService.query()
-                    .then(rooms => {
-                        io.emit('setRoomList', rooms)
-                    })
-                // io.emit('loadPlaylist', updatedPlaylist)
-            })
-    })
-    socket.on('modifyPlaylist', (roomId, updatedPlaylist) => {
-        roomService.updatePlaylist(roomId, updatedPlaylist)
-            .then(() => {
-                io.emit('loadPlaylist', updatedPlaylist)
-            })
-        })
-    
-    socket.on('getUserById', (userId) =>{
-        userService.getUserRooms(userId)
-        .then(user =>{
-            socket.emit('setUserProfile', user)
-        })
-
-    })
-    
-    })
-
-    const port = process.env.PORT || 3000
-
-    http.listen(port, function () {
-        console.log(`connected in port ${port}`);
-    })
+http.listen(port, function () {
+    console.log(`connected in port ${port}`);
+})

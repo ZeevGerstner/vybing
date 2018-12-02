@@ -23,13 +23,7 @@
       
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <router-link :to="`/room/${room._id}`">Playlist</router-link>
-    <router-link :to="`/room/${room._id}/addsong`">Add Song</router-link>
-    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong">
-
-    </router-view>
-    <!-- <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp> -->
-    <!-- <add-song @addSong="addSong" /> -->
+    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
     </div>
     <chat-room :room="room"/>
   </div>
@@ -53,11 +47,9 @@ export default {
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
     },
     addSong(song){
-      console.log(song);
       this.room.playlist.push(song)
       var playlist = this.room.playlist
-      console.log(playlist)
-      this.$socket.emit('updatePlaylist', this.room._id, playlist)
+      this.$socket.emit('modifyPlaylist', this.room._id, playlist)
 
     },
     moveSong(playlist) {
