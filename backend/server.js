@@ -105,10 +105,17 @@ io.on('connection', (socket) => {
                 // io.emit('loadPlaylist', updatedPlaylist)
             })
     })
-})
+    socket.on('modifyPlaylist', (roomId, updatedPlaylist) => {
+        roomService.updatePlaylist(roomId, updatedPlaylist)
+            .then(() => {
+                io.emit('loadPlaylist', updatedPlaylist)
+            })
+        })
+    })
 
-const port = process.env.PORT || 3000
 
-http.listen(port, function () {
-    console.log(`connected in port ${port}`);
-})
+    const port = process.env.PORT || 3000
+
+    http.listen(port, function () {
+        console.log(`connected in port ${port}`);
+    })
