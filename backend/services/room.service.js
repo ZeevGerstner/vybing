@@ -28,6 +28,7 @@ function query(filter = {byName: '', byType:''}) {
 }
 
 function getById(roomId) {
+    console.log({roomId})
     roomId = new ObjectId(roomId)
     return mongoService.connectToDb()
         .then(dbConn => {

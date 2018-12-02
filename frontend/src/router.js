@@ -5,6 +5,8 @@ import Room from './views/Room.vue'
 import Createroom from './views/CreateRoom.vue'
 import Signup from './components/Signup.vue'
 import RoomSearch from './views/RoomSearch.vue'
+import PlaylistCmp from './components/PlaylistCmp.vue'
+import AddSong from './components/AddSong.vue'
 
 Vue.use(Router)
 
@@ -25,7 +27,17 @@ export default new Router({
     {
       path: '/room/:roomId',
       name: 'room',
-      component: Room
+      component: Room,
+      children: [
+        {
+          path: '',
+          component: PlaylistCmp
+        },
+        {
+          path: 'addsong',
+          component: AddSong
+        }
+      ]
     },
     {
       path: '/createroom',

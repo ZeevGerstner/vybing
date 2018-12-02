@@ -11,7 +11,7 @@
 
           <div class="room-icon">
             <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
-            <h4 class="icon-count">{{room.members.length}}</h4>
+            <!-- <h4 class="icon-count">{{room.members.length}}</h4> -->
           </div>
           <div class="room-icon ">
             <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
@@ -23,7 +23,12 @@
       
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp>
+    <router-link :to="`/room/${room._id}`">Playlist</router-link>
+    <router-link :to="`/room/${room._id}/addsong`">Add Song</router-link>
+    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong">
+
+    </router-view>
+    <!-- <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp> -->
     <!-- <add-song @addSong="addSong" /> -->
     </div>
     <chat-room/>
@@ -31,7 +36,6 @@
 </template>
 
 <script>
-"use strict";
 import addSong from "@/components/AddSong.vue";
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 import chatRoom from "@/components/Chat.vue";
