@@ -13,14 +13,14 @@ function checkLogin({ user }) {
 }
 
 
-function addUser({ userName }) {
-    var user = { userName }
+function addUser({ newUser }) {
+    var user = { newUser }
     return mongoService.connectToDb()
-        .then(db => db.collection('user').insertOne(user))
-        .then(res => {
-            user._id = res.insertedId
-            return user
-        })
+        .then(db => db.collection('user').insertOne(newUser))
+        // .then(res => {
+        //     user._id = res.insertedId
+        //     return user
+        // })
 }
 
 

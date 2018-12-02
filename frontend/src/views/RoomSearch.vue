@@ -18,6 +18,8 @@ export default {
   components: {
     roomPreview
   },
+
+  
   data() {
     return {
       rooms: [],
