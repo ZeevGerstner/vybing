@@ -33,8 +33,40 @@ function getById(userId){
     })
 }
 
+
+function getUserRooms (userId) {
+    const _id = new ObjectId(userId)
+    return mongoService.connectToDb()
+        .then(db =>
+            db.collection('user').aggregate([
+                {
+                    $match: { _id }
+                },
+                {
+                    $lookup:
+                    {
+                        from: 'room',
+                        localField: 'roomsCreatedIds',
+                        foreignField: '_id',
+                        as: 'roomsCreated'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'room',
+                        localField: 'roomsLikedIds',
+                        foreignField: '_id',
+                        as: 'roomsLiked'
+                    }
+                }
+            ]).toArray()
+        )
+}
+
+
 module.exports = {
     addUser,
     checkLogin,
-    getById
+    getById,
+    getUserRooms
 }

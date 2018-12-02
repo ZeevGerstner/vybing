@@ -128,7 +128,7 @@ io.on('connection', (socket) => {
         })
     
     socket.on('getUserById', (userId) =>{
-        userService.getById(userId)
+        userService.getUserRooms(userId)
         .then(user =>{
             socket.emit('setUserProfile', user)
         })

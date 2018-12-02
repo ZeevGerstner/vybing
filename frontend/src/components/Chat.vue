@@ -6,7 +6,7 @@
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
-            <span :class="(msg.isMyUser) ? 'chat-user' : 'other-chat-user'">{{msg.name}}</span>
+            <span :class="setColorToUser(msg)">{{msg.name}}</span>
             <span>: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
@@ -39,14 +39,23 @@ export default {
     sendMsg() {
       this.$socket.emit("sendMsg", { txt: this.newMsg, name: this.getUser.name});
       this.newMsg = "";
-    }
+    },
+    setColorToUser(msg){
+          if(msg.isMyUser === 'guest') return 'guest-chat-user'
+          else if(msg.isMyUser === 'true') return 'chat-user'
+          else return 'other-chat-user'
+      }
   },
   sockets: {
     setNewMsg: function(newMsg) {
-      if(newMsg.name !== this.getUser.name){
-        newMsg.isMyUser = false;
+      if(newMsg.name === 'guest'){
+         newMsg.isMyUser = 'guest';
       }else{
-        newMsg.isMyUser = true;
+        if(newMsg.name !== this.getUser.name){
+          newMsg.isMyUser = 'false';
+        }else{
+          newMsg.isMyUser = 'true';
+        }
       }
       this.msgs.push(newMsg);
       
@@ -59,7 +68,9 @@ export default {
   },
   computed:{
       getUser(){
-            return this.$store.getters.getCurrUser
+            var currUser = this.$store.getters.getCurrUser
+            if(currUser) return currUser
+            else return {name: 'guest'} 
         },
     },
     created(){
