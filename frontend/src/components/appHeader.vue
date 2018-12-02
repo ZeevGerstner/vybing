@@ -1,7 +1,7 @@
 <template>
   <div class="nav" @mouseleave="isGenre = false">
     <div class="nav-container flex align-center space-between container">
-      <router-link tag="div" to="/" class="nav-logo logo">Vybing</router-link>
+      <div @click="goToRooms" class="nav-logo logo">Vybing</div>
 
       <div class="search">
         <input @input="searchRooms" v-model="filter.byName" placeholder="search">
@@ -27,13 +27,13 @@
           >
             <div
               class="genre"
-              v-for="(genre, idx) in genres"
+              v-for="(genre, idx) in getGenre"
               :key="idx"
               @click="searchByGenre(genre)"
-            >{{genre}} |</div>
+            >{{genre}}</div>
           </div>
         </li>
-        <router-link tag="li" to="/">Rooms</router-link>
+        <li @click="goToRooms">Rooms</li>
       </div>
 
       <div class="nav-link login">
@@ -61,7 +61,6 @@ export default {
       roomsResults: [],
       isSearch: false,
       isGenre: false,
-      genres: ['Hip Hop', 'Rock', 'Pop', 'Funk'],
       filter: {
         byType: '',
         byName: '',
@@ -70,6 +69,7 @@ export default {
   },
   methods: {
     searchRooms() {
+      console.log('search: ', this.filter)
       this.$socket.emit('searchRoom', this.filter)
       this.isSearch = true
       if (this.filter.byName === '') this.isSearch = false
@@ -89,11 +89,20 @@ export default {
       this.filter.byType = genre;
       this.searchRooms()
       this.$router.push('/RoomSearch/' + genre)
+    },
+    goToRooms(){
+      this.filter = {
+        byType: '',
+        byName: '',
+      }
+      this.$router.push('/')
     }
   },
   watch: {
     '$route.params.genreName': function (genre) {
-      this.filter.byType = genre
+      if(genre){
+        this.filter.byType = genre
+      }
     },
   },
   sockets: {
@@ -101,6 +110,11 @@ export default {
       console.log(filteredRoom)
       this.roomsResults = filteredRoom
     }
+  },
+ computed:{
+      getGenre(){
+          return this.$store.getters.getGenre
+      }
   }
 }
 </script>

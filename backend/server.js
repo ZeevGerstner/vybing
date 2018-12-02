@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
                 socket.emit('setRoomsFilter', filteredRooms)
             })
     })
-
+ 
     socket.on('getRoomsByGenre', (genre) => {
         var filter = {
             byName: '',
