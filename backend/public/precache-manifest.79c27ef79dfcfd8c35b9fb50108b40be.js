@@ -8,12 +8,12 @@ self.__precacheManifest = [
     "url": "/robots.txt"
   },
   {
-    "revision": "3e1af3ef546b9e6ecef9f3ba197bf7d2",
-    "url": "/fonts/Roboto-Regular.3e1af3ef.ttf"
+    "revision": "ee7b96fa85d8fdb8c126409326ac2d2b",
+    "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
   },
   {
-    "revision": "08d7403c05f26f586873",
-    "url": "/js/app.3d543b28.js"
+    "revision": "e0644a208b5a221d9fad",
+    "url": "/js/app.ab8a4f3c.js"
   },
   {
     "revision": "f529bc37e05d65a6375d",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/js/about.dbc2d5ba.js"
   },
   {
-    "revision": "3ea3b3e3bcb4ca0eae312318f0f9af20",
+    "revision": "dc336749b10e1e315d51161970974d17",
     "url": "/index.html"
   },
   {
@@ -44,11 +44,11 @@ self.__precacheManifest = [
     "url": "/fonts/Roboto-Thin.89e2666c.ttf"
   },
   {
-    "revision": "ee7b96fa85d8fdb8c126409326ac2d2b",
-    "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
+    "revision": "3e1af3ef546b9e6ecef9f3ba197bf7d2",
+    "url": "/fonts/Roboto-Regular.3e1af3ef.ttf"
   },
   {
-    "revision": "08d7403c05f26f586873",
+    "revision": "e0644a208b5a221d9fad",
     "url": "/css/app.b38db35a.css"
   }
 ];
