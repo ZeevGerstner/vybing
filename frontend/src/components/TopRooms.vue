@@ -1,11 +1,13 @@
 <template>
   <div v-if="rooms">
-    <h1 class="category-title">Top {{type}}</h1>
-    <router-link
-      v-if="(type !== 'listeners' && type !== 'likes')"
-      :to="'/RoomSearch/' + type"
-      class="genre"
-    >See all by {{type}}</router-link>
+    <div class="top-roms-header container">
+      <h1 class="top-roms-title">Top {{type}}</h1>
+      <button
+        v-if="(type !== 'listeners' && type !== 'likes')"
+        @click="goToGenre(type)"
+        class="genre"
+      >See all by {{type}}</button>
+    </div>
     <div class="room-list container">
       <room-preview
         v-for="room in rooms"
@@ -24,6 +26,12 @@ export default {
   props: {
     rooms: Array,
     type: String
+  },
+  methods: {
+    goToGenre (genre) {
+      this.$socket.emit('searchRoom', { byName: '', byType: genre })
+      this.$router.push(`/RoomSearch/${genre}`)
+    }
   },
   components: {
     roomPreview

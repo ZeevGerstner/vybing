@@ -11,11 +11,7 @@
 
           <div class="room-icon">
             <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
-<<<<<<< HEAD
             <h4 class="icon-count">{{room.listeners.length}}</h4>
-=======
-            <!-- <h4 class="icon-count">{{room.members.length}}</h4> -->
->>>>>>> a27d70dd453b1cbde2063fab17437e99c9962323
           </div>
           <div class="room-icon ">
             <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
