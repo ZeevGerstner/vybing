@@ -26,12 +26,16 @@
     letter-spacing: 3px;
     cursor: pointer;
     transition: all .3s;
+   
 }
 
 .nav li:hover {
     color: $lime-green;
 }
-
+.all-results{
+    font-size: 10px;
+    color: $lime-green;
+}
 .search {
     position: relative;
 }
@@ -48,11 +52,7 @@
     padding-right:20px;
     color: $off-white;
 }
-.search input:focus {
-    outline: 0;
-    border: 2px solid $lime-green;
-    border-radius: 5px;
-}
+
 
 .search .fa-search { 
   position: absolute;
@@ -62,12 +62,19 @@
   color: $light-gray;
 }
 
-
+.search input:focus {
+    outline: 0;
+    border: 2px solid $lime-green;
+    border-radius: 5px;
+    +.fa-search{
+        color: $lime-green;
+    }
+}
 
 .rooms-results{
     position: absolute;
     top: 30px;
-    width: 247px;
+    width: 100%;
     background-color: #262626;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

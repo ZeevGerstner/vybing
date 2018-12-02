@@ -1,23 +1,36 @@
 <template>
-  <div class="nav">
+  <div class="nav" @mouseleave="isGenre = false">
     <div class="nav-container flex align-center space-between container">
-
       <router-link tag="div" to="/" class="nav-logo logo">Vybing</router-link>
 
       <div class="search">
+        <input @input="searchRooms" v-model="filter.byName" placeholder="search">
         <span class="fa fa-search"></span>
-        <input @input="searchRooms" v-model="search" placeholder="search">
+
         <ul class="rooms-results" v-if="isSearch">
-          <li v-for="room in roomsResults" :key="room._id" @click="goToRoomById(room._id)">
-            {{room.name}}
-          </li>
+          <li class="all-results" @click="seeAllResults">See all results for: {{filter.byName}}</li>
+          <li
+            v-for="room in roomsResults"
+            :key="room._id"
+            @click="goToRoomById(room._id)"
+          >{{room.name}}</li>
         </ul>
       </div>
-      
+
       <div class="nav-link">
         <li @mouseover="isGenre = true">▼Genres
-          <div @mouseover="isGenre = true" @mouseleave="isGenre = false" v-if="isGenre" class="genres">
-            <router-link class="genre" v-for="(genre, idx) in genres" :key="idx" :to="'/genre/'+genre">{{genre}}</router-link>
+          <div
+            @mouseover="isGenre = true"
+            @mouseleave="isGenre = false"
+            v-if="isGenre"
+            class="genres"
+          >
+            <div
+              class="genre"
+              v-for="(genre, idx) in genres"
+              :key="idx"
+              @click="searchByGenre(genre)"
+            >{{genre}} |</div>
           </div>
         </li>
         <router-link tag="li" to="/">Rooms</router-link>
@@ -25,7 +38,7 @@
 
       <div class="nav-link login">
         <li @click="isLogin = !isLogin">Login</li>
-        <login-user v-if="isLogin"></login-user>
+        <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
       </div>
     </div>
   </div>
@@ -42,31 +55,49 @@ export default {
   components: {
     loginUser
   },
-  data(){
-    return{
+  data() {
+    return {
       isLogin: false,
       roomsResults: [],
-      search:'',
       isSearch: false,
       isGenre: false,
-      genres: ['Hip Hop', 'Rock', 'Pop', 'Funk']
+      genres: ['Hip Hop', 'Rock', 'Pop', 'Funk'],
+      filter: {
+        byType: '',
+        byName: '',
+      }
     }
   },
-  methods:{
-    searchRooms(){
-      console.log(this.search)
-      this.$socket.emit('searchRoom',this.search)
+  methods: {
+    searchRooms() {
+      this.$socket.emit('searchRoom', this.filter)
       this.isSearch = true
-      if(this.search === '') this.isSearch = false
+      if (this.filter.byName === '') this.isSearch = false
     },
-    goToRoomById(roomId){
-      this.$router.push('/room/'+roomId)
-      this.search = ''
+    goToRoomById(roomId) {
+      this.$router.push('/room/' + roomId)
+      this.filter.byName = ''
       this.isSearch = false
+    },
+    seeAllResults() {
+      this.$router.push('/RoomSearch')
+      this.searchRooms()
+      this.isSearch = false
+    },
+    searchByGenre(genre) {
+      console.log(genre)
+      this.filter.byType = genre;
+      this.searchRooms()
+      this.$router.push('/RoomSearch/' + genre)
     }
   },
-  sockets:{
-    setRoomsFilter: function (filteredRoom){
+  watch: {
+    '$route.params.genreName': function (genre) {
+      this.filter.byType = genre
+    },
+  },
+  sockets: {
+    setRoomsFilter: function (filteredRoom) {
       console.log(filteredRoom)
       this.roomsResults = filteredRoom
     }
@@ -79,7 +110,5 @@ export default {
 .nav {
   display: flex;
   // flex-direction: column;
-
 }
-
 </style>
