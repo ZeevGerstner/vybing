@@ -52,14 +52,25 @@ export default {
         }
   },
   created(){
-    this.$nextTick(() => {
-      this.$refs.input.focus()
-    }) 
+   
+    console.log(this.getUser._id)
+    if(!this.getUser._id){
+        this.$router.push('/Signup')
+    }else{
+         this.$nextTick(() => {
+            this.$refs.input.focus()
+        }) 
+    }
   },
   computed:{
       getGenre(){
           return this.$store.getters.getGenre
-      }
+      },
+      getUser(){
+            var currUser = this.$store.getters.getCurrUser
+            if(currUser) return currUser
+            else return {name: 'guest'} 
+        },
   }
 
 }

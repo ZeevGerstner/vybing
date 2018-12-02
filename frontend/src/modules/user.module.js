@@ -24,6 +24,9 @@ export default {
                 }
                 return currUser
             })
+        },
+        signup({commit}, { newUser }){
+            return userService.signup(newUser)
         }
     }
 }

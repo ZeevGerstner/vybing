@@ -13,14 +13,14 @@ function checkLogin({ user }) {
 }
 
 
-function addUser({ userName }) {
-    var user = { userName }
+function addUser({ newUser }) {
+    var user = { newUser }
     return mongoService.connectToDb()
-        .then(db => db.collection('user').insertOne(user))
-        .then(res => {
-            user._id = res.insertedId
-            return user
-        })
+        .then(db => db.collection('user').insertOne(newUser))
+        // .then(res => {
+        //     user._id = res.insertedId
+        //     return user
+        // })
 }
 
 
@@ -33,8 +33,40 @@ function getById(userId){
     })
 }
 
+
+function getUserRooms (userId) {
+    const _id = new ObjectId(userId)
+    return mongoService.connectToDb()
+        .then(db =>
+            db.collection('user').aggregate([
+                {
+                    $match: { _id }
+                },
+                {
+                    $lookup:
+                    {
+                        from: 'room',
+                        localField: 'roomsCreatedIds',
+                        foreignField: '_id',
+                        as: 'roomsCreated'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'room',
+                        localField: 'roomsLikedIds',
+                        foreignField: '_id',
+                        as: 'roomsLiked'
+                    }
+                }
+            ]).toArray()
+        )
+}
+
+
 module.exports = {
     addUser,
     checkLogin,
-    getById
+    getById,
+    getUserRooms
 }

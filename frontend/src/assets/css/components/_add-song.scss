@@ -10,20 +10,21 @@
 }
 
 .add-song-input{
-    margin-top: 10px;
     width: 250px;
     text-align: center;
     height: 30px;
     border-radius: 5px;
-    background-color: $pink;
+    background-color: $light-gray;
     color: $off-white;
     font-size: 18px;
 }
 .search-res{
     background-color: black;
     overflow: overlay;
-    height: 65vh;
-    margin-top: 7px;
-    margin-right: 7px;
-    padding: 7px;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.youtube-title {
+    font-family: 'roboto-regular'
 }
