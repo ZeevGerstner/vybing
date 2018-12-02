@@ -7,6 +7,7 @@ import Signup from './components/Signup.vue'
 import RoomSearch from './views/RoomSearch.vue'
 import PlaylistCmp from './components/PlaylistCmp.vue'
 import AddSong from './components/AddSong.vue'
+import UserProfile from './views/UserProfile.vue'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup
+    },
+    {
+      path: '/profile/:userId',
+      name: 'UserProfile',
+      component: UserProfile
     },
     {
       path: '/about',

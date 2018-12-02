@@ -7,8 +7,8 @@ const ObjectId = require('mongodb').ObjectId;
 function checkLogin({ user }) {
     return mongoService.connectToDb()
         .then(dbConn => {
-            const roomCollection = dbConn.collection('user');
-            return roomCollection.findOne({ $and: [{ "name": user.name }, {"password": user.password}] })
+            const userCollection = dbConn.collection('user');
+            return userCollection.findOne({ $and: [{ "name": user.name }, {"password": user.password}] })
         })
 }
 
@@ -24,9 +24,17 @@ function addUser({ userName }) {
 }
 
 
-
+function getById(userId){
+    userId = new ObjectId(userId)
+    return mongoService.connectToDb()
+    .then(dbConn => {
+        const userCollection = dbConn.collection('user');
+        return userCollection.findOne({_id: userId})
+    })
+}
 
 module.exports = {
     addUser,
-    checkLogin
+    checkLogin,
+    getById
 }

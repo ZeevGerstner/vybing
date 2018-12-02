@@ -39,7 +39,7 @@
       <div class="nav-link login">
         <li v-if="!isUserLogin" @click="isLogin = !isLogin">Login</li>
         <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
-        <li v-if="isUserLogin">{{getUser.name}} </li>
+        <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}} </router-link>
       </div>
     </div>
   </div>

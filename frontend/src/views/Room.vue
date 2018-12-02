@@ -31,7 +31,7 @@
     <!-- <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp> -->
     <!-- <add-song @addSong="addSong" /> -->
     </div>
-    <chat-room/>
+    <chat-room :room="room"/>
   </div>
 </template>
 
@@ -64,8 +64,6 @@ export default {
       this.room.playlist = playlist
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     }
-  },
-  sockets: {
   },
   created() {
     const roomId = this.$route.params.roomId;

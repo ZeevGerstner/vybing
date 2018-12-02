@@ -32,12 +32,29 @@ addUserRoutes(app)
 // app.get('/',function(res,req){
 //     res.sendFile(__dirname+'index.html')
 // })
-
+const gRooms = [];
 
 const roomService = require('./services/room.service')
+const userService = require('./services/user.service')
 
 io.on('connection', (socket) => {
     console.log('user connected')
+    var userRoom;
+
+    socket.on('chatRoomJoined', (room)=>{
+        var currRoom = gRooms.find(curr => curr._id === room._id)
+        if(currRoom){
+            userRoom = currRoom
+        } else{
+            userRoom = room
+            gRooms.push(room)
+        }
+        socket.join(userRoom._id)
+    })
+
+    socket.on('sendMsg', (newMsg) => {
+        io.to(userRoom._id).emit('setNewMsg', newMsg)
+    })
 
     socket.on('getRoomList', () => {
         return roomService.query()
@@ -66,9 +83,6 @@ io.on('connection', (socket) => {
         io.emit('setCurrTime', time)
     })
 
-    socket.on('sendMsg', (newMsg) => {
-        io.emit('setNewMsg', newMsg)
-    })
 
     socket.on('disconnect', () => {
         console.log('user disconnected')
@@ -112,6 +126,15 @@ io.on('connection', (socket) => {
                 io.emit('loadPlaylist', updatedPlaylist)
             })
         })
+    
+    socket.on('getUserById', (userId) =>{
+        userService.getById(userId)
+        .then(user =>{
+            socket.emit('setUserProfile', user)
+        })
+
+    })
+    
     })
 
     const port = process.env.PORT || 3000
