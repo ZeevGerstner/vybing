@@ -12,11 +12,13 @@ module.exports = {
     // typesQuery
 }
 
+
+
 function query(filter = {byName: '', byType:''}) {
     const queryObj = {
         $and: [
-            { name: { $regex: `${filter.byName}` } },
-            { type: { $regex: `${filter.byType}` } },
+            { name: { $regex: `.*${filter.byName}.*` } },
+            { type: { $regex: `.*${filter.byType}.*` } },
             ]}
     // const currSort = { [filter.bySort]: +filter.upDown } // .sort(currSort)
 
@@ -55,6 +57,8 @@ function addRoom(newRoom) {
             return roomCollection.insertOne(newRoom)
         })
     }
+
+
 
 
 // function typesQuery() {

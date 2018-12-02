@@ -7,14 +7,8 @@
 
             <select class="create-select" v-model="newRoom.type">
                 <option value="" disabled selected>Select a genre</option>
-                <option value="Hip Hop">Hip Hop</option>
-                <option value="Rock">Rock</option>
-                <option value="Trance">Trance</option>
-                <option value="Dub Step">DubStep</option>
-                <option value="Techno">Techno</option>
-                <option value="Funk">Funk</option>
-                <option value="Trap">Trap</option>
-                <option value="World">World</option>
+                <option v-for="(genre, idx) in getGenre" :key="idx" :value="genre">{{genre}}</option>
+                
             </select>
             <h2 class="create-title" v-if="errType">please select a type!!</h2>
             <button class="tag-genre create-btn">Create!</button>
@@ -61,6 +55,11 @@ export default {
     this.$nextTick(() => {
       this.$refs.input.focus()
     }) 
+  },
+  computed:{
+      getGenre(){
+          return this.$store.getters.getGenre
+      }
   }
 
 }

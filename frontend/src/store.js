@@ -10,6 +10,12 @@ export default new Vuex.Store({
     searchMoudle,
     userModule,
   },
+  state:{
+    genre: ['Hip Hop', 'Rock', 'Trance', 'DubStep', 'Techno', 'Funk', 'Trap', 'World'],
+  },
+  getters:{
+    getGenre: (state)=> state.genre
+  },
   actions: {
     
   },
