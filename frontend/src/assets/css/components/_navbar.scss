@@ -103,12 +103,15 @@
     text-align: center;
     z-index: 2;
     flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 450px;
 }
 .genre{
     margin-right: 10px;
     color: $lime-green;
     text-decoration: none;
     transition: all .3s;
+    margin-bottom: 10px;
 
 }
 .genre:hover{
