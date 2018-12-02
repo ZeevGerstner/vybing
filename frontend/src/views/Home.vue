@@ -26,7 +26,6 @@
         :room="room"
       />
     </div>
-
     <top-rooms
       v-for="(genre,idx) in getGenre"
       :key="idx"

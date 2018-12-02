@@ -6,7 +6,7 @@
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
-            <span class="chat-user">name</span>
+            <span class="chat-user">{{msg.name}}</span>
             <span>: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     sendMsg() {
-      this.$socket.emit("sendMsg", { txt: this.newMsg });
+      this.$socket.emit("sendMsg", { txt: this.newMsg, name: this.getUser.name });
       this.newMsg = "";
     }
   },
@@ -48,6 +48,11 @@ export default {
           const elNewMsg = this.$refs.msgs.lastChild
           elNewMsg.scrollIntoView();
       });
+    },
+    computed:{
+      getUser(){
+            return this.$store.getters.getCurrUser
+        },
     }
   }
 };

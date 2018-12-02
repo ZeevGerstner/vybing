@@ -1,13 +1,15 @@
 <template>
   <section class="login-user">
-    <form class="login-form" @submit.prevent="loginUser">
-      <input class="login-input" placeholder="User Name" v-model="user.name" type="text">
-      <input class="login-input" placeholder="Password" v-model="user.password" type="password">
-      <button class="login-btn">Login</button>
-    </form>
-    <!-- <h2 v-if="currUser">hello {{currUSer.name}}</h2> -->
-    <h2 class="go-signup-btn" @click="goToSignup">Signup</h2>
-    <h2 v-if="isWorng">Worng!</h2>
+        <form class="login-form" @submit.prevent="loginUser">
+        <input class="login-input" placeholder="User Name" v-model="user.name" type="text">
+        <input class="login-input" placeholder="Password" v-model="user.password" type="password">
+        <button class="login-btn">Login</button>
+
+        </form>
+        <div class="login-more">
+            <h2 class="go-signup-btn" @click="goToSignup">Signup</h2>
+            <h2 class="worng" v-if="isWorng">Worng!</h2>
+        </div>
   </section>
 </template>
 
@@ -20,7 +22,7 @@ export default {
                 password:''
             },
             isWorng : false,
-            currUser: {}
+            currUser: null
         }
     },
     methods:{
@@ -30,9 +32,9 @@ export default {
                 if(!user){
                     this.isWorng = true
                 } else {
-                    console.log(user)
                     this.isWorng = false
                     this.user = {name:'', password:''}
+                    this.$emit('closeLogin')
                 }
             })
         },
@@ -40,7 +42,8 @@ export default {
             this.$emit('closeLogin')
             this.$router.push('/Signup')
         }
-    }
+    },
+    
 
 }
 </script>

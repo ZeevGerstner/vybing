@@ -9,7 +9,7 @@
         :room="room"
       />
     </div>
-    {{roomsByGenre.length}}
+    {{roomsByGenre}}
   </div>
 </template>
 

@@ -37,8 +37,9 @@
       </div>
 
       <div class="nav-link login">
-        <li @click="isLogin = !isLogin">Login</li>
+        <li v-if="!isUserLogin" @click="isLogin = !isLogin">Login</li>
         <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
+        <li v-if="isUserLogin">{{getUser.name}} </li>
       </div>
     </div>
   </div>
@@ -114,8 +115,16 @@ export default {
  computed:{
       getGenre(){
           return this.$store.getters.getGenre
-      }
+      },
+       getUser(){
+            return this.$store.getters.getCurrUser
+        },
+      isUserLogin(){
+            return this.$store.getters.isUserLogin
+        },
+        
   }
+
 }
 </script>
 

@@ -4,13 +4,12 @@ const mongoService = require('./mongo.service');
 const ObjectId = require('mongodb').ObjectId;
 
 
-
 function checkLogin({ user }) {
     return mongoService.connectToDb()
-        .then(db => {
-            return db.collection('user').find({ $and: [{ "name": user.name }, {"password": user.password}] })
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('user');
+            return roomCollection.findOne({ $and: [{ "name": user.name }, {"password": user.password}] })
         })
-  
 }
 
 

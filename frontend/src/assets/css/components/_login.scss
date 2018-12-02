@@ -22,7 +22,6 @@
     color: #f4f4f4;
     text-align: center;
     padding: 5px;
-    align-self: flex-end;
     margin-top: 9px;
 }
 
@@ -48,4 +47,14 @@
 .login-btn:hover{
     background-color: #b3ee00;
     cursor: pointer;
+}
+.login-more{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.worng{
+    color: red;
+    font-family: 'roboto-medium';
 }
