@@ -62,13 +62,23 @@ export default {
       }).slice(0, 4)
       else return this.rooms.slice().filter(room => room.type === type)
         .sort((a, b) => b.likes - a.likes).slice(0, 4)
+    },
+    togglePlayer (room) {
+      console.log('home', room);
+
+      this.$children.forEach(currRoom => {
+        currRoom.$children.forEach(roomCh => {
+          if (roomCh !== room) roomCh.isOpen = false;
+        })
+      });
+      room.isOpen = !room.isOpen;
     }
   },
   computed: {
     getGenre () {
       return this.$store.getters.getGenre
     }
-  }
+  },
 };
 </script>
 

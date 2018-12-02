@@ -36,21 +36,56 @@
       </div>
     </router-link>
 
-    <h4 class="now-playing">Now playing</h4>
+    <h4 class="now-playing">Now playing | <span @click="open">Play</span> </h4>
     <h3
       class="song-title"
       v-if="room.playlist.length > 1"
     >{{room.playlist[0].title}}</h3>
 
+    <youtube-player
+      class="prev-player"
+      v-if="isOpen"
+      :playlist="room.playlist"
+    />
+
   </div>
 </template>
 
 <script>
+import youtubePlayer from "@/components/YoutubePlayer.vue";
+
 export default {
   name: "roomPreview",
   props: {
     room: Object
   },
+  components: {
+    youtubePlayer,
+  },
+  data () {
+    return {
+      isOpen: false
+    }
+  },
+  created () {
+    this.videoId = this.room.playlist[0].id
+  },
+  computed: {
+    player () {
+      return this.$refs.youtube.player;
+    }
+  },
+  methods: {
+    setPlayer (playlist) {
+      this.$store.dispatch('setPrevPlaylist')
+      if (this.isClicked) this.isClicked = false
+      else this.isClicked = true
+    },
+    open () {
+      this.$parent.togglePlayer(this)
+    }
+  }
+
 };
 </script>
 

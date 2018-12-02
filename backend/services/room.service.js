@@ -6,6 +6,7 @@ module.exports = {
     getById,
     updatePlaylist,
     addRoom,
+    getUserRooms
 }
 
 
@@ -56,8 +57,7 @@ function addRoom (newRoom) {
         })
 }
 
-getUserRooms("5bffb9c16e5a7a17bfe08f55")
-.then(console.log)
+// getUserRooms("5bffb9c16e5a7a17bfe08f55")
 function getUserRooms (roomId) {
     const _id = new ObjectId(roomId)
     return mongoService.connectToDb()

@@ -19,10 +19,11 @@
           </div>
         </div>
       </nav>
+
     <div class="room-player">
-      
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
+    
     <router-link :to="`/room/${room._id}`">Playlist</router-link>
     <router-link :to="`/room/${room._id}/addsong`">Add Song</router-link>
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong">
