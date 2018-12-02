@@ -6,7 +6,7 @@
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
-            <span class="chat-user">{{msg.name}}</span>
+            <span :class="setColorToUser(msg)">{{msg.name}}</span>
             <span>: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
@@ -27,20 +27,36 @@
 
 <script>
 export default {
+  props:['room'],
   data() {
     return {
       msgs: [],
-      newMsg: ""
+      newMsg: "",
+
     };
   },
   methods: {
     sendMsg() {
-      this.$socket.emit("sendMsg", { txt: this.newMsg, name: this.getUser.name });
+      this.$socket.emit("sendMsg", { txt: this.newMsg, name: this.getUser.name});
       this.newMsg = "";
-    }
+    },
+    setColorToUser(msg){
+          if(msg.isMyUser === 'guest') return 'guest-chat-user'
+          else if(msg.isMyUser === 'true') return 'chat-user'
+          else return 'other-chat-user'
+      }
   },
   sockets: {
     setNewMsg: function(newMsg) {
+      if(newMsg.name === 'guest'){
+         newMsg.isMyUser = 'guest';
+      }else{
+        if(newMsg.name !== this.getUser.name){
+          newMsg.isMyUser = 'false';
+        }else{
+          newMsg.isMyUser = 'true';
+        }
+      }
       this.msgs.push(newMsg);
       
       //scroll the chat down
@@ -49,12 +65,17 @@ export default {
           elNewMsg.scrollIntoView();
       });
     },
-    computed:{
+  },
+  computed:{
       getUser(){
-            return this.$store.getters.getCurrUser
+            var currUser = this.$store.getters.getCurrUser
+            if(currUser) return currUser
+            else return {name: 'guest'} 
         },
+    },
+    created(){
+      this.$socket.emit('chatRoomJoined', this.room)
     }
-  }
 };
 </script>
 

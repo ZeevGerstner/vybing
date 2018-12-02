@@ -1,0 +1,14 @@
+.profile{
+    background-color: black;
+    margin-top: 10px;
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name{
+    color: $off-white;
+    font-family: roboto-thin;
+    font-size: 2em;
+}
