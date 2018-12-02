@@ -23,7 +23,7 @@
       
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <playlist-cmp :playlist="room.playlist"></playlist-cmp>
+    <playlist-cmp :playlist="room.playlist" @moveSong="moveSong"></playlist-cmp>
     <!-- <add-song @addSong="addSong" /> -->
     </div>
     <chat-room/>
@@ -55,6 +55,10 @@ export default {
       console.log(playlist)
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
 
+    },
+    moveSong(playlist) {
+      this.room.playlist = playlist
+      this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     }
   },
   sockets: {

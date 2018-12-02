@@ -27,10 +27,10 @@
           >
             <div
               class="genre"
-              v-for="(genre, idx) in genres"
+              v-for="(genre, idx) in getGenre"
               :key="idx"
               @click="searchByGenre(genre)"
-            >{{genre}} |</div>
+            >{{genre}}</div>
           </div>
         </li>
         <router-link tag="li" to="/">Rooms</router-link>
@@ -61,7 +61,6 @@ export default {
       roomsResults: [],
       isSearch: false,
       isGenre: false,
-      genres: ['Hip Hop', 'Rock', 'Pop', 'Funk'],
       filter: {
         byType: '',
         byName: '',
@@ -101,6 +100,11 @@ export default {
       console.log(filteredRoom)
       this.roomsResults = filteredRoom
     }
+  },
+ computed:{
+      getGenre(){
+          return this.$store.getters.getGenre
+      }
   }
 }
 </script>
