@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "d08840599e05db7345652d3d417574a9",
-    "url": "/fonts/Roboto-Medium.d0884059.ttf"
+    "revision": "ee7b96fa85d8fdb8c126409326ac2d2b",
+    "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
   },
   {
     "revision": "735ab4f94fbcd57074377afca324c813",
     "url": "/robots.txt"
   },
   {
-    "revision": "ee7b96fa85d8fdb8c126409326ac2d2b",
-    "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
+    "revision": "d08840599e05db7345652d3d417574a9",
+    "url": "/fonts/Roboto-Medium.d0884059.ttf"
   },
   {
     "revision": "e0644a208b5a221d9fad",

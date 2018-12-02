@@ -14,14 +14,13 @@ export default {
   },
   methods: {
     addSong(song){
-      // console.log('add', {...song})
       this.$emit('addSong', {...song})
+      this.$router.go(-1)
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-
 
 </style>

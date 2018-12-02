@@ -1,8 +1,9 @@
 <template>
   <div class="add-song">
- 
+   <div class="add-song-search-container" >
     <input class="add-song-input" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
-   
+    <div class="btn-search-close" @click.stop="closeSearch"><i class="fas fa-times fa-2x"></i></div>
+   </div>
     <ul class="search-res">
       <song-preview v-for="song in songs" :key="song.id" :song="song" @addSong="addSong"/>  
     </ul>
@@ -26,8 +27,10 @@ export default {
       this.$store.dispatch("searchSong", this.search.txt);
     },
     addSong(song){
-      // console.log(song);
       this.$emit('addSong',song)
+    },
+    closeSearch() {
+      this.$router.go(-1)
     }
   },
   computed: {
@@ -42,5 +45,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
- 
+.add-song-search-container {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 15px;
+}
+
+ .btn-search-close {
+   color: #99cc00;
+   cursor: pointer;
+ }
 </style>
