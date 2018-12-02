@@ -6,45 +6,36 @@
       to="/createroom"
     >Create Room</router-link>
 
-    <h1 class="category-title">TOP LIKES</h1>
-    <div class="room-list container">
-      
-      <room-preview
-        v-if="rooms"
-        v-for="room in sortRoomsBy('like').slice(0,4)"
-        :key="room._id"
-        :room="room"
-      />
-    </div>
+    <top-rooms
+      class="room-list container"
+      :type="'likes'"
+      :rooms="getRoomsBy('likes')"
+    />
 
-    <h1 class="category-title">TOP LISTENERS</h1>
-    <div class="room-list container">
-      <room-preview
-        v-if="rooms"
-        v-for="room in sortRoomsBy('members').slice(0,4)"
-        :key="room._id"
-        :room="room"
-      />
-    </div>
+    <top-rooms
+      class="room-list container"
+      :type="'listeners'"
+      :rooms="getRoomsBy('listeners')"
+    />
+
     <top-rooms
       v-for="(genre,idx) in getGenre"
+      v-if="getRoomsBy(genre).length !== 0"
       :key="idx"
-      :rooms="rooms"
-      :genre="genre"
+      :type="genre"
+      :rooms="getRoomsBy(genre)"
     />
 
   </div>
 </template>
 
 <script>
-import roomPreview from '../components/RoomPreview'
 import topRooms from '../components/TopRooms'
 
 export default {
   name: "home",
   components: {
     topRooms,
-    roomPreview,
   },
   data () {
     return {
@@ -62,11 +53,15 @@ export default {
     }
   },
   methods: {
-    sortRoomsBy (parm) {
-      return this.rooms.slice().sort((room1, room2) => {
-        if (Array.isArray(room1[parm])) return room2[parm].length - room1[parm].length
-        return room2[parm] - room1[parm]
-      })
+    getRoomsBy (type) {
+      if (type === 'likes') return this.rooms.slice().sort((room1, room2) => {
+        return room2[type] - room1[type]
+      }).slice(0, 4)
+      else if (type === 'listeners') return this.rooms.slice().sort((room1, room2) => {
+        return room2[type].length - room1[type].length
+      }).slice(0, 4)
+      else return this.rooms.slice().filter(room => room.type === type)
+        .sort((a, b) => b.likes - a.likes).slice(0, 4)
     }
   },
   computed: {

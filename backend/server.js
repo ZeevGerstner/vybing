@@ -1,7 +1,7 @@
-var app = require('express')()
-var http = require('http').Server(app)
-var io = require('socket.io')(http)
-
+const express = require('express')
+const app = express()
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const cors = require('cors')
 
 const bodyParser = require('body-parser')
@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
 const addUserRoutes = require('./routes/user-route')
+
+app.use(express.static('public'));
 
 app.use(cors({
     origin: ['http://localhost:8080'],
@@ -22,6 +24,8 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }))
+
+
 
 addUserRoutes(app)
 
@@ -109,7 +113,6 @@ io.on('connection', (socket) => {
             })
         })
     })
-
 
     const port = process.env.PORT || 3000
 

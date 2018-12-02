@@ -25,7 +25,7 @@ export default {
                 type: '',
                 admin: '',
                 likes: 0,
-                members: [],
+                listeners: [],
                 playlist: [],
             },
             errName: false,
