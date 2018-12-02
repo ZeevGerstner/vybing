@@ -11,7 +11,8 @@ export default new Vuex.Store({
     userModule,
   },
   state:{
-    genre: ['Hip Hop', 'Rock', 'Trance', 'DubStep', 'Techno', 'Funk', 'Trap', 'World'],
+    genre: ['Hip Hop', 'Rock', 'Disco', 'DubStep', 'Techno', 'Funk', 'Trap', 'World','Dance',
+  'Classic','Pop'],
   },
   getters:{
     getGenre: (state)=> state.genre

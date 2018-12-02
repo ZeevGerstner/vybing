@@ -20,7 +20,7 @@
               class="icon-img room-icon-img"
               src="../assets/imgs/LISTENERS-ICON.png"
             >
-            <h4 class="icon-count room-item-count">{{room.members.length}}</h4>
+            <h4 class="icon-count room-item-count">{{room.listeners.length}}</h4>
           </div>
 
           <div class="room-icon room-item-icon">

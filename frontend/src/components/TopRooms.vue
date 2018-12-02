@@ -1,15 +1,18 @@
 <template>
-  <div v-if="getRooms">
-    <router-link :to="'/RoomSearch/' + genre"  class="genre">See all by {{genre}}</router-link>
-    <h1 class="category-title">Top {{genre}}</h1>
+  <div v-if="rooms">
+    <h1 class="category-title">Top {{type}}</h1>
+    <router-link
+      v-if="(type !== 'listeners' && type !== 'likes')"
+      :to="'/RoomSearch/' + type"
+      class="genre"
+    >See all by {{type}}</router-link>
     <div class="room-list container">
       <room-preview
-        v-for="room in roomsByGenre"
+        v-for="room in rooms"
         :key="room._id"
         :room="room"
       />
     </div>
-    {{roomsByGenre.length}}
   </div>
 </template>
 
@@ -20,30 +23,7 @@ export default {
   name: 'topRooms',
   props: {
     rooms: Array,
-    genre: String
-  },
-  data () {
-    return {
-      roomsByGenre: []
-    }
-  },
-  methods: {
-    sortRoomsByGenre () {
-      let filteredRooms = this.rooms.filter(room => {
-        return room.type === this.genre
-      })
-      this.roomsByGenre = filteredRooms.slice(0, 4).sort((room1, room2) => {
-        return room2.likes - room1.likes
-      })
-    }
-  },
-  created () {
-    return this.sortRoomsByGenre()
-  },
-  computed: {
-    getRooms () {
-      return this.roomsByGenre.length > 1
-    }
+    type: String
   },
   components: {
     roomPreview
