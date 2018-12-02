@@ -26,13 +26,9 @@ export default {
   components: {
     roomPreview
   },
-<<<<<<< HEAD
-  data () {
-=======
 
   
   data() {
->>>>>>> 1da993e015988efef6207a6d7278e18243c7bdef
     return {
       rooms: [],
       genre: '',
