@@ -12,19 +12,11 @@ module.exports = {
     // typesQuery
 }
 
-// function query(filter = {byName: ''}) {
-//     return mongoService.connectToDb()
-//         .then(dbConn => {
-//             const roomCollection = dbConn.collection('room');
-//             return roomCollection.find({}).toArray()
-//         })
-// }
-
 function query(filter = {byName: '', byType:''}) {
     const queryObj = {
         $and: [
-            { name: { $regex: `.*${filter.byName}.*` } },
-            { type: { $regex: `.*${filter.byType}.*` } },
+            { name: { $regex: `${filter.byName}` } },
+            { type: { $regex: `${filter.byType}` } },
             ]}
     // const currSort = { [filter.bySort]: +filter.upDown } // .sort(currSort)
 

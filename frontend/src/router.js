@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import Room from './views/Room.vue'
 import Createroom from './views/CreateRoom.vue'
 import Signup from './components/Signup.vue'
-import Genre from './views/Genre.vue'
+import RoomSearch from './views/RoomSearch.vue'
 
 Vue.use(Router)
 
@@ -18,9 +18,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/genre/:genreName',
-      name: 'genre',
-      component: Genre
+      path: '/RoomSearch/:genreName?',
+      name: 'RoomSearch',
+      component: RoomSearch
     },
     {
       path: '/room/:roomId',

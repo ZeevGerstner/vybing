@@ -14,7 +14,7 @@
 import roomPreview from '../components/RoomPreview'
 
 export default {
-    name: "genre",
+    name: "RoomSearch",
     components: {
         roomPreview
     },
@@ -27,20 +27,16 @@ export default {
 
     created(){
         const genre = this.$route.params.genreName;
-        this.$socket.emit('getRoomsByGenre', genre)
-        this.genre = genre
+        if(genre){
+            this.$socket.emit('getRoomsByGenre', genre)
+            this.genre = genre
+        }
     },
     sockets:{
         setRoomsFilter: function(filterdRoom){
             this.rooms = filterdRoom
         }
     },
-     watch:{
-        '$route.params.genreName' : function(genre){
-            this.$socket.emit('getRoomsByGenre', genre)
-            this.genre = genre
-    }
-  },
 }
 </script>
 
