@@ -48,18 +48,20 @@ export default {
     },
     sockets: {
         setNewRoom: function(room){
+            let user = this.getUser
+            user.roomsCreatedIds.push(room._id)
+            this.$socket.emit('updateUser', user)
             this.$router.push('/room/'+room._id)
         }
   },
   created(){
-   
-    console.log(this.getUser._id)
-    if(!this.getUser._id){
-        this.$router.push('/Signup')
+      if(!this.getUser._id){
+          this.$router.push('/Signup')
     }else{
-         this.$nextTick(() => {
+        this.$nextTick(() => {
             this.$refs.input.focus()
         }) 
+        this.newRoom.admin = this.getUser._id
     }
   },
   computed:{

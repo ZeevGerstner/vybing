@@ -6,7 +6,7 @@ const userService = require('./user.service')
 
 function connectSocket(io) {
     io.on('connection', (socket) => {
-        console.log('user connected')
+        // console.log('user connected')
         var userRoom;
 
         socket.on('chatRoomJoined', (room) => {
@@ -53,14 +53,14 @@ function connectSocket(io) {
 
 
         socket.on('disconnect', () => {
-            console.log('user disconnected')
+            // console.log('user disconnected')
         })
 
         socket.on('searchRoom', (filter) => {
 
             roomService.query(filter)
                 .then(filteredRooms => {
-                    console.log('filter:', filteredRooms)
+                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -72,7 +72,7 @@ function connectSocket(io) {
             }
             roomService.query(filter)
                 .then(filteredRooms => {
-                    console.log('filter:', filteredRooms)
+                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -95,9 +95,16 @@ function connectSocket(io) {
                 })
         })
 
+
+        socket.on('updateUser', (user) => {
+            userService.updateUser(user)
+            
+        })
+
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
+                    user[0].password = null
                     socket.emit('setUserProfile', user)
                 })
 

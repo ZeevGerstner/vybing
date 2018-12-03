@@ -63,10 +63,28 @@ function getUserRooms (userId) {
         )
 }
 
+function updateUser (user) {
+    user._id = new ObjectId(user._id)
+    console.log(user)
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('user');
+            return roomCollection.updateOne(
+                { _id: user._id },
+                { $set: user }
+            )
+            .then(result => {
+                return user;
+            })
+        })
+}
+
+
 
 module.exports = {
     addUser,
     checkLogin,
     getById,
-    getUserRooms
+    getUserRooms,
+    updateUser
 }
