@@ -36,9 +36,20 @@
       </div>
     </router-link>
 
-    <h4 class="now-playing">Now playing | <span @click="open">Play</span> </h4>
+    <div class="player-status">
+      <h4 class="now-playing">Now playing</h4>
+       <h5
+          class="video-btn"
+          @click="openPlayer"
+        >
+        <i v-if="!isOpen" class="fa fa-play"></i>
+        <i v-else class="fa fa-stop"></i>
+        </h5>
+    </div>
+
     <h3
       class="song-title"
+      :class="setMove"
       v-if="room.playlist.length > 1"
     >{{room.playlist[0].title}}</h3>
 
@@ -73,6 +84,9 @@ export default {
   computed: {
     player () {
       return this.$refs.youtube.player;
+    },
+    setMove(){
+      if(this.isOpen) return 'move-txt'
     }
   },
   methods: {
@@ -81,7 +95,7 @@ export default {
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },
-    open () {
+    openPlayer () {
       this.$parent.togglePlayer(this)
     }
   }

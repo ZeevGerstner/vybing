@@ -26,9 +26,7 @@ export default {
   components: {
     roomPreview
   },
-
-  
-  data() {
+  data () {
     return {
       rooms: [],
       genre: '',
