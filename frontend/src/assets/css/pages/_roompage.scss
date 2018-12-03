@@ -57,8 +57,12 @@
 .room-creator{
     font-family: roboto-regular;
     color: $off-white;
+    cursor: pointer;
 }
 
+.room-creator-hover:hover{
+    color: $lime-green
+}
 .unlike {
     transform: rotate(180deg)
 }
