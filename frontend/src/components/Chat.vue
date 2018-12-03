@@ -6,7 +6,8 @@
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
-            <span :class="setColorToUser(msg)">{{msg.name}}</span>
+            <span :class="setColorToUser(msg)" @click="isUserPrev = !isUserPrev">{{msg.user.name}}</span>
+            <user-preview v-if="msg.user._id" v-show="isUserPrev" :user="msg.user"></user-preview>
             <span>: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
@@ -26,18 +27,21 @@
 </template>
 
 <script>
+import userPreview from '@/components/UserPreview.vue'
+
 export default {
   props:['room'],
   data() {
     return {
       msgs: [],
       newMsg: "",
+      isUserPrev: false
 
     };
   },
   methods: {
     sendMsg() {
-      this.$socket.emit("sendMsg", { txt: this.newMsg, name: this.getUser.name});
+      this.$socket.emit("sendMsg", { txt: this.newMsg, user: this.getUser});
       this.newMsg = "";
     },
     setColorToUser(msg){
@@ -48,10 +52,10 @@ export default {
   },
   sockets: {
     setNewMsg: function(newMsg) {
-      if(newMsg.name === 'guest'){
+      if(newMsg.user.name === 'guest'){
          newMsg.isMyUser = 'guest';
       }else{
-        if(newMsg.name !== this.getUser.name){
+        if(newMsg.user.name !== this.getUser.name){
           newMsg.isMyUser = 'false';
         }else{
           newMsg.isMyUser = 'true';
@@ -75,7 +79,10 @@ export default {
     },
     created(){
       this.$socket.emit('chatRoomJoined', this.room)
-    }
+    },
+    components: {
+    userPreview
+  }
 };
 </script>
 

@@ -3,13 +3,13 @@
 .user-preview{
     background-color: $light-gray;
     position: absolute;
-    width: 200px;
     box-shadow: 0 0 5px 0px black;
     margin-top: 3px;
     z-index: 10;
     padding: 10px;
 }
 .icon-user-prev{
+    transition: all .3s;
     color: $off-white;
     margin: 5px;
 }

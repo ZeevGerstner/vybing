@@ -58,9 +58,12 @@
     font-family: roboto-regular;
     color: $off-white;
     cursor: pointer;
+    
+
 }
 
 .room-creator-hover:hover{
+    transition: all .3s;
     color: $lime-green
 }
 .unlike {
