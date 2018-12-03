@@ -79,7 +79,6 @@ export default {
     }
   },
   created () {
-    this.videoId = this.room.playlist[0].id
   },
   computed: {
     player () {

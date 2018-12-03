@@ -4,8 +4,8 @@
       <nav class="nav-room">
         <div class="room-title">
           <h2 class="room-name">{{room.name}}</h2>
-          <h4 class="room-creator" @click="isUserPrev = !isUserPrev">creator: {{room.admin}}</h4>
-          <user-preview v-show="isUserPrev" :user ="room.admin"></user-preview>
+          <h4 v-if="isAdmin" class="room-creator">creator: <span class="room-creator-hover" @click="isUserPrev = !isUserPrev">{{adminRoom.name}}</span></h4>
+          <user-preview v-show="isUserPrev" :user="adminRoom"></user-preview>
         </div>
         <div class="room-details">
           <div class="tag-genre room-genre">{{room.type}}</div>
@@ -41,7 +41,9 @@ export default {
   data() {
     return {
       room: null,
-      isUserPrev: false
+      isUserPrev: false,
+      adminRoom: null,
+      isAdmin: false,
     };
   },
   methods: {
@@ -63,17 +65,23 @@ export default {
   created() {
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
-    // this.$store.dispatch("SOCKET_GET_PLAYLIST");
     this.$socket.emit('getPlaylist')
+
   },
   sockets: {
     setRoom: function(room){
       this.room = room
+      this.$socket.emit('getUserById', this.room.admin)
     },
     loadPlaylist(playlist) {
       console.log('updated playlist: ', playlist)
       this.room.playlist = playlist
-    }
+    },
+    setUserProfile: function(user){
+            this.adminRoom = user[0]
+            console.log('adminRoom:::',this.adminRoom)
+            this.isAdmin = true
+        }
   },
   watch:{
     '$route.params.roomId' : function(id){
