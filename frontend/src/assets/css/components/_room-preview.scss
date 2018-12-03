@@ -7,6 +7,8 @@
     margin: 0 25px 25px 0;
     background-color: $light-gray;
     color: black;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .room-item-link{
@@ -26,6 +28,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: black;
+    margin-bottom: 7px;
   }
 
   .room-item-name{
@@ -65,21 +68,58 @@
     font-size: 0.7em;
   }
 
-  .now-playing {
-    font-family: 'roboto-medium';
-    font-size: 0.8em;
-    color: $off-white;
-    align-self: flex-start;
-    margin: 5px 0 5px 5px;
-  }
-
   .song-title {
     font-family: 'roboto-thin';
     font-size: 1em;
     color: $off-white;
     align-self: baseline;
-    overflow: hidden;
-    margin: 10px;
-    line-height: 30px;
+    margin-left: 7px;
+    position: relative;
+
+  }
+  
+  .move-txt {
+      -webkit-animation: moving 5s infinite;
+      animation: moving 8s infinite;
+  }
+      
+  @-webkit-keyframes moving {
+      from {right: 0px;}
+      to {right: 200px;}
   }
 
+  @-webkit-keyframes moving {
+    from {right: 0px;}
+    to {right: 200px;}
+}
+
+  .prev-player {
+    position: fixed;
+    top: -100000px;
+  }
+
+  .player-status {
+    display: flex;
+    justify-content: space-between;
+    width:90%;
+    align-content: center;
+    color: $off-white;
+    margin-bottom: 10px;
+
+    h4 {
+      font-family: 'roboto-medium';
+      font-size: 0.8em;
+    }
+
+    h5 {
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    h5:hover {
+      color: $lime-green;
+    }
+
+
+
+  }

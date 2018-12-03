@@ -1,0 +1,11 @@
+
+
+.user-preview{
+    background-color: $light-gray;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0 0 5px 0px black;
+    margin-top: 3px;
+    z-index: 10;
+}

@@ -48,18 +48,31 @@ export default {
     },
     sockets: {
         setNewRoom: function(room){
+            let user = this.getUser
+            user.roomsCreatedIds.push(room._id)
+            this.$socket.emit('updateUser', user)
             this.$router.push('/room/'+room._id)
         }
   },
   created(){
-    this.$nextTick(() => {
-      this.$refs.input.focus()
-    }) 
+      if(!this.getUser._id){
+          this.$router.push('/Signup')
+    }else{
+        this.$nextTick(() => {
+            this.$refs.input.focus()
+        }) 
+        this.newRoom.admin = this.getUser._id
+    }
   },
   computed:{
       getGenre(){
           return this.$store.getters.getGenre
-      }
+      },
+      getUser(){
+            var currUser = this.$store.getters.getCurrUser
+            if(currUser) return currUser
+            else return {name: 'guest'} 
+        },
   }
 
 }

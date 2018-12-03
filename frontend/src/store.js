@@ -13,12 +13,17 @@ export default new Vuex.Store({
   state:{
     genre: ['Hip Hop', 'Rock', 'Disco', 'DubStep', 'Techno', 'Funk', 'Trap', 'World','Dance',
   'Classic','Pop'],
+  currPrevPlaylist: false
   },
   getters:{
     getGenre: (state)=> state.genre
   },
   actions: {
-    
+    setPrevPlaylist(state){
+      if(state.currPrevPlaylist) {
+        
+      }
+    }
   },
 
 })

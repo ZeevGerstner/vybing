@@ -4,7 +4,7 @@
             <h2 class="category-title">Signup</h2>
             <form class="signup-form" @submit.prevent="signupUser">
                 <input class="signup-input" placeholder="User Name" v-model="newUser.name" type="text">
-                <input class="signup-input" placeholder="Password" v-model="newUser.pass" type="password">
+                <input class="signup-input" placeholder="Password" v-model="newUser.password" type="password">
                 <button class="signup-btn">Signup</button>
             </form>
         </div>
@@ -19,16 +19,19 @@ export default {
     return {
       newUser: {
         name: '',
-        pass: ''
+        password: '',
+        roomsCreatedIds:[],
+        roomsLikedIds:[]
       }
     }
   },
   methods: {
     signupUser () {
-      console.log(this.newUser)
-      this.newUser = { name: '', pass: '' }
+      this.$store.dispatch({type: 'signup', newUser: this.newUser})
+      this.newUser = { name: '', password: '',roomsCreatedIds:[],roomsLikedIds:[] }
     }
-  }
+  },
+  
 
 }
 </script>

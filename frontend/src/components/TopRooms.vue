@@ -31,6 +31,9 @@ export default {
     goToGenre (genre) {
       this.$socket.emit('searchRoom', { byName: '', byType: genre })
       this.$router.push(`/RoomSearch/${genre}`)
+    },
+    togglePlayer (room) {
+      this.$parent.togglePlayer(room)
     }
   },
   components: {

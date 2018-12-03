@@ -4,7 +4,8 @@
       <nav class="nav-room">
         <div class="room-title">
           <h2 class="room-name">{{room.name}}</h2>
-          <h4 class="room-creator">creator: <span>{{room.admin}}</span></h4>
+          <h4 class="room-creator" @click="isUserPrev = !isUserPrev">creator: {{room.admin}}</h4>
+          <user-preview v-show="isUserPrev" :user ="room.admin"></user-preview>
         </div>
         <div class="room-details">
           <div class="tag-genre room-genre">{{room.type}}</div>
@@ -19,8 +20,8 @@
           </div>
         </div>
       </nav>
+
     <div class="room-player">
-      
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
@@ -34,11 +35,13 @@ import addSong from "@/components/AddSong.vue";
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 import chatRoom from "@/components/Chat.vue";
 import playlistCmp from '@/components/PlaylistCmp.vue'
+import userPreview from '@/components/UserPreview.vue'
 
 export default {
   data() {
     return {
       room: null,
+      isUserPrev: false
     };
   },
   methods: {
@@ -83,6 +86,7 @@ export default {
     youtubePlayer,
     chatRoom,
     playlistCmp,
+    userPreview
   }
 };
 </script>

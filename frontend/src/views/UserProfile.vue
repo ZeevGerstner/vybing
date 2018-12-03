@@ -35,6 +35,14 @@ export default {
     setUserProfile: function (user) {
       this.user = user[0]
     }
+  },
+  methods: {
+    togglePlayer (room) {
+      this.$children.forEach(currRoom => {
+        if (currRoom !== room) currRoom.isOpen = false;
+      });
+      room.isOpen = !room.isOpen;
+    }
   }
 }
 </script>

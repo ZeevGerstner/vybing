@@ -1,8 +1,16 @@
 <template>
   <section>
     <h2 class="category-title">{{genre}}</h2>
-    <div v-if="rooms.length > 0" class="room-list container">
-      <room-preview v-if="rooms" v-for="room in rooms" :key="room._id" :room="room"/>
+    <div
+      v-if="rooms.length > 0"
+      class="room-list container"
+    >
+      <room-preview
+        v-if="rooms"
+        v-for="room in rooms"
+        :key="room._id"
+        :room="room"
+      />
     </div>
     <div v-else>
       <h2 class="category-title">There are no rooms in this genre!</h2>
@@ -18,19 +26,19 @@ export default {
   components: {
     roomPreview
   },
-  data() {
+  data () {
     return {
       rooms: [],
       genre: '',
     }
   },
 
-    created() {
-      const genre = this.$route.params.genreName;
-      if (genre) {
-        this.genre = genre
-      }
-    },
+  created () {
+    const genre = this.$route.params.genreName;
+    if (genre) {
+      this.genre = genre
+    }
+  },
   watch: {
     '$route.params.genreName': function (genre) {
       if (genre) {
@@ -43,6 +51,14 @@ export default {
       this.rooms = filterdRoom
     }
   },
+  methods: {
+    togglePlayer (room) {
+      this.$children.forEach(currRoom => {
+        if (currRoom !== room) currRoom.isOpen = false;
+      });
+      room.isOpen = !room.isOpen;
+    }
+  }
 }
 </script>
 

@@ -36,21 +36,76 @@
       </div>
     </router-link>
 
-    <h4 class="now-playing">Now playing</h4>
-    <h3
-      class="song-title"
+    <div
       v-if="room.playlist.length > 1"
+      class="player-status"
+    >
+      <h4 class="now-playing">Now playing</h4>
+      <h5
+        class="video-btn"
+        @click="openPlayer"
+      >
+        <i
+          v-if="!isOpen"
+          class="fa fa-play"
+        ></i>
+        <i
+          v-else
+          class="fa fa-stop"
+        ></i>
+      </h5>
+    </div>
+
+    <h3
+      v-if="room.playlist.length > 1"
+      class="song-title"
+      :class="setMove"
     >{{room.playlist[0].title}}</h3>
+
+    <youtube-player
+      class="prev-player"
+      v-if="isOpen"
+      :playlist="room.playlist"
+    />
 
   </div>
 </template>
 
 <script>
+import youtubePlayer from "@/components/YoutubePlayer.vue";
+
 export default {
   name: "roomPreview",
   props: {
     room: Object
   },
+  components: {
+    youtubePlayer,
+  },
+  data () {
+    return {
+      isOpen: false
+    }
+  },
+  computed: {
+    player () {
+      return this.$refs.youtube.player;
+    },
+    setMove () {
+      if (this.isOpen) return 'move-txt'
+    }
+  },
+  methods: {
+    setPlayer (playlist) {
+      this.$store.dispatch('setPrevPlaylist')
+      if (this.isClicked) this.isClicked = false
+      else this.isClicked = true
+    },
+    openPlayer () {
+      this.$parent.togglePlayer(this)
+    }
+  }
+
 };
 </script>
 

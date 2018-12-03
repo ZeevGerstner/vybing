@@ -6,6 +6,7 @@ module.exports = {
     getById,
     updatePlaylist,
     addRoom,
+    getUserRooms
 }
 
 
@@ -56,3 +57,32 @@ function addRoom (newRoom) {
         })
 }
 
+// getUserRooms("5bffb9c16e5a7a17bfe08f55")
+function getUserRooms (roomId) {
+    const _id = new ObjectId(roomId)
+    return mongoService.connectToDb()
+        .then(db =>
+            db.collection('user').aggregate([
+                {
+                    $match: { _id }
+                },
+                {
+                    $lookup:
+                    {
+                        from: 'room',
+                        localField: 'roomsCreatedIds',
+                        foreignField: '_id',
+                        as: 'roomsCreated'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'room',
+                        localField: 'roomsLikedIds',
+                        foreignField: '_id',
+                        as: 'roomsLiked'
+                    }
+                }
+            ]).toArray()
+        )
+}
