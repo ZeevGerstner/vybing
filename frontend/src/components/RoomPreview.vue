@@ -36,21 +36,30 @@
       </div>
     </router-link>
 
-    <div class="player-status">
+    <div
+      v-if="room.playlist.length > 1"
+      class="player-status"
+    >
       <h4 class="now-playing">Now playing</h4>
-       <h5
-          class="video-btn"
-          @click="openPlayer"
-        >
-        <i v-if="!isOpen" class="fa fa-play"></i>
-        <i v-else class="fa fa-stop"></i>
-        </h5>
+      <h5
+        class="video-btn"
+        @click="openPlayer"
+      >
+        <i
+          v-if="!isOpen"
+          class="fa fa-play"
+        ></i>
+        <i
+          v-else
+          class="fa fa-stop"
+        ></i>
+      </h5>
     </div>
 
     <h3
+      v-if="room.playlist.length > 1"
       class="song-title"
       :class="setMove"
-      v-if="room.playlist.length > 1"
     >{{room.playlist[0].title}}</h3>
 
     <youtube-player
@@ -78,15 +87,12 @@ export default {
       isOpen: false
     }
   },
-  created () {
-    this.videoId = this.room.playlist[0].id
-  },
   computed: {
     player () {
       return this.$refs.youtube.player;
     },
-    setMove(){
-      if(this.isOpen) return 'move-txt'
+    setMove () {
+      if (this.isOpen) return 'move-txt'
     }
   },
   methods: {
