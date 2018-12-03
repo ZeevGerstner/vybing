@@ -1,5 +1,8 @@
 <template>
-  <div v-if="room" class="container room">
+  <div
+    v-if="room"
+    class="container room"
+  >
     <div class="left-room-container">
       <nav class="nav-room">
         <div class="room-title">
@@ -11,22 +14,45 @@
           <div class="tag-genre room-genre">{{room.type}}</div>
 
           <div class="room-icon">
-            <img class="icon-img" src="../assets/imgs/LISTENERS-ICON.png">
+            <img
+              class="icon-img"
+              src="../assets/imgs/LISTENERS-ICON.png"
+            >
             <h4 class="icon-count">{{room.listeners.length}}</h4>
           </div>
-          <div class="room-icon ">
-            <img class="icon-img" src="../assets/imgs/EAR-ICON.png">
+          <div
+            class="room-icon"
+            @click="toggleLike"
+          >
+            <img
+              :class="userLiked"
+              class="icon-img"
+              src="../assets/imgs/EAR-ICON.png"
+            >
+            <!-- <img
+              v-else
+              class="icon-img"
+              src="../assets/imgs/LISTENERS-ICON.png"
+            > -->
+
             <h4 class="icon-count">{{room.likes}}</h4>
           </div>
         </div>
       </nav>
 
-    <div class="room-player">
-      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
+      <div class="room-player">
+        <youtube-player
+          :playlist="room.playlist"
+          @updatePlaylist="updatePlaylist"
+        ></youtube-player>
+      </div>
+      <router-view
+        :playlist="room.playlist"
+        @moveSong="moveSong"
+        @addSong="addSong"
+      ></router-view>
     </div>
-    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
-    </div>
-    <chat-room :room="room"/>
+    <chat-room :room="room" />
   </div>
 </template>
 
@@ -38,42 +64,59 @@ import playlistCmp from '@/components/PlaylistCmp.vue'
 import userPreview from '@/components/UserPreview.vue'
 
 export default {
-  data() {
+  data () {
     return {
       room: null,
       isUserPrev: false,
       adminRoom: null,
       isAdmin: false,
+      isLiked: false
     };
   },
   methods: {
-    updatePlaylist(playlist) {
+    updatePlaylist (playlist) {
       this.room.playlist = playlist
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
     },
-    addSong(song){
+    addSong (song) {
       this.room.playlist.push(song)
       var playlist = this.room.playlist
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
 
     },
-    moveSong(playlist) {
+    moveSong (playlist) {
       this.room.playlist = playlist
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
+    },
+    toggleLike () {
+      if (!this.getUser) return this.$router.push('/Signup')
+      this.isLiked = !this.isLiked
+      if (this.isLiked) this.room.likes++
+      else this.room.likes--
+      this.$socket.emit('updateRoom', this.room)
     }
   },
-  created() {
+  created () {
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
     this.$socket.emit('getPlaylist')
 
   },
+  computed: {
+    getUser () {
+      return this.$store.getters.getCurrUser
+    },
+    userLiked (){
+      if(this.isLiked) return'unlike'
+      return ''
+    }
+  },
   sockets: {
-    setRoom: function(room){
+    setRoom: function (room) {
       this.room = room
       this.$socket.emit('getUserById', this.room.admin)
     },
-    loadPlaylist(playlist) {
+    loadPlaylist (playlist) {
       console.log('updated playlist: ', playlist)
       this.room.playlist = playlist
     },
@@ -83,8 +126,8 @@ export default {
             this.isAdmin = true
         }
   },
-  watch:{
-    '$route.params.roomId' : function(id){
+  watch: {
+    '$route.params.roomId': function (id) {
       this.$socket.emit('getRoomById', id)
       this.$socket.emit('getPlaylist')
     }

@@ -8,6 +8,7 @@
 }
 .left-room-container{
     width: 100%;
+    height: 90vh;
 }
 .nav-room{
     background-color: black;
@@ -16,7 +17,7 @@
     justify-content: space-between;
     padding: 0 18px;
     height: 40px;
-    margin-right: 7px; 
+    // margin-right: 7px; 
 }
 .room-title{
     text-align: start;
@@ -36,6 +37,8 @@
     width: 25px;
     height: 25px;
     margin-left: 10px;
+    transition: all .2s;
+    cursor: pointer;
 }
 
 .icon-count{
@@ -59,4 +62,7 @@
 
 .room-creator-hover:hover{
     color: $lime-green
+}
+.unlike {
+    transform: rotate(180deg)
 }

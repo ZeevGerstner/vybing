@@ -101,6 +101,10 @@ function connectSocket(io) {
             
         })
 
+        socket.on('updateRoom', (room) => {
+            roomService.updateRoom(room)
+        })
+
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
