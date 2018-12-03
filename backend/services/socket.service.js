@@ -60,7 +60,6 @@ function connectSocket(io) {
 
             roomService.query(filter)
                 .then(filteredRooms => {
-                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -72,7 +71,6 @@ function connectSocket(io) {
             }
             roomService.query(filter)
                 .then(filteredRooms => {
-                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -80,12 +78,10 @@ function connectSocket(io) {
         socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
             roomService.updatePlaylist(roomId, updatedPlaylist)
                 .then(() => {
-                    // console.log('PLAYLIST', updatedPlaylist)
                     return roomService.query()
                         .then(rooms => {
                             io.emit('setRoomList', rooms)
                         })
-                    // io.emit('loadPlaylist', updatedPlaylist)
                 })
         })
         socket.on('modifyPlaylist', (roomId, updatedPlaylist) => {
@@ -101,8 +97,23 @@ function connectSocket(io) {
             
         })
 
-        socket.on('updateRoom', (room) => {
-            roomService.updateRoom(room)
+        socket.on('updateLiked', (room,user) => {
+            
+            roomService.updateRoomLikes(room,user)
+            userService.updateRoomLikes(room,user)
+            //     .then(() => {
+            //         var idx = user.roomsLikedIds.findIndex(userRoomId => {
+            //             return userRoomId === room._id
+            //         })
+            //         console.log(idx);
+            //         if(idx !== -1) {
+            //             user.roomsLikedIds.splice(idx,1)
+            //         }
+            //         else {
+            //             user.roomsLikedIds.push(room._id)
+            //         }
+
+            //     })
         })
 
         socket.on('getUserById', (userId) => {
