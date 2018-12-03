@@ -37,6 +37,8 @@
     width: 25px;
     height: 25px;
     margin-left: 10px;
+    transition: all .2s;
+    cursor: pointer;
 }
 
 .icon-count{
@@ -55,4 +57,15 @@
 .room-creator{
     font-family: roboto-regular;
     color: $off-white;
+    cursor: pointer;
+    
+
+}
+
+.room-creator-hover:hover{
+    transition: all .3s;
+    color: $lime-green
+}
+.unlike {
+    transform: rotate(180deg)
 }

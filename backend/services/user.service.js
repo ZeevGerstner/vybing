@@ -63,7 +63,8 @@ function getUserRooms (userId) {
         )
 }
 
-function updateUser (user) {
+function updateUser (user,roomId) {
+    user.roomsCreatedIds.push(new ObjectId(roomId))
     user._id = new ObjectId(user._id)
     console.log(user)
     return mongoService.connectToDb()

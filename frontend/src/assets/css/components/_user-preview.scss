@@ -3,9 +3,25 @@
 .user-preview{
     background-color: $light-gray;
     position: absolute;
-    width: 200px;
-    height: 50px;
     box-shadow: 0 0 5px 0px black;
     margin-top: 3px;
     z-index: 10;
+    padding: 10px;
+}
+.icon-user-prev{
+    transition: all .3s;
+    color: $off-white;
+    margin: 5px;
+}
+
+.icon-user-prev:hover{
+    color: $lime-green;
+    cursor: pointer;
+}
+
+.det-user-prev{
+    color: $off-white;
+    font-family: roboto-regular;
+    margin: 5px;
+
 }
