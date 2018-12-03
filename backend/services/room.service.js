@@ -6,7 +6,8 @@ module.exports = {
     getById,
     updatePlaylist,
     addRoom,
-    getUserRooms
+    getUserRooms,
+    updateRoom
 }
 
 
@@ -46,6 +47,22 @@ function updatePlaylist (roomId, playlist) {
                 { _id: roomId },
                 { $set: { "playlist": playlist } }
             )
+        })
+}
+
+function updateRoom (room) {
+    room._id = new ObjectId(room._id)
+    console.log(room)
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const roomCollection = dbConn.collection('room');
+            return roomCollection.updateOne(
+                { _id: room._id },
+                { $set: room }
+            )
+                .then(res => {
+                    return room
+                })
         })
 }
 
