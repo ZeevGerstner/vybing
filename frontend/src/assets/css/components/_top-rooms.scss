@@ -2,14 +2,13 @@
   display: flex;
   padding: 10px 0;
   justify-content: space-between;
-  max-width: 80%;
+  // max-width: 80%;
 
   h1 {
     font-family: 'roboto-thin';
     font-size: 2em;
     text-transform: uppercase;
     color: $off-white;
-
   } 
 
   button {
