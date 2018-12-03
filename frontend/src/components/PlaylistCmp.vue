@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="playlist-wrapper">
         <ul class="search-res">
             <div class="add-song-btn flex justify-center align-center" @click="routeAddSong"><i class="fas fa-plus"></i></div>
             <div class="playlist-container">

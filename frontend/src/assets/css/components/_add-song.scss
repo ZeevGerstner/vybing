@@ -1,11 +1,12 @@
 .add-song{
     background-color: black;
     margin-top: 7px;
-    margin-right: 7px;
-    height: 52vh;
+    // margin-right: 7px;
+    height: 540px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 
 }
 
@@ -21,10 +22,21 @@
 .search-res{
     background-color: black;
     overflow: overlay;
+    // width: 100%;
+    // margin-left: 10px;
     width: 100%;
-    margin-left: 10px;
+    padding: 10px;
+    padding-right: 0;
 }
 
 .youtube-title {
     font-family: 'roboto-regular'
+}
+
+.playlist-wrapper {
+    padding: 10px;
+    background-color: black;
+    margin-top: 10px;
+    height: 537px;
+    overflow: auto;
 }
