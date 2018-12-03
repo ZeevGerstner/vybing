@@ -1,7 +1,7 @@
 <template>
   <div class="add-song">
    <div class="add-song-search-container" >
-    <input class="add-song-input" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
+    <input class="add-song-input" ref="searchInput" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
     <div class="btn-search-close" @click.stop="closeSearch"><i class="fas fa-times fa-2x"></i></div>
    </div>
     <ul class="search-res">
@@ -40,6 +40,9 @@ export default {
   },
   components:{
     songPreview
+  },
+  mounted() {
+    this.$refs.searchInput.focus()
   }
 };
 </script>
