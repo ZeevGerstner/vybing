@@ -29,11 +29,6 @@
               class="icon-img"
               src="../assets/imgs/EAR-ICON.png"
             >
-            <!-- <img
-              v-else
-              class="icon-img"
-              src="../assets/imgs/LISTENERS-ICON.png"
-            > -->
 
             <h4 class="icon-count">{{room.likes}}</h4>
           </div>
@@ -89,7 +84,7 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike () {
-      if (!this.getUser) return this.$router.push('/Signup')
+      if (!this.getUser) return 
       this.isLiked = !this.isLiked
       if (this.isLiked) this.room.likes++
       else this.room.likes--
@@ -108,7 +103,6 @@ export default {
     },
     userLiked (){
       if(this.isLiked) return'unlike'
-      return ''
     }
   },
   sockets: {
