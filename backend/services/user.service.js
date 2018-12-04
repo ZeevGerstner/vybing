@@ -63,10 +63,13 @@ function getUserRooms (userId) {
         )
 }
 
+
 function updateRoomsCreatedUser (user,roomId) {
     roomId = new ObjectId(roomId)
+
+    user.roomsCreatedIds.push(new ObjectId(roomId))
     user._id = new ObjectId(user._id)
-    console.log(user)
+    // console.log(user)
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('user');
@@ -74,10 +77,40 @@ function updateRoomsCreatedUser (user,roomId) {
                 { _id: user._id },
                 { $push: {roomsCreatedIds : roomId} }
             )
-            .then(result => {
-                return user;
-            })
+                .then(result => {
+                    return user;
+                })
         })
+}
+
+function updateRoomLikes (room, user) {
+    var idx = user.roomsLikedIds.findIndex(currRoomId => {
+        return currRoomId === room._id
+    })
+
+    if (idx === -1) user.roomsLikedIds.push(room._id)
+    else user.roomsLikedIds.splice(idx, 1)
+
+    console.log(idx);
+    
+    // user.roomsLikedIds = user.roomsLikedIds.map(currRoomId => {
+    //     return currRoomId = new ObjectId(currRoomId)
+    // })
+
+    user._id = new ObjectId(user._id)
+    
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const userCollection = dbConn.collection('user');
+            return userCollection.update(
+                { _id: user._id },
+                { $set: user }
+            )
+                .then(res => {
+                    return user
+                })
+        })
+
 }
 
 
@@ -87,5 +120,6 @@ module.exports = {
     checkLogin,
     getById,
     getUserRooms,
-    updateRoomsCreatedUser
+    updateRoomsCreatedUser,
+    updateRoomLikes,
 }

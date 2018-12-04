@@ -86,9 +86,7 @@ export default {
     toggleLike () {
       if (!this.getUser) return 
       this.isLiked = !this.isLiked
-      if (this.isLiked) this.room.likes++
-      else this.room.likes--
-      this.$socket.emit('updateRoom', this.room)
+      this.$socket.emit('updateLiked', this.room, this.getUser)
     }
   },
   created () {
