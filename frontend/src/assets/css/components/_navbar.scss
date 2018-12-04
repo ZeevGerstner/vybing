@@ -4,9 +4,9 @@
 .nav {
     display: flex;
     background-color: black;
-    height: 50px;
+    flex: 0 0 50px;
     transition: all .5s;
-
+    margin-bottom: 10px;
 }
 .nav-container{
     width: 940px;

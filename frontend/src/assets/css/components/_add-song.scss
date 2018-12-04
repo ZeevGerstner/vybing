@@ -22,11 +22,6 @@
 .search-res{
     background-color: black;
     overflow: overlay;
-    // width: 100%;
-    // margin-left: 10px;
-    width: 100%;
-    padding: 10px;
-    padding-right: 0;
 }
 
 .youtube-title {
@@ -36,6 +31,7 @@
 
 .playlist-wrapper {
     background-color: black;
+<<<<<<< HEAD
     margin-top: 7px;
     // margin-right: 7px;
     height: 496px;
@@ -43,4 +39,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+=======
+    overflow: auto;
+>>>>>>> 559c174ecbe2309f1564f7da1cada0c12086dfbd
 }

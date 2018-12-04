@@ -1,15 +1,12 @@
-.room-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 210px;
-    height: 300px;
-    margin: 0 25px 25px 0;
-    background-color: $light-gray;
-    color: black;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+
+.room-item{
+  background-color: #343434;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 15px;
+}
+
+
 
   .room-item-link{
     cursor: pointer;

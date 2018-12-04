@@ -3,9 +3,9 @@
     <div class="home-img"></div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 
-    <top-rooms class="room-list container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
+    <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
 
-    <top-rooms class="room-list container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
+    <top-rooms class="container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
 
     <top-rooms
       v-for="(genre,idx) in getGenre"
