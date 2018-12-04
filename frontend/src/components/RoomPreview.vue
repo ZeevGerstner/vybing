@@ -40,7 +40,7 @@
       v-if="room.playlist.length > 1"
       class="player-status"
     >
-      <h4 class="now-playing">Now playing</h4>
+      <!-- <h4 class="now-playing">Now playing</h4> -->
       <h5
         class="video-btn"
         @click="openPlayer"

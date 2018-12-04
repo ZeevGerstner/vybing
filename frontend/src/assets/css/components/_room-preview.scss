@@ -80,19 +80,15 @@
   }
   
   .move-txt {
-      -webkit-animation: moving 5s infinite;
-      animation: moving 8s infinite;
+      animation: moving 8s linear infinite;
   }
       
-  @-webkit-keyframes moving {
-      from {right: 0px;}
-      to {right: 200px;}
+  @keyframes moving {
+      0% {transform: translateX(0)}
+      50% {transform: translateX(-100%)}
+      50.1% {transform: translateX(100%)}
+      100% {transform: translateX(0)}
   }
-
-  @-webkit-keyframes moving {
-    from {right: 0px;}
-    to {right: 200px;}
-}
 
   .prev-player {
     position: fixed;

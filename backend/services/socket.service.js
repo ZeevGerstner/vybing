@@ -59,7 +59,6 @@ function connectSocket(io) {
 
             roomService.query(filter)
                 .then(filteredRooms => {
-                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -71,7 +70,6 @@ function connectSocket(io) {
             }
             roomService.query(filter)
                 .then(filteredRooms => {
-                    // console.log('filter:', filteredRooms)
                     socket.emit('setRoomsFilter', filteredRooms)
                 })
         })
@@ -79,12 +77,10 @@ function connectSocket(io) {
         socket.on('updatePlaylist', (roomId, updatedPlaylist) => {
             roomService.updatePlaylist(roomId, updatedPlaylist)
                 .then(() => {
-                    // console.log('PLAYLIST', updatedPlaylist)
                     return roomService.query()
                         .then(rooms => {
                             io.emit('setRoomList', rooms)
                         })
-                    // io.emit('loadPlaylist', updatedPlaylist)
                 })
         })
         socket.on('modifyPlaylist', (roomId, updatedPlaylist) => {
@@ -96,13 +92,15 @@ function connectSocket(io) {
         })
 
 
-        socket.on('updateUser', (user, roomId) => {
-            userService.updateUser(user, roomId)
+        socket.on('updateRoomsCreatedUser', (user, roomId) => {
+            userService.updateRoomsCreatedUser(user, roomId)
             
         })
 
-        socket.on('updateRoom', (room) => {
-            roomService.updateRoom(room)
+        socket.on('updateLiked', (room,user) => {
+            
+            roomService.updateRoomLikes(room,user)
+            userService.updateRoomLikes(room,user)
         })
 
         socket.on('getUserById', (userId) => {

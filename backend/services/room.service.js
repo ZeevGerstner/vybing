@@ -7,7 +7,7 @@ module.exports = {
     updatePlaylist,
     addRoom,
     getUserRooms,
-    updateRoom
+    updateRoomLikes
 }
 
 
@@ -29,7 +29,6 @@ function query (filter = { byName: '', byType: '' }) {
 }
 
 function getById (roomId) {
-    console.log({ roomId })
     roomId = new ObjectId(roomId)
     return mongoService.connectToDb()
         .then(dbConn => {
@@ -50,9 +49,14 @@ function updatePlaylist (roomId, playlist) {
         })
 }
 
-function updateRoom (room) {
+function updateRoomLikes (room, user) {
+    if (!room.userLikedIds) room.userLikedIds = []
+    var idx = room.userLikedIds.findIndex(currUserId => {
+        return currUserId === user._id
+    })
+    if (idx === -1) room.userLikedIds.push(user._id)
+    else room.userLikedIds.splice(idx, 1)
     room._id = new ObjectId(room._id)
-    console.log(room)
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');
