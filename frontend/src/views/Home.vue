@@ -1,22 +1,11 @@
 <template>
   <div class="home">
-    <router-link
-      class="tag-genre add-room-btn"
-      tag="div"
-      to="/createroom"
-    >Create Room</router-link>
+    <div class="home-img"></div>
+    <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 
-    <top-rooms
-      class="room-list container"
-      :type="'likes'"
-      :rooms="getRoomsBy('likes')"
-    />
+    <top-rooms class="room-list container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
 
-    <top-rooms
-      class="room-list container"
-      :type="'listeners'"
-      :rooms="getRoomsBy('listeners')"
-    />
+    <top-rooms class="room-list container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
 
     <top-rooms
       v-for="(genre,idx) in getGenre"
@@ -25,7 +14,6 @@
       :type="genre"
       :rooms="getRoomsBy(genre)"
     />
-
   </div>
 </template>
 
@@ -37,23 +25,25 @@ export default {
   components: {
     topRooms,
   },
-  data () {
+  data() {
     return {
       isLogin: false,
       isSignup: false,
       rooms: [],
     }
   },
-  created () {
+  created() {
     this.$socket.emit('getRoomList')
+
   },
   sockets: {
-    setRoomList (rooms) {
+    setRoomList(rooms) {
       this.rooms = rooms
     }
   },
   methods: {
-    getRoomsBy (type) {
+    
+    getRoomsBy(type) {
       if (type === 'likes') return this.rooms.slice().sort((room1, room2) => {
         return room2[type] - room1[type]
       }).slice(0, 4)
@@ -63,7 +53,7 @@ export default {
       else return this.rooms.slice().filter(room => room.type === type)
         .sort((a, b) => b.likes - a.likes).slice(0, 4)
     },
-    togglePlayer (room) {
+    togglePlayer(room) {
       console.log('home', room);
 
       this.$children.forEach(currRoom => {
@@ -75,7 +65,7 @@ export default {
     }
   },
   computed: {
-    getGenre () {
+    getGenre() {
       return this.$store.getters.getGenre
     }
   },

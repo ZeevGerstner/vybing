@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/js/about.dbc2d5ba.js"
   },
   {
-    "revision": "28439e0f7fa21e970520",
-    "url": "/css/app.bbba1dc8.css"
+    "revision": "2773c4135bb994ad8ad4",
+    "url": "/css/app.a6d1a645.css"
   },
   {
-    "revision": "28439e0f7fa21e970520",
-    "url": "/js/app.8c5de7c7.js"
+    "revision": "2773c4135bb994ad8ad4",
+    "url": "/js/app.f7953ded.js"
   },
   {
     "revision": "53611f8009f44867b574",
@@ -24,16 +24,16 @@ self.__precacheManifest = [
     "url": "/img/signup-img.eeb8776c.jpg"
   },
   {
-    "revision": "3e1af3ef546b9e6ecef9f3ba197bf7d2",
-    "url": "/fonts/Roboto-Regular.3e1af3ef.ttf"
-  },
-  {
     "revision": "ee7b96fa85d8fdb8c126409326ac2d2b",
     "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
   },
   {
     "revision": "89e2666c24d37055bcb60e9d2d9f7e35",
     "url": "/fonts/Roboto-Thin.89e2666c.ttf"
+  },
+  {
+    "revision": "3e1af3ef546b9e6ecef9f3ba197bf7d2",
+    "url": "/fonts/Roboto-Regular.3e1af3ef.ttf"
   },
   {
     "revision": "d08840599e05db7345652d3d417574a9",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/fonts/Ubuntu-Medium.fb4c7f58.ttf"
   },
   {
-    "revision": "61a5a35f3bb82ab2fa720a3173e802ba",
+    "revision": "f59c4748275287b09987165c61ffea3b",
     "url": "/index.html"
   },
   {

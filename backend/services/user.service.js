@@ -63,7 +63,14 @@ function getUserRooms (userId) {
         )
 }
 
+<<<<<<< HEAD
 function updateUser (user,roomId) {
+=======
+
+function updateRoomsCreatedUser (user,roomId) {
+    roomId = new ObjectId(roomId)
+
+>>>>>>> b90ce8fa8a11b916b89282ba995c25e2bce43ac7
     user.roomsCreatedIds.push(new ObjectId(roomId))
     user._id = new ObjectId(user._id)
     // console.log(user)
@@ -72,7 +79,7 @@ function updateUser (user,roomId) {
             const roomCollection = dbConn.collection('user');
             return roomCollection.updateOne(
                 { _id: user._id },
-                { $set: user }
+                { $push: {roomsCreatedIds : roomId} }
             )
                 .then(result => {
                     return user;
@@ -119,6 +126,6 @@ module.exports = {
     checkLogin,
     getById,
     getUserRooms,
-    updateUser,
-    updateRoomLikes
+    updateRoomsCreatedUser,
+    updateRoomLikes,
 }
