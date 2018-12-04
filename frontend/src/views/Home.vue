@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <div class="home-img"></div>
+    <div class="home-img">
+      <h2 class="home-title-txt">Playlist Together!</h2>
+    </div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 
     <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
