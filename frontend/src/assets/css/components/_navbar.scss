@@ -45,6 +45,9 @@
 }
 .search {
     position: relative;
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
 }
 
 .search input {
