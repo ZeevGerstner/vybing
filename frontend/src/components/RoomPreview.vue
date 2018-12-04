@@ -12,6 +12,13 @@
       />
 
       <div class="room-details room-item-details">
+      <div v-if="room.playlist.length > 1" class="player-status">
+      <!-- <h4 class="now-playing">Now playing</h4> -->
+      <span class="video-btn" @click.stop="openPlayer">
+        <i v-if="!isOpen" class="fa fa-play"></i>
+        <i v-else class="fa fa-stop"></i>
+      </span>
+    </div>
         <h1 class="room-name room-item-name">{{room.name}}</h1>
         <div class="room-icons">
           <h3 class="room-item-genre">{{room.type}}</h3>
@@ -30,25 +37,7 @@
       </div>
     </router-link>
 
-    <div
-      v-if="room.playlist.length > 1"
-      class="player-status"
-    >
-      <!-- <h4 class="now-playing">Now playing</h4> -->
-      <h5
-        class="video-btn"
-        @click="openPlayer"
-      >
-        <i
-          v-if="!isOpen"
-          class="fa fa-play"
-        ></i>
-        <i
-          v-else
-          class="fa fa-stop"
-        ></i>
-      </h5>
-    </div>
+
 
     <h3
       v-if="room.playlist.length > 1"
