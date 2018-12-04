@@ -96,8 +96,8 @@ function connectSocket(io) {
         })
 
 
-        socket.on('updateUser', (user, roomId) => {
-            userService.updateUser(user, roomId)
+        socket.on('updateRoomsCreatedUser', (user, roomId) => {
+            userService.updateRoomsCreatedUser(user, roomId)
             
         })
 

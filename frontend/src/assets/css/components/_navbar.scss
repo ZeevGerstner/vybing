@@ -5,7 +5,8 @@
     display: flex;
     background-color: black;
     height: 50px;
-    
+    transition: all .5s;
+
 }
 .nav-container{
     width: 940px;
@@ -26,7 +27,6 @@
     margin-right: 20px;
     letter-spacing: 3px;
     cursor: pointer;
-    transition: all .3s;
    
 }
 
@@ -117,4 +117,19 @@
 }
 .genre:hover{
     color: $off-white;
+}
+.start-navbar{
+    background: transparent;
+    li {
+        color: black;
+    }
+    .rooms-results li {
+        color: $off-white;
+    }
+}
+.home-nav-bar{
+    position: fixed;
+    width: 100vw;
+    z-index: 10;
+
 }

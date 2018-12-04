@@ -1,30 +1,14 @@
 <template>
-  <div
-    class="nav"
-    @mouseleave="isGenre = false"
-  >
+  <div class="nav" @mouseleave="isGenre = false">
     <div class="nav-container flex align-center space-between container">
-      <div
-        @click="goToRooms"
-        class="nav-logo logo"
-      >Vybing</div>
+      <div @click="goToRooms" class="nav-logo logo">Vybing</div>
 
-      <div class="search">
-        <input
-          @input="searchRooms"
-          v-model="filter.byName"
-          placeholder="search"
-        >
+      <div ref="search" class="search">
+        <input @input="searchRooms" v-model="filter.byName" placeholder="search">
         <span class="fa fa-search"></span>
 
-        <ul
-          class="rooms-results"
-          v-if="isSearch"
-        >
-          <li
-            class="all-results"
-            @click="seeAllResults"
-          >See all results for: {{filter.byName}}</li>
+        <ul class="rooms-results" v-if="isSearch">
+          <li class="all-results" @click="seeAllResults">See all results for: {{filter.byName}}</li>
           <li
             v-for="room in roomsResults"
             :key="room._id"
@@ -53,19 +37,9 @@
       </div>
 
       <div class="nav-link login">
-        <li
-          v-if="!isUserLogin"
-          @click="isLogin = !isLogin"
-        >Login</li>
-        <login-user
-          @closeLogin="isLogin = false"
-          v-if="isLogin"
-        ></login-user>
-        <router-link
-          tag="li"
-          :to="'/profile/'+getUser._id"
-          v-if="isUserLogin"
-        >{{getUser.name}} </router-link>
+        <li v-if="!isUserLogin" @click="isLogin = !isLogin">Login</li>
+        <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
+        <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
       </div>
     </div>
   </div>
@@ -82,7 +56,7 @@ export default {
   components: {
     loginUser
   },
-  data () {
+  data() {
     return {
       isLogin: false,
       roomsResults: [],
@@ -94,29 +68,39 @@ export default {
       }
     }
   },
+  created() {
+  },
   methods: {
-    searchRooms () {
+    changeCss() {
+      var nav = document.querySelector('.nav')
+      if (window.scrollY > 400) {
+        nav.classList.remove('start-navbar')
+      } else {
+        nav.classList.add('start-navbar')
+      }
+    },
+    searchRooms() {
       console.log('search: ', this.filter)
       this.$socket.emit('searchRoom', this.filter)
       this.isSearch = true
       if (this.filter.byName === '') this.isSearch = false
     },
-    goToRoomById (roomId) {
+    goToRoomById(roomId) {
       this.$router.push('/room/' + roomId)
       this.filter.byName = ''
       this.isSearch = false
     },
-    seeAllResults () {
+    seeAllResults() {
       this.$router.push('/RoomSearch')
       this.searchRooms()
       this.isSearch = false
     },
-    searchByGenre (genre) {
+    searchByGenre(genre) {
       this.filter.byType = genre;
       this.searchRooms()
       this.$router.push('/RoomSearch/' + genre)
     },
-    goToRooms () {
+    goToRooms() {
       this.filter = {
         byType: '',
         byName: '',
@@ -130,6 +114,30 @@ export default {
         this.filter.byType = genre
       }
     },
+    $route: {
+      immediate: true,
+      handler(route) {
+        console.log('inside route watch', route)
+        if (route.name === 'home') {
+          window.addEventListener('scroll', this.changeCss);
+          // this.$refs.navbar.classList.add('start-navbar')
+          this.$nextTick(() => {
+            var nav = document.querySelector('.nav')
+            nav.classList.add('start-navbar')
+            nav.classList.add('home-nav-bar')
+          });
+
+        } else {
+          window.removeEventListener('scroll', this.changeCss)
+          this.$nextTick(() => {
+            var nav = document.querySelector('.nav')
+            nav.classList.remove('home-nav-bar')
+            nav.classList.remove('start-navbar')
+          })
+        }
+      }
+
+    },
   },
   sockets: {
     setRoomsFilter: function (filteredRoom) {
@@ -138,13 +146,13 @@ export default {
     }
   },
   computed: {
-    getGenre () {
+    getGenre() {
       return this.$store.getters.getGenre
     },
-    getUser () {
+    getUser() {
       return this.$store.getters.getCurrUser
     },
-    isUserLogin () {
+    isUserLogin() {
       return this.$store.getters.isUserLogin
     },
   },
