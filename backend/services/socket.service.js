@@ -6,17 +6,26 @@ const userService = require('./user.service')
 
 function connectSocket(io) {
     io.on('connection', (socket) => {
+        console.log('connection!!')
         var userRoom;
 
         socket.on('chatRoomJoined', (room) => {
-            var currRoom = gRooms.find(curr => curr._id === room._id)
-            if (currRoom) {
-                userRoom = currRoom
-            } else {
-                userRoom = room
-                gRooms.push(room)
-            }
+            // var currRoom = gRooms.find(curr => curr._id === room._id)
+            // if (currRoom) {
+            //     userRoom = currRoom
+            // } else {
+            //     userRoom = room
+            //     gRooms.push(room)
+            // }
+            userRoom = room
+            console.log('rooomm:::',userRoom.name)
+
             socket.join(userRoom._id)
+        })
+
+        socket.on('roomClose',()=>{
+            console.log('leave me alone!!',userRoom._id)
+            socket.leave(userRoom._id)
         })
 
         socket.on('sendMsg', (newMsg) => {

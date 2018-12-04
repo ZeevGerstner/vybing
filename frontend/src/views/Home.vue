@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div class="home-img2"></div>
     <div class="home-img">
       <h2 class="home-title-txt">Playlist Together!</h2>
     </div>
@@ -36,15 +37,21 @@ export default {
   },
   created() {
     this.$socket.emit('getRoomList')
-
   },
   sockets: {
     setRoomList(rooms) {
       this.rooms = rooms
+      this.$nextTick(() => {
+        window.scrollTo({
+          top: 70,
+          left: 0,
+          behavior: 'smooth'
+        });
+      })
     }
   },
   methods: {
-    
+
     getRoomsBy(type) {
       if (type === 'likes') return this.rooms.slice().sort((room1, room2) => {
         return room2[type] - room1[type]
@@ -71,6 +78,10 @@ export default {
       return this.$store.getters.getGenre
     }
   },
+  mounted() {
+    console.log(window)
+
+  }
 };
 </script>
 

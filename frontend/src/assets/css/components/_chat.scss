@@ -7,7 +7,7 @@
     
     @media screen and (max-width:840px) {
         position: fixed;
-        right: -200px;
+        right: -300px;
         opacity: 0;
         height: 90vh;   
         width: 40vw;
@@ -32,8 +32,12 @@
     width: 80%;
     border-radius: 15px;
     text-align: center;
+    border: 0;
 }
+.chat-input:focus{
+    outline: 0;
 
+}
 .chat-title{
     color: $lime-green;
     font-family: roboto-medium;

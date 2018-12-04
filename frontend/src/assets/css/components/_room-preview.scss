@@ -99,7 +99,7 @@
     justify-content: space-between;
     width:90%;
     align-content: center;
-    color: $off-white;
+    color: $lime-green;
     margin-bottom: 10px;
 
     h4 {
@@ -115,7 +115,10 @@
     h5:hover {
       color: $lime-green;
     }
+  }
 
-
-
+  
+  .player-status:hover {
+    color:  $off-white;
+  
   }

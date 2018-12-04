@@ -146,6 +146,10 @@ export default {
     chatRoom,
     playlistCmp,
     userPreview
+  },
+  destroyed(){
+    console.log('close!!')
+    this.$socket.emit('roomClose')
   }
 };
 </script>

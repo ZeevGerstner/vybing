@@ -83,6 +83,9 @@ button {
   background-color: transparent;
   border: 0;
 }
+button:focus{
+  outline: 0;
+}
 .playlist-video-details {
   display: flex;
   align-items: center;
