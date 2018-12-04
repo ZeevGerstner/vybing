@@ -76,12 +76,15 @@ button {
 }
 
 .control-arrows {
-    color: #99cc00;
+    color: #6b6b6b;
     font-size: 1.4rem;
     cursor: pointer;
     background-color: transparent;
 }
-
+.control-arrows:hover {
+        color: #99cc00;
+        
+}
 .add-song-btn {
     background-color: #99cc00;
     width: 50px;
