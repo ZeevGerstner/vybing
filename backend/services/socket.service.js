@@ -101,19 +101,6 @@ function connectSocket(io) {
             
             roomService.updateRoomLikes(room,user)
             userService.updateRoomLikes(room,user)
-            //     .then(() => {
-            //         var idx = user.roomsLikedIds.findIndex(userRoomId => {
-            //             return userRoomId === room._id
-            //         })
-            //         console.log(idx);
-            //         if(idx !== -1) {
-            //             user.roomsLikedIds.splice(idx,1)
-            //         }
-            //         else {
-            //             user.roomsLikedIds.push(room._id)
-            //         }
-
-            //     })
         })
 
         socket.on('getUserById', (userId) => {

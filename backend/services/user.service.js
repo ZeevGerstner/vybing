@@ -64,18 +64,17 @@ function getUserRooms (userId) {
 }
 
 
-function updateRoomsCreatedUser (user,roomId) {
+function updateRoomsCreatedUser (user, roomId) {
     roomId = new ObjectId(roomId)
 
     user.roomsCreatedIds.push(new ObjectId(roomId))
     user._id = new ObjectId(user._id)
-    // console.log(user)
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('user');
             return roomCollection.updateOne(
                 { _id: user._id },
-                { $push: {roomsCreatedIds : roomId} }
+                { $push: { roomsCreatedIds: roomId } }
             )
                 .then(result => {
                     return user;
@@ -85,26 +84,22 @@ function updateRoomsCreatedUser (user,roomId) {
 
 function updateRoomLikes (room, user) {
     var idx = user.roomsLikedIds.findIndex(currRoomId => {
-        return currRoomId === room._id
+        return currRoomId === room._id.toString()
     })
 
-    if (idx === -1) user.roomsLikedIds.push(room._id)
-    else user.roomsLikedIds.splice(idx, 1)
-
-    console.log(idx);
-    
-    // user.roomsLikedIds = user.roomsLikedIds.map(currRoomId => {
-    //     return currRoomId = new ObjectId(currRoomId)
-    // })
+    var action;
+    if (idx === -1) action = '$push'
+    else action = '$pull'
 
     user._id = new ObjectId(user._id)
-    
+    room._id = new ObjectId(room._id)
+
     return mongoService.connectToDb()
         .then(dbConn => {
             const userCollection = dbConn.collection('user');
-            return userCollection.update(
+            return userCollection.updateOne(
                 { _id: user._id },
-                { $set: user }
+                { [action]: { roomsLikedIds: room._id } }
             )
                 .then(res => {
                     return user
