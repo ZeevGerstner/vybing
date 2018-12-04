@@ -47,14 +47,12 @@ export default {
   },
   methods: {
     moveSong (direction, song) {
-      //debugger;
       var songIdx = this.playlist.findIndex(playlistSong => {
         return song.id === playlistSong.id
       })
       let newIndex = null;
       if (direction === 'up') {
         if (songIdx === 1) return;
-        console.log("going up");
         newIndex = songIdx - 1
       } else {
         if (songIdx === this.playlist.length - 1) return;
@@ -109,5 +107,6 @@ button:focus{
   position: fixed;
   border: 2px solid white;
   top: 88%;
+  left: 10px;
 }
 </style>
