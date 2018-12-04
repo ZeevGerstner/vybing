@@ -1,11 +1,11 @@
 .chat-container{
-    width: 350px;
-    height: 90vh;
+    // width: 350px;
+    // height: 90vh;
     background-color: black;
-    margin-left:10px;
+    // margin-left:10px;
+    grid-area: 2/2/span 3/2;
 }
 .chat{
-    height: 85%;
 }
 .chat-input{
     height: 42px;

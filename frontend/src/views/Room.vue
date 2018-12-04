@@ -3,7 +3,6 @@
     v-if="room"
     class="container room"
   >
-    <div class="left-room-container">
       <nav class="nav-room">
         <div class="room-title">
           <h2 class="room-name">{{room.name}}</h2>
@@ -46,7 +45,6 @@
         @moveSong="moveSong"
         @addSong="addSong"
       ></router-view>
-    </div>
     <chat-room :room="room" />
   </div>
 </template>
