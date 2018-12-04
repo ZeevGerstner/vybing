@@ -1,7 +1,9 @@
 <template>
   <div class="nav" @mouseleave="isGenre = false">
     <div class="nav-container flex align-center space-between container">
-      <div @click="goToRooms" class="nav-logo logo">Vybing</div>
+      <div @click="goToRooms" class="nav-logo logo">
+       Vybing
+      </div>
 
       <div ref="search" class="search">
         <input @input="searchRooms" v-model="filter.byName" placeholder="search">

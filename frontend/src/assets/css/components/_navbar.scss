@@ -30,7 +30,7 @@
     cursor: pointer;
     margin-left: 35px;
     @media screen and (max-width: 940px) {
-        margin-left: 10px;
+        margin-left: 20px;
     
     }
    
@@ -141,8 +141,10 @@
 }
 .navbar-icon{
     display: none;
+    
     @media screen and (max-width: 940px) {
         display: unset;
+        font-size: 30px;
         
     }
 }
