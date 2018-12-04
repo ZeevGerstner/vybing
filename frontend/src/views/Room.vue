@@ -3,49 +3,62 @@
     v-if="room"
     class="container room"
   >
-      <nav class="nav-room">
-        <div class="room-title">
-          <h2 class="room-name">{{room.name}}</h2>
-          <h4 v-if="isAdmin" class="room-creator">creator: <span class="room-creator-hover" @click="isUserPrev = !isUserPrev">{{adminRoom.name}}</span></h4>
-          <user-preview v-show="isUserPrev" :user="adminRoom"></user-preview>
-        </div>
-        <div class="room-details">
-          <div class="tag-genre room-genre">{{room.type}}</div>
-
-          <div class="room-icon">
-            <img
-              class="icon-img"
-              src="../assets/imgs/LISTENERS-ICON.png"
-            >
-            <h4 class="icon-count">{{room.listeners.length}}</h4>
-          </div>
-          <div
-            class="room-icon"
-            @click="toggleLike"
-          >
-            <img
-              :class="userLiked"
-              class="icon-img"
-              src="../assets/imgs/EAR-ICON.png"
-            >
-
-            <h4 class="icon-count">{{room.likes}}</h4>
-          </div>
-        </div>
-      </nav>
-
-      <div class="room-player">
-        <youtube-player
-          :playlist="room.playlist"
-          @updatePlaylist="updatePlaylist"
-        ></youtube-player>
+    <nav class="nav-room">
+      <div class="room-title">
+        <h2 class="room-name">{{room.name}}</h2>
+        <h4
+          v-if="isAdmin"
+          class="room-creator"
+        >creator: <span
+            class="room-creator-hover"
+            @click="isUserPrev = !isUserPrev"
+          >{{adminRoom.name}}</span></h4>
+        <user-preview
+          v-show="isUserPrev"
+          :user="adminRoom"
+        ></user-preview>
       </div>
-      <router-view
+      <div class="room-details">
+        <div class="tag-genre room-genre">{{room.type}}</div>
+
+        <div class="room-icon">
+          <img
+            class="icon-img"
+            src="../assets/imgs/LISTENERS-ICON.png"
+          >
+          <h4 class="icon-count">{{room.listeners.length}}</h4>
+        </div>
+        <div
+          class="room-icon"
+          @click="toggleLike"
+        >
+          <img
+            :class="userLiked"
+            class="icon-img"
+            src="../assets/imgs/EAR-ICON.png"
+          >
+
+          <h4 class="icon-count">{{room.likes}}</h4>
+        </div>
+      </div>
+    </nav>
+
+    <div class="room-player">
+      <youtube-player
         :playlist="room.playlist"
-        @moveSong="moveSong"
-        @addSong="addSong"
-      ></router-view>
-    <chat-room :room="room" />
+        @updatePlaylist="updatePlaylist"
+      ></youtube-player>
+    </div>
+    <router-view
+      :playlist="room.playlist"
+      @moveSong="moveSong"
+      @addSong="addSong"
+    ></router-view>
+    <chat-room :room="room" :class="chatStatus"/>
+    <div
+      class="toggle-chat-btn flex justify-center align-center"
+      @click="toggleChat"
+    ><i class='far fa-comment-dots'></i></div>
   </div>
 </template>
 
@@ -63,7 +76,8 @@ export default {
       isUserPrev: false,
       adminRoom: null,
       isAdmin: false,
-      isLiked: false
+      isLiked: false,
+      isChatOpen: false
     };
   },
   methods: {
@@ -82,9 +96,12 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike () {
-      if (!this.getUser) return 
+      if (!this.getUser) return
       this.isLiked = !this.isLiked
       this.$socket.emit('updateLiked', this.room, this.getUser)
+    },
+    toggleChat () {
+     this.isChatOpen = !this.isChatOpen
     }
   },
   created () {
@@ -97,8 +114,11 @@ export default {
     getUser () {
       return this.$store.getters.getCurrUser
     },
-    userLiked (){
-      if(this.isLiked) return'unlike'
+    userLiked () {
+      if (this.isLiked) return 'unlike'
+    },
+    chatStatus(){
+      if(this.isChatOpen) return 'show-chat'
     }
   },
   sockets: {
@@ -107,14 +127,12 @@ export default {
       this.$socket.emit('getUserById', this.room.admin)
     },
     loadPlaylist (playlist) {
-      console.log('updated playlist: ', playlist)
       this.room.playlist = playlist
     },
-    setUserProfile: function(user){
-            this.adminRoom = user[0]
-            console.log('adminRoom:::',this.adminRoom)
-            this.isAdmin = true
-        }
+    setUserProfile: function (user) {
+      this.adminRoom = user[0]
+      this.isAdmin = true
+    }
   },
   watch: {
     '$route.params.roomId': function (id) {
