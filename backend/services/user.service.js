@@ -63,23 +63,18 @@ function getUserRooms (userId) {
         )
 }
 
-<<<<<<< HEAD
-function updateUser (user,roomId) {
-=======
 
-function updateRoomsCreatedUser (user,roomId) {
+function updateRoomsCreatedUser (user, roomId) {
     roomId = new ObjectId(roomId)
 
->>>>>>> b90ce8fa8a11b916b89282ba995c25e2bce43ac7
     user.roomsCreatedIds.push(new ObjectId(roomId))
     user._id = new ObjectId(user._id)
-    // console.log(user)
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('user');
             return roomCollection.updateOne(
                 { _id: user._id },
-                { $push: {roomsCreatedIds : roomId} }
+                { $push: { roomsCreatedIds: roomId } }
             )
                 .then(result => {
                     return user;
@@ -88,34 +83,28 @@ function updateRoomsCreatedUser (user,roomId) {
 }
 
 function updateRoomLikes (room, user) {
-    // let roomId = room._id.toString()
-    // var idx = user.roomsLikedIds.findIndex(currRoomId => {
-    //     return currRoomId === roomId
-    // })
-    // console.log(idx);
-    
+    var idx = user.roomsLikedIds.findIndex(currRoomId => {
+        return currRoomId === room._id.toString()
+    })
 
-    // var action;
-    // if (idx === -1) {
-    //     action = '$push'
-    // }
-    // else {
-    //     action = '$pull'
-    // }
+    var action;
+    if (idx === -1) action = '$push'
+    else action = '$pull'
 
-    // user._id = new ObjectId(user._id)
-    
-    // return mongoService.connectToDb()
-    //     .then(dbConn => {
-    //         const userCollection = dbConn.collection('user');
-    //         return userCollection.updateOne(
-    //             { _id: user._id },
-    //             { [action]: {roomsLikedIds: roomId} }
-    //         )
-    //             .then(res => {
-    //                 return user
-    //             })
-    //     })
+    user._id = new ObjectId(user._id)
+    room._id = new ObjectId(room._id)
+
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const userCollection = dbConn.collection('user');
+            return userCollection.updateOne(
+                { _id: user._id },
+                { [action]: { roomsLikedIds: room._id } }
+            )
+                .then(res => {
+                    return user
+                })
+        })
 
 }
 
