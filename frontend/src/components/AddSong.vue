@@ -1,12 +1,13 @@
 <template>
   <div class="add-song">
-   <div class="add-song-search-container" >
+   <div class="add-song-search-container">
     <input class="add-song-input" ref="searchInput" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
     <div class="btn-search-close" @click.stop="closeSearch"><i class="fas fa-times fa-2x"></i></div>
    </div>
-    <ul class="search-res">
+    <ul class="search-res" v-if="songs.length">
       <song-preview v-for="song in songs" :key="song.id" :song="song" @addSong="addSong"/>  
     </ul>
+    <div id="search-img-wrapper" v-else><img src="https://res.cloudinary.com/da2l5r1cy/image/upload/v1543854878/kids-search-robot.png"></div>
   </div>
 </template>
 
@@ -60,5 +61,14 @@ export default {
  .btn-search-close {
    color: #99cc00;
    cursor: pointer;
+ }
+
+ img {
+   height:100px;
+ }
+
+
+ #search-img-wrapper {
+   overflow: hidden;
  }
 </style>

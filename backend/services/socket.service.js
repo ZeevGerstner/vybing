@@ -6,7 +6,6 @@ const userService = require('./user.service')
 
 function connectSocket(io) {
     io.on('connection', (socket) => {
-        // console.log('user connected')
         var userRoom;
 
         socket.on('chatRoomJoined', (room) => {
@@ -91,7 +90,8 @@ function connectSocket(io) {
         socket.on('modifyPlaylist', (roomId, updatedPlaylist) => {
             roomService.updatePlaylist(roomId, updatedPlaylist)
                 .then(() => {
-                    io.emit('loadPlaylist', updatedPlaylist)
+                    // io.emit('loadPlaylist', updatedPlaylist)
+                    io.to(userRoom._id).emit('loadPlaylist', updatedPlaylist)
                 })
         })
 

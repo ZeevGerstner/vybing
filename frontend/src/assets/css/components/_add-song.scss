@@ -2,7 +2,7 @@
     background-color: black;
     margin-top: 7px;
     // margin-right: 7px;
-    height: 540px;
+    height: 496px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,13 +30,17 @@
 }
 
 .youtube-title {
-    font-family: 'roboto-regular'
+    font-family: 'roboto-regular';
+    color: white;
 }
 
 .playlist-wrapper {
-    padding: 10px;
     background-color: black;
-    margin-top: 10px;
-    height: 537px;
-    overflow: auto;
+    margin-top: 7px;
+    // margin-right: 7px;
+    height: 496px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
