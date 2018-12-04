@@ -135,6 +135,9 @@
     .rooms-results li {
         color: $off-white;
     }
+    .navbar-userName{
+        color: black;
+    }
 }
 .home-nav-bar{
     position: fixed;
@@ -157,4 +160,18 @@
         display: none;
     }
 }
-
+.navbar-userName{
+    font-family: 'roboto-bold';
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    color: $off-white;
+    line-height: normal;
+    @media screen and (max-width: 940px) {        
+        font-size: 24px;
+    }
+}
+.navbar-userName:hover{
+    color: $lime-green;
+}

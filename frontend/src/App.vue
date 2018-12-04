@@ -12,6 +12,13 @@ export default {
   name: 'app',
   components: {
     appHeader
+  },
+  created(){
+    var currUser = JSON.parse(localStorage.getItem('currUser'));
+    if(currUser){
+      console.log('currUser',currUser)
+      this.$store.commit({type: 'setCurrUser', currUser})
+    }
   }
 };
 </script>

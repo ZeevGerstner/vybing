@@ -48,7 +48,7 @@
             <span class="navbar-icon"><i class="fas fa-user"></i></span>
           </div>
           <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
-          <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
+          <router-link class="navbar-userName" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
         </li>
       </div>
     </div>
@@ -82,6 +82,7 @@ export default {
   },
   methods: {
     changeCss() {
+
       var nav = document.querySelector('.nav')
       if (window.scrollY > 300) {
         nav.classList.remove('start-navbar')

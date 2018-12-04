@@ -11,6 +11,7 @@ function addRoutes(app) {
         const user = req.body.user
         userService.checkLogin({ user })
             .then(currUser => {
+                currUser.password = null;
                 req.session.user = currUser
                 console.log('curruser:', currUser)
                 res.json(currUser)
