@@ -34,8 +34,6 @@ connectSocket(io)
 app.use(history())
 app.use(express.static('public'));
 
-
-
 const port = process.env.PORT || 3000
 
 http.listen(port, function () {

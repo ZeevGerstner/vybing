@@ -26,7 +26,12 @@ export default {
                 admin: '',
                 userLikedIds: [],
                 listeners: [],
-                playlist: [],
+                playlist: [
+                    {title: 'Rick Astley - Never Gonna Give You Up (Video)',
+                     id: 'dQw4w9WgXcQ',
+                     img: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg'
+                     }
+                ],
             },
             errName: false,
             errType: false,
@@ -43,7 +48,6 @@ export default {
                 return
             }
             this.$socket.emit('createRoom', this.newRoom)
-                
         }
     },
     sockets: {

@@ -2,6 +2,7 @@
   <section class="chat-container">
     <div class="chat">
       <h2 class="chat-title">ROOM CHAT</h2>
+      <!-- <add-gif></add-gif> -->
       <div class="chat-line"></div>
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import AddGif from './AddGif.vue'
 import userPreview from '@/components/UserPreview.vue'
 
 export default {
@@ -81,8 +83,9 @@ export default {
       this.$socket.emit('chatRoomJoined', this.room)
     },
     components: {
-    userPreview
-  }
+      AddGif,
+      userPreview
+    }
 };
 </script>
 
