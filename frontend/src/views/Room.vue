@@ -57,6 +57,7 @@
     <chat-room :room="room" :class="chatStatus"/>
     <div
       class="toggle-chat-btn flex justify-center align-center"
+      :class="chatIsOpen"
       @click="toggleChat"
     ><i class='far fa-comment-dots'></i></div>
   </div>
@@ -119,6 +120,9 @@ export default {
     },
     chatStatus(){
       if(this.isChatOpen) return 'show-chat'
+    },
+    chatIsOpen(){
+      if(this.isChatOpen) return 'chat-open'
     }
   },
   sockets: {
