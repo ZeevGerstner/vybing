@@ -9,7 +9,8 @@
     margin-bottom: 10px;
 }
 .nav-container{
-    width: 940px;
+    width: 100%;
+    padding: 16px;
 }
 .nav-logo {
     cursor: pointer;    
@@ -18,15 +19,20 @@
 .nav-link {
     display: flex;
     list-style-type: none;
+    position: relative;
 }
 
 .nav li {
     font-family: 'roboto-bold';
     text-transform: uppercase;
     color: $off-white;
-    margin-right: 20px;
     letter-spacing: 3px;
     cursor: pointer;
+    margin-left: 35px;
+    @media screen and (max-width: 940px) {
+        margin-left: 10px;
+    
+    }
    
 }
 
@@ -131,5 +137,19 @@
     position: fixed;
     width: 100vw;
     z-index: 10;
-
+    height: 50px;
 }
+.navbar-icon{
+    display: none;
+    @media screen and (max-width: 940px) {
+        display: unset;
+        
+    }
+}
+
+.navbar-txt{
+    @media screen and (max-width: 940px) {
+        display: none;
+    }
+}
+
