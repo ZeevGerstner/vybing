@@ -19,4 +19,16 @@
     height: 80vh;  
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title-txt{
+    font-family: roboto-bold;
+    color: $off-white;
+    font-size: 8vw;
 }

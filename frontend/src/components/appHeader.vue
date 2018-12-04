@@ -18,7 +18,9 @@
       </div>
 
       <div class="nav-link">
-        <li @mouseover="isGenre = true">▼Genres
+        <li @mouseover="isGenre = true">
+          <span class="navbar-txt">▼Genres</span> 
+          <span class="navbar-icon"><i class="fas fa-th-list"></i></span>
           <div
             @mouseover="isGenre = true"
             @mouseleave="isGenre = false"
@@ -33,13 +35,19 @@
             >{{genre}}</div>
           </div>
         </li>
-        <li @click="goToRooms">Rooms</li>
-      </div>
-
-      <div class="nav-link login">
-        <li v-if="!isUserLogin" @click="isLogin = !isLogin">Login</li>
-        <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
-        <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
+        <li @click="goToRooms">
+         <span class="navbar-txt">Rooms</span>
+         <span class="navbar-icon"><i class="fas fa-home"></i></span>
+        </li>
+        <li class="login">
+          <div v-if="!isUserLogin" @click="isLogin = !isLogin">
+           
+            <span class="navbar-txt">Login</span>
+            <span class="navbar-icon"><i class="fas fa-user"></i></span>
+          </div>
+          <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
+          <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
+        </li>
       </div>
     </div>
   </div>
@@ -73,7 +81,7 @@ export default {
   methods: {
     changeCss() {
       var nav = document.querySelector('.nav')
-      if (window.scrollY > 400) {
+      if (window.scrollY > 300) {
         nav.classList.remove('start-navbar')
       } else {
         nav.classList.add('start-navbar')

@@ -1,5 +1,5 @@
 <template>
-    <section class="signup container">
+    <section class="signup signup-img container">
         <div class="signup-container">
             <h2 class="category-title">Signup</h2>
             <form class="signup-form" @submit.prevent="signupUser">
@@ -8,7 +8,7 @@
                 <button class="signup-btn">Signup</button>
             </form>
         </div>
-        <img class="signup-img" src="../assets/imgs/signup-img.jpg">
+       
     </section>
 
 </template>
