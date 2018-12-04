@@ -5,29 +5,23 @@
       tag="div"
       :to="'/room/'+room._id"
     >
-      <img
+      <div
         v-if="room.playlist.length > 1"
         class="room-item-youtube-img"
-        :src="room.playlist[0].img"
+        :style="{background:'url('+ room.playlist[0].img+') center no-repeat'}"
       />
 
       <div class="room-details room-item-details">
         <h1 class="room-name room-item-name">{{room.name}}</h1>
         <div class="room-icons">
-          <h3 class="tag-genre room-item-genre">{{room.type}}</h3>
+          <h3 class="room-item-genre">{{room.type}}</h3>
           <div class="room-icon room-item-icon">
-            <img
-              class="icon-img room-icon-img"
-              src="../assets/imgs/LISTENERS-ICON.png"
-            >
+          <i class="fas fa-eye font-awesome"></i>
             <h4 class="icon-count room-item-count">{{room.listeners.length}}</h4>
           </div>
 
           <div class="room-icon room-item-icon">
-            <img
-              class="icon-img room-icon-img"
-              src="../assets/imgs/EAR-ICON.png"
-            >
+          <i class="fas fa-thumbs-up font-awesome"></i>
             <h4 class="icon-count room-item-count">{{room.likes}}</h4>
           </div>
 

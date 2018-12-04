@@ -12,7 +12,7 @@ async function loadVideos(search) {
         return {
             title: video.snippet.title,
             id: video.id.videoId,
-            img: video.snippet.thumbnails.high.url
+            img: video.snippet.thumbnails.medium.url
         }
     })
 }
