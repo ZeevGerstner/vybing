@@ -24,7 +24,7 @@
           ></i>
         </div>
       </div>
-      <div class="room-details room-item-details">
+      <div :class="['room-details', 'room-item-details', isOpen? 'room-pause-mode' : '']">
         <h3
           v-if="room.playlist.length"
           class="song-title"
