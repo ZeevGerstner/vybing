@@ -1,15 +1,3 @@
-.add-song{
-    background-color: black;
-    margin-top: 7px;
-    // margin-right: 7px;
-    height: 496px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-
-}
-
 .add-song-input{
     width: 250px;
     text-align: center;
@@ -19,15 +7,12 @@
     color: $off-white;
     font-size: 18px;
 }
+
 .search-res{
     background-color: black;
     overflow: overlay;
 }
 
-.youtube-title {
-    font-family: 'roboto-regular';
-    color: white;
-}
 
 .playlist-wrapper {
     background-color: black;

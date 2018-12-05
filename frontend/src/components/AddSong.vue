@@ -1,5 +1,5 @@
 <template>
-  <div class="add-song">
+  <div class="playlist-wrapper">
    <div class="add-song-search-container">
     <input class="add-song-input" ref="searchInput" v-model="search.txt" type="text" placeholder="search song" @input="searchSong">
     <div class="btn-search-close" @click.stop="closeSearch"><i class="fas fa-times fa-2x"></i></div>
