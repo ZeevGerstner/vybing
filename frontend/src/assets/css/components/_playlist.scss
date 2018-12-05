@@ -1,0 +1,41 @@
+button {
+    background-color: transparent;
+    border: 0;
+  }
+
+.playlist-video-details {
+    display: flex;
+    align-items: center;
+}
+  
+.control-arrows {
+    color: #6b6b6b;
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: transparent;
+  
+  @media screen and (max-width:840px) {
+    font-size: 2.4rem;
+        
+    }
+}
+  
+.control-arrows:hover {
+    color: #99cc00;
+}
+  
+.playlist-up-arrow,.playlist-down-arrow{
+    outline: 0;
+}
+  
+.add-song-btn {
+    background-color: #99cc00;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    border: 2px solid white;
+    top: 88%;
+    left: 10px;
+}

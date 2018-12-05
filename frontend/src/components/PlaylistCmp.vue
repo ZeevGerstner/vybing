@@ -56,10 +56,8 @@ export default {
         newIndex = songIdx - 1
       } else {
         if (songIdx === this.playlist.length - 1) return;
-        console.log("going down");
         newIndex = songIdx + 1;
       }
-      console.log("Swapping ", songIdx, newIndex)
       let temp = this.playlist[songIdx]
       this.playlist[songIdx] = this.playlist[newIndex]
       this.playlist[newIndex] = temp
@@ -75,6 +73,8 @@ export default {
   }
 }
 </script>
+<<<<<<< HEAD
+=======
 
 <style lang="scss" scoped>
 button {
@@ -110,3 +110,4 @@ button:focus{
   left: 10px;
 }
 </style>
+>>>>>>> cf6bd28205fb31b9889195b736837c0cacbfb6cd
