@@ -78,10 +78,6 @@ export default {
       return this.$store.getters.getGenre
     }
   },
-  mounted() {
-    console.log(window)
-
-  }
 };
 </script>
 
