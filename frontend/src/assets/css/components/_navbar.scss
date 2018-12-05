@@ -176,3 +176,18 @@
 .navbar-userName:hover{
     color: $lime-green;
 }
+
+.home-go-top{
+    position: fixed;
+    top: 682px;
+    left: 10px;
+    font-size: 52px;
+    color: $off-white;
+    transition: all .5s;
+
+}
+.home-go-top:hover{
+    color: $lime-green;
+    cursor: pointer;
+
+}

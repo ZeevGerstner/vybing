@@ -40,7 +40,7 @@
             src="../assets/imgs/EAR-ICON.png"
           > -->
 
-          <h4 class="icon-count">{{room.likes}}</h4>
+          <h4 class="icon-count">{{room.userLikedIds.length}}</h4>
         </div>
       </div>
     </nav>
@@ -106,6 +106,8 @@ export default {
     toggleLike () {
       if (!this.getUser) return
       this.isLiked = !this.isLiked
+      if(this.isLiked) this.room.userLikedIds.length++
+      else this.room.userLikedIds.length-- 
       this.$socket.emit('updateLiked', this.room, this.getUser)
     },
     toggleChat () {
@@ -159,7 +161,6 @@ export default {
     userPreview
   },
   destroyed(){
-    console.log('close!!')
     this.$socket.emit('roomClose')
   }
 };

@@ -26,4 +26,8 @@
     position: absolute;
     right: 0px;
     cursor: pointer;
+    transition: all .4s;
+}
+.add-room-btn:hover{
+    background-color: #bfff00;
 }

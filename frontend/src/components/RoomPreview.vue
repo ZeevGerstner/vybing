@@ -36,10 +36,6 @@
           v-if="room.playlist.length"
           class="player-status"
         >
-          <!-- <span class="video-btn" @click.stop="openPlayer">
-          <i v-if="!isOpen" class="fa fa-play fa-lg"></i>
-          <i v-else class="fa fa-stop fa-lg"></i>
-        </span> -->
           <h1 class="room-name room-item-name">{{room.name}}</h1>
         </div>
         <div class="room-icons">
@@ -51,7 +47,7 @@
 
           <div class="room-icon room-item-icon">
             <i class="fas fa-thumbs-up font-awesome"></i>
-            <h4 class="icon-count room-item-count">{{room.likes}}</h4>
+            <h4 class="icon-count room-item-count">{{room.userLikedIds.length}}</h4>
           </div>
         </div>
       </div>
@@ -70,7 +66,7 @@
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 
 export default {
-  name: "roomPreview",
+  name: 'roomPreview',
   props: {
     room: Object
   },
