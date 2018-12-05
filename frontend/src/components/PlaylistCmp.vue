@@ -6,7 +6,7 @@
     ><i class="fas fa-plus"></i></div>
     <ul class="search-res">
       <li
-        class="song-item space-between"
+        class="song-item"
         v-for="song in playlistToShow"
         :key="song.id"
       >
@@ -20,13 +20,11 @@
             @click="moveSong('down', song)"
           ><i class="fas fa-arrow-circle-down control-arrows"></i></button>
         </div>
-        <div class="playlist-video-details">
+          <h3 class="youtube-title">{{song.title}}</h3>
           <img
             class="youtube-img"
             :src="song.img"
           />
-          <h3 class="youtube-title">{{song.title}}</h3>
-        </div>
       </li>
     </ul>
   </div>
@@ -73,41 +71,3 @@ export default {
   }
 }
 </script>
-<<<<<<< HEAD
-=======
-
-<style lang="scss" scoped>
-button {
-  background-color: transparent;
-  border: 0;
-}
-button:focus{
-  outline: 0;
-}
-.playlist-video-details {
-  display: flex;
-  align-items: center;
-}
-
-.control-arrows {
-  color: #6b6b6b;
-  font-size: 1.4rem;
-  cursor: pointer;
-  background-color: transparent;
-}
-.control-arrows:hover {
-  color: #99cc00;
-}
-.add-song-btn {
-  background-color: #99cc00;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  border: 2px solid white;
-  top: 88%;
-  left: 10px;
-}
-</style>
->>>>>>> cf6bd28205fb31b9889195b736837c0cacbfb6cd

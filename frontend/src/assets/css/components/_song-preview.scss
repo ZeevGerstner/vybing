@@ -8,8 +8,14 @@
   }
   .youtube-img {
     height: 65px;
+    margin-right: 10px;
   }
 
-  .youtube-title{
-    margin: 0 15px;
-  }
+  .youtube-title {
+    font-family: 'roboto-regular';
+    color: white;
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
