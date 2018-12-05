@@ -8,12 +8,12 @@ self.__precacheManifest = [
     "url": "/robots.txt"
   },
   {
-    "revision": "fb4c7f5813a0ec14f77da2fb523e3516",
-    "url": "/fonts/Ubuntu-Medium.fb4c7f58.ttf"
+    "revision": "182620fee990892b0a01ad29c2877d74",
+    "url": "/img/home-img.182620fe.jpg"
   },
   {
-    "revision": "4cc5e90926b3cdd448bb",
-    "url": "/js/app.b8a4ee73.js"
+    "revision": "690018c4f0fbc0a3b782",
+    "url": "/js/app.3609a3f7.js"
   },
   {
     "revision": "53611f8009f44867b574",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/js/about.dbc2d5ba.js"
   },
   {
-    "revision": "7a79bb8fab2d5e17c40c7a021fd85839",
+    "revision": "cc7f94d3239d8c0ec4dee8b751b23863",
     "url": "/index.html"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = [
     "url": "/img/home-img2.c5e21943.png"
   },
   {
-    "revision": "182620fee990892b0a01ad29c2877d74",
-    "url": "/img/home-img.182620fe.jpg"
+    "revision": "fb4c7f5813a0ec14f77da2fb523e3516",
+    "url": "/fonts/Ubuntu-Medium.fb4c7f58.ttf"
   },
   {
     "revision": "89e2666c24d37055bcb60e9d2d9f7e35",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/fonts/Roboto-Bold.ee7b96fa.ttf"
   },
   {
-    "revision": "4cc5e90926b3cdd448bb",
-    "url": "/css/app.6e25bc70.css"
+    "revision": "690018c4f0fbc0a3b782",
+    "url": "/css/app.88243b53.css"
   }
 ];
