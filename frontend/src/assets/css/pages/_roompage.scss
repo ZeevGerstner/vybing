@@ -32,7 +32,15 @@
 .room-details{
     display: flex;
     align-items: center;
+    // width: 190px;
+    justify-content: space-around;
+}
 
+.room-details-topbar {
+    display: flex;
+    align-items: center;
+    width: 190px;
+    justify-content: space-around;
 }
 
 .room-icon{
@@ -51,6 +59,7 @@
 .icon-count{
    color: $off-white;
     margin-left: 5px;
+    font-family: 'roboto-thin'
 }
 
 .room-genre{
@@ -79,4 +88,16 @@
 
 .font-awesome {
     color: $lime-green;
+}
+
+.fa-stop {
+    color: #c93030;
+}
+
+.btn-room-like {
+    color: $lime-green;
+    cursor: pointer;
+    &:hover {
+        color: #bfff00;
+    }
 }
