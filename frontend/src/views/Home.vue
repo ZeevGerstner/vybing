@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home-img2"></div>
     <div class="home-img">
-      <h2 class="home-title-txt">Playlist Together!</h2>
+      <h2 class="home-title-txt">Pick a room and Join the <span>V</span>ybe!</h2>
     </div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 

@@ -84,7 +84,7 @@ export default {
     changeCss() {
 
       var nav = document.querySelector('.nav')
-      if (window.scrollY > 300) {
+      if (window.scrollY > 200) {
         nav.classList.remove('start-navbar')
       } else {
         nav.classList.add('start-navbar')

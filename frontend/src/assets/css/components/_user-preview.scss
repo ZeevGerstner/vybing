@@ -1,12 +1,15 @@
 
 
 .user-preview{
-    background-color: $light-gray;
+    background-color: #6b6b6b;
     position: absolute;
     box-shadow: 0 0 5px 0px black;
     margin-top: 3px;
     z-index: 10;
     padding: 10px;
+    padding-top: 20px; 
+    -webkit-clip-path: polygon(0 23%, 19% 23%, 13% 0, 33% 22%, 100% 22%, 100% 100%, 0 100%);
+    clip-path: polygon(0 23%, 19% 23%, 13% 0, 33% 22%, 100% 22%, 100% 100%, 0 100%);
 }
 .icon-user-prev{
     transition: all .3s;
