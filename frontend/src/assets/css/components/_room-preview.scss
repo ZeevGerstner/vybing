@@ -45,6 +45,11 @@
       .video-btn.play-mode {
         visibility: hidden;
         opacity: 0;
+
+        @media screen and (max-width:780px) {
+          visibility: visible;
+          opacity: 1;
+        }
       }
       .video-btn.pause-mode {
         visibility: visible;
