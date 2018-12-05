@@ -5,8 +5,8 @@
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
-            <span :class="setColorToUser(msg)" @click="isUserPrev = !isUserPrev">{{msg.user.name}}</span>
-            <user-preview v-if="msg.user._id" v-show="isUserPrev" :user="msg.user"></user-preview>
+            <span :class="setColorToUser(msg)" @click="toggleUserPrev(idx)">{{msg.user.name}}</span>
+            <user-preview v-show="msg.user._id" v-if="isUserPrev === idx" :user="msg.user"></user-preview>
             <span>: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
@@ -34,7 +34,7 @@ export default {
     return {
       msgs: [],
       newMsg: "",
-      isUserPrev: false
+      isUserPrev: null,
 
     };
   },
@@ -47,6 +47,16 @@ export default {
           if(msg.isMyUser === 'guest') return 'guest-chat-user'
           else if(msg.isMyUser === 'true') return 'chat-user'
           else return 'other-chat-user'
+      },
+      toggleUserPrev(idx){
+        console.log('idx',idx)
+        if(this.isUserPrev === null){
+          this.isUserPrev = idx;
+        }else if(this.isUserPrev === idx){
+          this.isUserPrev = null;
+        } else{
+          this.isUserPrev = idx
+        }
       }
   },
   sockets: {

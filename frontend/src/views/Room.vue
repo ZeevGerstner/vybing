@@ -58,10 +58,15 @@
     ></router-view>
     <chat-room :room="room" :class="chatStatus"/>
     <div
-      class="toggle-chat-btn flex justify-center align-center"
-      :class="chatIsOpen"
+      v-if="!isChatOpen"
+      class="open-chat-btn flex justify-center align-center"
       @click="toggleChat"
-    ><i class='far fa-comment-dots'></i></div>
+    >   <i class="fas fa-comments"></i></div>
+    <div
+      v-else
+      class="close-chat-btn"
+      @click="toggleChat"
+    ><i class="fas fa-times"></i></div>
   </div>
 </template>
 
@@ -124,7 +129,7 @@ export default {
       if(this.isChatOpen) return 'show-chat'
     },
     chatIsOpen(){
-      if(this.isChatOpen) return 'chat-open'
+      if(this.isChatOpen) return 'hide'
     }
   },
   sockets: {

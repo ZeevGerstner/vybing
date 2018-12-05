@@ -21,7 +21,8 @@ export default {
         name: '',
         password: '',
         roomsCreatedIds:[],
-        roomsLikedIds:[]
+        roomsLikedIds:[],
+        followersIds:[]
       }
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <li v-if="song" class="song-item">
-    <i @click="addSong(song)" class="fas fa-plus-circle add-btn"></i>
+    <i @click="addSong(song)" class="fas fa-plus-circle control-arrows"></i>
     <h3 class="youtube-title">{{song.title}}</h3>
     <img class="youtube-img" :src="song.img" />
   </li>

@@ -6,7 +6,7 @@
     ><i class="fas fa-plus"></i></div>
     <ul class="search-res">
       <li
-        class="song-item space-between"
+        class="song-item"
         v-for="song in playlistToShow"
         :key="song.id"
       >
@@ -20,13 +20,11 @@
             @click="moveSong('down', song)"
           ><i class="fas fa-arrow-circle-down control-arrows"></i></button>
         </div>
-        <div class="playlist-video-details">
+          <h3 class="youtube-title">{{song.title}}</h3>
           <img
             class="youtube-img"
             :src="song.img"
           />
-          <h3 class="youtube-title">{{song.title}}</h3>
-        </div>
       </li>
     </ul>
   </div>
