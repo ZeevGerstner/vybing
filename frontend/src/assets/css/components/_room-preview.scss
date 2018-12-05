@@ -1,26 +1,56 @@
 
 .room-item{
-  // background-color: #343434;
   overflow: hidden;
   white-space: nowrap;
   transition: all 0.3s;
-  &:hover {
+  
+  &:hover{
     transform: scale(1.03);
-    // transition: all 0.3s;
+    .video-btn.play-mode{
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 
-  .room-item-link{
-    cursor: pointer;
-  }
+.room-item-link{
+  cursor: pointer;
+}
 
   .room-item-youtube-img {
     overflow: hidden;
     height: 0;
     padding-top: 50%;
     background-size: cover;
-  }
+    position: relative;
+    font-size: 1.4em;
 
+      .video-btn {
+        left: 0px;
+        bottom: 0px;
+        height: 30px;
+        width: 30px;
+        color: $lime-green;
+        position: absolute;
+        transition: all .4s;
+        font-size: 1em;
+        i{
+          margin: 4px 0px 0px 8px ;
+          text-align: center;
+        }
+        &:hover {
+          color: #99cc009d;
+        }
+      }
+      .video-btn.play-mode {
+        visibility: hidden;
+        opacity: 0;
+      }
+      .video-btn.pause-mode {
+        visibility: visible;
+        opacity: 1;
+      }
+  }
   .room-item-details {
     display: flex;
     flex-direction: column;
@@ -96,11 +126,8 @@
 
   .player-status {
     display: flex;
-    // justify-content: space-between;
     width:90%;
     color: $off-white;
-    // margin: 10px;
-    // margin-bottom: 20px;
     align-items: center;
     padding: 10px 10px 20px 10px;
 
