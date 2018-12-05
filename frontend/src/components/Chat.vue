@@ -6,7 +6,7 @@
           <div class="chat-txt">
             <span :class="setColorToUser(msg)" @click="toggleUserPrev(idx)">{{msg.user.name}}</span>
             <user-preview v-show="msg.user._id" v-if="isUserPrev === idx" :user="msg.user"></user-preview>
-            <span>: {{msg.txt}}</span>
+            <span class="msg-txt">: {{msg.txt}}</span>
           </div>
           <div class="chat-line"></div>
         </div>
