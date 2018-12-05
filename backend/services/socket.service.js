@@ -1,4 +1,3 @@
-const gRooms = [];
 
 const roomService = require('./room.service')
 const userService = require('./user.service')
@@ -6,17 +5,8 @@ const userService = require('./user.service')
 
 function connectSocket(io) {
     io.on('connection', (socket) => {
-        console.log('connection!!')
         var userRoom;
-
         socket.on('chatRoomJoined', (room) => {
-            // var currRoom = gRooms.find(curr => curr._id === room._id)
-            // if (currRoom) {
-            //     userRoom = currRoom
-            // } else {
-            //     userRoom = room
-            //     gRooms.push(room)
-            // }
             userRoom = room
             socket.join(userRoom._id)
         })
@@ -58,7 +48,6 @@ function connectSocket(io) {
 
 
         socket.on('disconnect', () => {
-            // console.log('user disconnected')
         })
 
         socket.on('searchRoom', (filter) => {

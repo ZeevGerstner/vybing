@@ -1,9 +1,6 @@
 <template>
-  <div class="nav" @mouseleave="isGenre = false">
+  <div class="nav">
     <div class="nav-container flex align-center space-between container">
-      <!-- <div @click="goToRooms" class="nav-logo logo">
-       Vybing
-      </div> -->
       <img @click="goToRooms" class="nav-logo" src="../assets/logo2.png">
       <div ref="search" class="search">
         <input @input="searchRooms" v-model="filter.byName" placeholder="search">
@@ -20,15 +17,12 @@
       </div>
 
       <div class="nav-link">
-        <li @mouseover="isGenre = true">
-          <span class="navbar-txt">▼Genres</span> 
-          <span class="navbar-icon"><i class="fas fa-th-list"></i></span>
-          <div
-            @mouseover="isGenre = true"
-            @mouseleave="isGenre = false"
-            v-if="isGenre"
-            class="genres"
-          >
+        <li @click="toggleOpen('Genre')">
+          <span class="navbar-txt">▼Genres</span>
+          <span class="navbar-icon">
+            <i class="fas fa-th-list"></i>
+          </span>
+          <div v-if="isOpen === 'Genre'" class="genres">
             <div
               class="genre"
               v-for="(genre, idx) in getGenre"
@@ -38,19 +32,30 @@
           </div>
         </li>
         <li @click="goToRooms">
-         <span class="navbar-txt">Rooms</span>
-         <span class="navbar-icon"><i class="fas fa-home"></i></span>
+          <span class="navbar-txt">Rooms</span>
+          <span class="navbar-icon">
+            <i class="fas fa-home"></i>
+          </span>
         </li>
         <li class="login">
-          <div v-if="!isUserLogin" @click="isLogin = !isLogin">
-           
-            <span class="navbar-txt">Login</span>
-            <span class="navbar-icon"><i class="fas fa-user"></i></span>
+          <div v-if="!isUserLogin" @click="toggleOpen('Login')">
+            <span id="LOGIN-IS-HERE" class="navbar-txt">Login</span>
+            <span id="login" class="navbar-icon">
+              <i class="fas fa-user"></i>
+            </span>
           </div>
-          <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
-          <router-link class="navbar-userName" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
+          <login-user @closeLogin="isOpen = null" v-if="isOpen === 'Login'"></login-user>
+          <router-link
+            class="navbar-userName"
+            :to="'/profile/'+getUser._id"
+            v-if="isUserLogin"
+          >{{getUser.name}}</router-link>
         </li>
+        <li class="navbar-userName" v-if="isUserLogin" @click="logoutUser">Logout</li>
       </div>
+    </div>
+    <div v-if="isGoTop" class="home-go-top" @click="goTop">
+      <i class="fas fa-arrow-circle-up"></i>
     </div>
   </div>
 </template>
@@ -68,27 +73,37 @@ export default {
   },
   data() {
     return {
-      isLogin: false,
+      isOpen: null,
       roomsResults: [],
       isSearch: false,
-      isGenre: false,
       filter: {
         byType: '',
         byName: '',
-      }
+      },
+      isGoTop: false,
     }
   },
   created() {
+
   },
   methods: {
     changeCss() {
-
       var nav = document.querySelector('.nav')
       if (window.scrollY > 200) {
         nav.classList.remove('start-navbar')
       } else {
         nav.classList.add('start-navbar')
       }
+      if (window.scrollY > 600) {
+        this.isGoTop = true
+      } else {
+        this.isGoTop = false
+      }
+    },
+    toggleOpen(val) {
+      if (this.isOpen === val) this.isOpen = null
+      else if (this.isOpen === null) this.isOpen = val
+      else this.isOpen = val
     },
     searchRooms() {
       console.log('search: ', this.filter)
@@ -117,12 +132,26 @@ export default {
         byName: '',
       }
       this.$router.push('/')
+    },
+    logoutUser() {
+      this.$store.commit({ type: 'logoutUser' })
+    },
+    goTop() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
     }
   },
   watch: {
-    '$route.params.genreName': function (genre) {
-      if (genre) {
-        this.filter.byType = genre
+    '$route.params.genreName': {
+      immediate: true,
+      handler(genre) {
+        if (genre) {
+          this.filter.byType = genre
+          this.searchRooms()
+        }
       }
     },
     $route: {
@@ -139,6 +168,7 @@ export default {
           });
 
         } else {
+          this.isGoTop = false
           window.removeEventListener('scroll', this.changeCss)
           this.$nextTick(() => {
             var nav = document.querySelector('.nav')

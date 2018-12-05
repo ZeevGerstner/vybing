@@ -1,13 +1,17 @@
 .add-song-input{
-    width: 250px;
-    text-align: center;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     background-color: $light-gray;
     color: $off-white;
     font-size: 18px;
+    border: 0;
+    padding-left: 10px;
+    margin-right: 10px;
 }
-
+.add-song-input:focus{
+    outline: 0;
+}
 .search-res{
     background-color: black;
     overflow: overlay;

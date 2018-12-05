@@ -14,6 +14,10 @@ export default {
             console.log('setcurruser',currUser)
             state.currUser = currUser
         },
+        logoutUser(state){
+            localStorage.removeItem('currUser');
+            state.currUser = null
+        }
     },
     actions: {
         login({commit}, { user }){
