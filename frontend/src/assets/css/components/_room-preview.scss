@@ -3,7 +3,6 @@
   background-color: #343434;
   overflow: hidden;
   white-space: nowrap;
-  padding-bottom: 15px;
 }
 
 
@@ -15,7 +14,7 @@
   .room-item-youtube-img {
     overflow: hidden;
     height: 0;
-    padding-top: 56.25%;
+    padding-top: 50%;
     background-size: cover;
   }
 
@@ -24,13 +23,11 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: black;
-    margin-bottom: 7px;
   }
 
   .room-item-name{
     font-family: 'roboto-bold';
-    text-align: center;
-    margin: 10px 0;
+    margin: 0 auto;
     font-size: 1.5em;
     transition: all .3s;
   }
@@ -41,7 +38,7 @@
 
   .room-icons{
     display: flex;
-    margin-bottom: 10px;
+    padding:15px;
 
   }
 
@@ -74,6 +71,7 @@
     align-self: baseline;
     margin-left: 7px;
     position: relative;
+    padding: 14px 0 20px 0;
   }
   
   .move-txt {
@@ -94,11 +92,13 @@
 
   .player-status {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     width:90%;
-    align-content: center;
     color: $off-white;
-    margin-bottom: 10px;
+    // margin: 10px;
+    // margin-bottom: 20px;
+    align-items: center;
+    padding: 10px 10px 20px 10px;
 
     h4 {
       font-family: 'roboto-medium';
