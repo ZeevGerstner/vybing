@@ -87,6 +87,9 @@ function updateRoomLikes (room, user) {
         return currRoomId === room._id.toString()
     })
 
+    console.log(idx);
+    
+
     var action;
     if (idx === -1) action = '$push'
     else action = '$pull'

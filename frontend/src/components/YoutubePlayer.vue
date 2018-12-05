@@ -22,7 +22,9 @@
 <script>
 export default {
   name: 'youtubePlayer',
-  props:['playlist'],
+  props:{
+    playlist: Array
+  },
   data() {
     return {
       videoId: '',
@@ -46,7 +48,6 @@ export default {
       this.playlist.push(song)
       this.emitUpdatePlaylist()
       this.currSongTime = 0;
-      console.log(this.playlist, this.videoId)
       this.setSong()
     },
 
@@ -77,23 +78,6 @@ export default {
     player() {
       return this.$refs.youtube.player;
     }
-  },
-  // watch:{
-  //   '$route.params.roomId' : function(id){
-  //     this.$socket.emit('getTime');
-  //     this.setSong()
-  //     console.log('playlist:',this.playlist)
-  //   }
-  // },
-  mounted() {
-    // this.setSong()
   }
 };
 </script>
-
-<style scoped lang="scss">
-search-res {
-  width: 80vw;
-}
-
-</style>

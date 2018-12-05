@@ -1,7 +1,6 @@
 <template>
   <section class="chat-container flex">
       <h2 class="chat-title">ROOM CHAT</h2>
-      <!-- <add-gif></add-gif> -->
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
@@ -21,6 +20,7 @@
         type="text"
       >
     </form>
+    <!-- <add-gif/> -->
   </section>
 </template>
 

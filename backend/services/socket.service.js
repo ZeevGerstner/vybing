@@ -18,13 +18,10 @@ function connectSocket(io) {
             //     gRooms.push(room)
             // }
             userRoom = room
-            console.log('rooomm:::',userRoom.name)
-
             socket.join(userRoom._id)
         })
 
         socket.on('roomClose',()=>{
-            console.log('leave me alone!!',userRoom._id)
             socket.leave(userRoom._id)
         })
 
