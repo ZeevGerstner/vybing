@@ -1,24 +1,19 @@
 <template>
   <div class="room-item">
-    <router-link
-      class="room-item-link"
-      tag="div"
-      :to="'/room/'+room._id">
-
+    <router-link class="room-item-link" tag="div" :to="'/room/'+room._id">
       <div
-        v-if="room.playlist.length > 1"
+        v-if="room.playlist.length"
         class="room-item-youtube-img"
         :style="{background:'url('+ room.playlist[0].img+') center no-repeat', backgroundSize: 'cover'}"/>
 
       <div class="room-details room-item-details">
-            <h3
-      v-if="room.playlist.length > 1"
-      class="song-title"
-      :class="setMove">
-      {{room.playlist[0].title}}
-    </h3>
-        <div v-if="room.playlist.length > 1" class="player-status">
-        <!-- <h4 class="now-playing">Now playing</h4> -->
+        <h3
+        v-if="room.playlist.length"
+        class="song-title"
+        :class="setMove">
+        {{room.playlist[0].title}}
+        </h3>
+        <div v-if="room.playlist.length" class="player-status">
         <span class="video-btn" @click.stop="openPlayer">
           <i v-if="!isOpen" class="fa fa-play fa-lg"></i>
           <i v-else class="fa fa-stop fa-lg"></i>
@@ -60,26 +55,26 @@ export default {
   components: {
     youtubePlayer,
   },
-  data () {
+  data() {
     return {
       isOpen: false
     }
   },
   computed: {
-    player () {
+    player() {
       return this.$refs.youtube.player;
     },
-    setMove () {
+    setMove() {
       if (this.isOpen) return 'move-txt'
     }
   },
   methods: {
-    setPlayer (playlist) {
+    setPlayer(playlist) {
       this.$store.dispatch('setPrevPlaylist')
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },
-    openPlayer () {
+    openPlayer() {
       this.$parent.togglePlayer(this)
     }
   }

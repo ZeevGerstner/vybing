@@ -47,21 +47,17 @@ export default {
   },
   methods: {
     moveSong (direction, song) {
-      //debugger;
       var songIdx = this.playlist.findIndex(playlistSong => {
         return song.id === playlistSong.id
       })
       let newIndex = null;
       if (direction === 'up') {
         if (songIdx === 1) return;
-        console.log("going up");
         newIndex = songIdx - 1
       } else {
         if (songIdx === this.playlist.length - 1) return;
-        console.log("going down");
         newIndex = songIdx + 1;
       }
-      console.log("Swapping ", songIdx, newIndex)
       let temp = this.playlist[songIdx]
       this.playlist[songIdx] = this.playlist[newIndex]
       this.playlist[newIndex] = temp
@@ -77,34 +73,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-button {
-  background-color: transparent;
-  border: 0;
-}
-.playlist-video-details {
-  display: flex;
-  align-items: center;
-}
-
-.control-arrows {
-  color: #6b6b6b;
-  font-size: 1.4rem;
-  cursor: pointer;
-  background-color: transparent;
-}
-.control-arrows:hover {
-  color: #99cc00;
-}
-.add-song-btn {
-  background-color: #99cc00;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  border: 2px solid white;
-  top: 88%;
-}
-</style>

@@ -1,10 +1,10 @@
 <template>
   <div class="nav" @mouseleave="isGenre = false">
     <div class="nav-container flex align-center space-between container">
-      <div @click="goToRooms" class="nav-logo logo">
+      <!-- <div @click="goToRooms" class="nav-logo logo">
        Vybing
-      </div>
-
+      </div> -->
+      <img @click="goToRooms" class="nav-logo" src="../assets/logo2.png">
       <div ref="search" class="search">
         <input @input="searchRooms" v-model="filter.byName" placeholder="search">
         <span class="fa fa-search"></span>
@@ -48,7 +48,7 @@
             <span class="navbar-icon"><i class="fas fa-user"></i></span>
           </div>
           <login-user @closeLogin="isLogin = false" v-if="isLogin"></login-user>
-          <router-link tag="li" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
+          <router-link class="navbar-userName" :to="'/profile/'+getUser._id" v-if="isUserLogin">{{getUser.name}}</router-link>
         </li>
       </div>
     </div>
@@ -82,6 +82,7 @@ export default {
   },
   methods: {
     changeCss() {
+
       var nav = document.querySelector('.nav')
       if (window.scrollY > 300) {
         nav.classList.remove('start-navbar')

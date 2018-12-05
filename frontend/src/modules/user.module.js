@@ -11,8 +11,9 @@ export default {
     },
     mutations: {
         setCurrUser(state,{currUser}){
+            console.log('setcurruser',currUser)
             state.currUser = currUser
-        }
+        },
     },
     actions: {
         login({commit}, { user }){
@@ -21,6 +22,8 @@ export default {
                 if(currUser){
                     console.log(currUser)
                     commit({type: 'setCurrUser', currUser})
+                    localStorage.setItem('currUser', JSON.stringify(currUser));
+
                 }
                 return currUser
             })

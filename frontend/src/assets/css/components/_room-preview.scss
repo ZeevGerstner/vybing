@@ -1,11 +1,14 @@
 
 .room-item{
-  background-color: #343434;
+  // background-color: #343434;
   overflow: hidden;
   white-space: nowrap;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.03);
+    // transition: all 0.3s;
+  }
 }
-
-
 
   .room-item-link{
     cursor: pointer;
@@ -23,6 +26,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: black;
+
   }
 
   .room-item-name{
@@ -113,7 +117,22 @@
     h5:hover {
       color: $lime-green;
     }
+  }
 
+  
+  .player-status:hover {
+    color:  $off-white;
+  
+  }
 
-
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
   }

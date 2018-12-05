@@ -1,18 +1,13 @@
 .song-item {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-around;
     align-items: center;
     margin-bottom: 5px;
     background-color: $light-gray;
     color: black;
-    justify-content: space-between;
-    // margin-right: 25px;
-  
   }
   .youtube-img {
     height: 65px;
-    width: 100px;
   }
 
   .youtube-title{

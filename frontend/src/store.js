@@ -12,7 +12,7 @@ export default new Vuex.Store({
   },
   state:{
     genre: ['Hip Hop', 'Rock', 'Disco', 'DubStep', 'Techno', 'Funk', 'Trap', 'World','Dance',
-  'Classic','Pop'],
+  'Classic','Pop','Other'],
   currPrevPlaylist: false
   },
   getters:{

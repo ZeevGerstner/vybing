@@ -1,15 +1,14 @@
 .chat-container{
     grid-area: 2/2/span 2/2;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: black;
     
     @media screen and (max-width:840px) {
         position: fixed;
-        right: -200px;
+        right: -400px;
         opacity: 0;
-        height: 90vh;   
+        height: calc( 100vh - 60px );
         width: 40vw;
         transition: all .8s;
     }
@@ -32,14 +31,17 @@
     width: 80%;
     border-radius: 15px;
     text-align: center;
+    border: 0;
 }
+.chat-input:focus{
+    outline: 0;
 
+}
 .chat-title{
     color: $lime-green;
     font-family: roboto-medium;
     text-align: start;
-    margin-left: 25px;
-    margin-top: 25px;
+    margin: 25px;
 }
 .chat-form{
     text-align: center;
@@ -49,9 +51,10 @@
     text-align: start;
 }
 .chat-txts{
-    overflow: overlay;
-    max-height: 82%;
+    flex: 1;
+    overflow: auto;
 }
+
 .chat-txt{
     margin: 0 25px;
     color: $off-white;
@@ -96,11 +99,16 @@
         cursor: pointer;
         position: fixed;
         border: 2px solid white;
-        top: 26%;
-        right: 30px;
+        top: 88%;
+        right: 15px;
         font-size: 1.5em;
-
+        transition: all .7s;
         @media screen and (max-width:840px) {
             display: flex;
             }
+}
+
+
+.toggle-chat-btn.chat-open {
+    top:70px;
 }
