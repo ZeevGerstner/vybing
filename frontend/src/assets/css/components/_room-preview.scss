@@ -5,8 +5,8 @@
   white-space: nowrap;
   transition: all 0.3s;
   &:hover {
+    // box-shadow: 0 0 2px 1px #ff53a0bd;
     transform: scale(1.03);
-    // transition: all 0.3s;
   }
 }
 
@@ -36,10 +36,6 @@
     transition: all .3s;
   }
 
-  .room-item-name:hover{
-    color:$pink;
-  }
-
   .room-icons{
     display: flex;
     padding:15px;
@@ -49,7 +45,6 @@
   .room-item-genre {
     font-family: 'roboto-medium';
     color: $lime-green;
-    width: 80px;
     padding: 2px;
     text-transform: capitalize;
     margin: 0;
@@ -96,11 +91,8 @@
 
   .player-status {
     display: flex;
-    // justify-content: space-between;
     width:90%;
     color: $off-white;
-    // margin: 10px;
-    // margin-bottom: 20px;
     align-items: center;
     padding: 10px 10px 20px 10px;
 

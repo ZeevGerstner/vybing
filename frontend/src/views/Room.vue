@@ -18,25 +18,27 @@
           :user="adminRoom"
         ></user-preview>
       </div>
-      <div class="room-details">
-        <div class="tag-genre room-genre">{{room.type}}</div>
+      <div class="room-details-topbar">
+        <div class="room-item-genre">{{room.type}}</div>
 
         <div class="room-icon">
-          <img
+          <i class="fas fa-eye font-awesome"></i>
+          <!-- <img
             class="icon-img"
             src="../assets/imgs/LISTENERS-ICON.png"
-          >
+          > -->
           <h4 class="icon-count">{{room.listeners.length}}</h4>
         </div>
         <div
           class="room-icon"
           @click="toggleLike"
         >
-          <img
+        <i class="fas fa-thumbs-up btn-room-like"></i>
+          <!-- <img
             :class="userLiked"
             class="icon-img"
             src="../assets/imgs/EAR-ICON.png"
-          >
+          > -->
 
           <h4 class="icon-count">{{room.likes}}</h4>
         </div>

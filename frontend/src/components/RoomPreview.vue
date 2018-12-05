@@ -19,6 +19,7 @@
           <i v-else class="fa fa-stop fa-lg"></i>
         </span>
         <h1 class="room-name room-item-name">{{room.name}}</h1>
+        <h3 class="creator-name" v-if="adminRoom">{{adminRoom.name}}</h3>
         </div>
         <div class="room-icons">
           <h3 class="room-item-genre">{{room.type}}</h3>
@@ -57,7 +58,8 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      adminRoom: null,
     }
   },
   computed: {
@@ -77,7 +79,16 @@ export default {
     openPlayer() {
       this.$parent.togglePlayer(this)
     }
-  }
+  },
+  // sockets: {
+  //     setUserProfile: function (user) {
+  //     this.adminRoom = user[0]
+  //     console.log(this.adminRoom)
+  //   }
+  // },
+  // created() {
+  //   if (this.room.admin) this.$socket.emit('getUserById', this.room.admin)
+  // }
 
 };
 </script>
