@@ -83,30 +83,28 @@ function updateRoomsCreatedUser(user, roomId) {
 }
 
 function updateRoomLikes(room, user) {
+    // console.log('user',user)
     var idx = user.roomsLikedIds.findIndex(currRoomId => {
-        return currRoomId === room._id.toString()
+        return currRoomId === room._id
     })
-
-    console.log(idx);
-    
-
     var action;
-    if (idx === -1) action = '$push'
-    else action = '$pull'
-
-    user._id = new ObjectId(user._id)
-    room._id = new ObjectId(room._id)
+    if (idx === -1) {
+        action = '$push'
+        user.roomsLikedIds.push(ObjectId(room._id))
+    }
+    else {
+        action = '$pull'
+        user.roomsLikedIds.splice(idx, 1)
+    }
 
     return mongoService.connectToDb()
         .then(dbConn => {
             const userCollection = dbConn.collection('user');
             return userCollection.updateOne(
-                { _id: user._id },
-                { [action]: { roomsLikedIds: room._id } }
+                { _id: ObjectId(user._id) },
+                { [action]: { roomsLikedIds: ObjectId(room._id) } }
             )
-                .then(res => {
-                    return user
-                })
+                .then(res => user)
         })
 
 }

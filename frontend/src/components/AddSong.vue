@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     searchSong() {
-      console.log(this.search.txt)
       this.$store.dispatch("searchSong", this.search.txt);
     },
     addSong(song){

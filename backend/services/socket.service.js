@@ -11,7 +11,7 @@ function connectSocket(io) {
             socket.join(userRoom._id)
         })
 
-        socket.on('roomClose',()=>{
+        socket.on('roomClose', () => {
             socket.leave(userRoom._id)
         })
 
@@ -89,13 +89,20 @@ function connectSocket(io) {
 
         socket.on('updateRoomsCreatedUser', (user, roomId) => {
             userService.updateRoomsCreatedUser(user, roomId)
-            
+
         })
 
-        socket.on('updateLiked', (room,user) => {
-            
-            roomService.updateRoomLikes(room,user)
-            userService.updateRoomLikes(room,user)
+        socket.on('updateLiked', ({room, user}) => {
+            userService.updateRoomLikes(room, user)
+                .then(currUser => {
+                    socket.emit('updateUser', currUser)
+                })
+            roomService.updateRoomLikes(room, user)
+            .then(currRoom => {
+                console.log('currRoom',currRoom)
+                socket.emit('setRoom', currRoom)
+
+            })
         })
 
         socket.on('getUserById', (userId) => {
