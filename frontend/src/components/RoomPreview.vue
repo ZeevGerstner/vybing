@@ -27,8 +27,7 @@
       <div :class="['room-details', 'room-item-details', isOpen? 'room-pause-mode' : '']">
         <h3
           v-if="room.playlist.length"
-          class="song-title"
-          :class="setMove"
+          :class="['song-title', isOpen? 'song-title-pause-mode' : '', setMove]"
         >
           {{room.playlist[0].title}}
         </h3>
