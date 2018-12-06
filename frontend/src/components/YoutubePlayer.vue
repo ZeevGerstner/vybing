@@ -13,7 +13,7 @@
     <div class="player-details">
         <h4 class="player-txt">NOW PLAYING:</h4>
         <h2 class="song-name">{{playlist[0].title}}</h2>
-        <h4 class="player-txt">ADDED BY: <span>AMIT</span></h4>
+        <h4 class="player-txt" v-if="currAddBy">ADDED BY: {{currAddBy.name}}</h4>
     </div>
 
   </div>
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       videoId: '',
+      currAddBy: '',
       playerVars: {
         start: 0,
         controls: 1,
@@ -52,11 +53,15 @@ export default {
     },
 
     setSong() {
+      if(this.playlist[0].addedBy) this.$socket.emit('getUserById', this.playlist[0].addedBy)
+      else this.currAddBy = {name: 'guest'} 
       this.videoId = this.playlist[0].id
       this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
     emitUpdatePlaylist() {
       this.$emit('updatePlaylist', this.playlist)
+    },
+    getUserById(userId){
     }
   },
 
@@ -72,6 +77,9 @@ export default {
     },
     setCurrTime: function(currTime) {
       this.currSongTime = Math.floor(currTime);
+    },
+    setUserProfile: function (user) {
+      this.currAddBy = user[0]
     }
   },
   computed: {

@@ -1,22 +1,16 @@
 <template>
-  <div
-    v-if="room"
-    class="container room"
-  >
+  <div v-if="room" class="container room">
     <nav class="nav-room">
       <div class="room-title">
         <h2 class="room-name">{{room.name}}</h2>
-        <h4
-          v-if="isAdmin"
-          class="room-creator"
-        >creator: <span
+        <h4 v-if="isAdmin" class="room-creator">
+          creator:
+          <span
             class="room-creator-hover"
             @click="isUserPrev = !isUserPrev"
-          >{{adminRoom.name}}</span></h4>
-        <user-preview
-          v-show="isUserPrev"
-          :user="adminRoom"
-        ></user-preview>
+          >{{adminRoom.name}}</span>
+        </h4>
+        <user-preview v-show="isUserPrev" :user="adminRoom"></user-preview>
       </div>
       <div class="room-details-topbar">
         <div class="room-item-genre">{{room.type}}</div>
@@ -26,47 +20,36 @@
           <!-- <img
             class="icon-img"
             src="../assets/imgs/LISTENERS-ICON.png"
-          > -->
+          >-->
           <h4 class="icon-count">{{room.listeners.length}}</h4>
         </div>
-        <div
-          class="room-icon"
-          @click="toggleLike"
-        >
-        <i class="fas fa-thumbs-up btn-room-like"></i>
+        <div class="room-icon" @click="toggleLike">
+          <i class="fas fa-thumbs-up btn-room-like"></i>
           <!-- <img
             :class="userLiked"
             class="icon-img"
             src="../assets/imgs/EAR-ICON.png"
-          > -->
-
-          <h4 class="icon-count">{{room.userLikedIds.length}}</h4>
+          >-->
+          <h4 class="icon-count">{{roomLikes}}</h4>
         </div>
       </div>
     </nav>
 
     <div class="room-player">
-      <youtube-player
-        :playlist="room.playlist"
-        @updatePlaylist="updatePlaylist"
-      ></youtube-player>
+      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
-    <router-view
-      :playlist="room.playlist"
-      @moveSong="moveSong"
-      @addSong="addSong"
-    ></router-view>
+    <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
     <chat-room :room="room" :class="chatStatus"/>
     <div
       v-if="!isChatOpen"
       class="open-chat-btn flex justify-center align-center"
       @click="toggleChat"
-    >   <i class="fas fa-comments"></i></div>
-    <div
-      v-else
-      class="close-chat-btn"
-      @click="toggleChat"
-    ><i class="fas fa-times"></i></div>
+    >
+      <i class="fas fa-comments"></i>
+    </div>
+    <div v-else class="close-chat-btn" @click="toggleChat">
+      <i class="fas fa-times"></i>
+    </div>
   </div>
 </template>
 
@@ -78,74 +61,89 @@ import playlistCmp from '@/components/PlaylistCmp.vue'
 import userPreview from '@/components/UserPreview.vue'
 
 export default {
-  data () {
+  data() {
     return {
       room: null,
       isUserPrev: false,
       adminRoom: null,
       isAdmin: false,
       isLiked: false,
-      isChatOpen: false
+      isChatOpen: false,
+      roomLikes: 0,
     };
   },
   methods: {
-    updatePlaylist (playlist) {
+    updatePlaylist(playlist) {
       this.room.playlist = playlist
       this.$socket.emit('updatePlaylist', this.room._id, playlist)
     },
-    addSong (song) {
+    addSong(song) {
+      if (this.getUser._id) song.addedBy = this.getUser._id
+      else song.addedBy = this.getUser.name
       this.room.playlist.push(song)
       var playlist = this.room.playlist
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
 
     },
-    moveSong (playlist) {
+    moveSong(playlist) {
       this.room.playlist = playlist
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
-    toggleLike () {
+    toggleLike() {
       if (!this.getUser._id) return
-      this.isLiked = !this.isLiked
-      // if(this.isLiked) this.room.userLikedIds.length
-      // else this.room.userLikedIds.length-- 
-      // console.log(this.room, this.getUser)
-      this.$socket.emit('updateLiked', this.room, this.getUser)
+      // this.isLiked = !this.isLiked
+
+      // var idx = this.room.userLikedIds.findIndex(userLike => userLike === this.user._id)
+      // console.log(idx)
+      // if (this.isLiked) this.roomLikes++
+      // else  this.roomLikes--
+      
+      this.$socket.emit('updateLiked', { room: this.room, user: this.getUser })
     },
-    toggleChat () {
-     this.isChatOpen = !this.isChatOpen
+    toggleChat() {
+      this.isChatOpen = !this.isChatOpen
     }
   },
-  created () {
+  created() {
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
     this.$socket.emit('getPlaylist')
 
   },
   computed: {
-    getUser () {
-      return this.$store.getters.getCurrUser
+    getUser() {
+      var currUser = this.$store.getters.getCurrUser
+      if (currUser) return currUser
+      else return { name: 'guest' }
     },
-    userLiked () {
+    userLiked() {
       if (this.isLiked) return 'unlike'
     },
-    chatStatus(){
-      if(this.isChatOpen) return 'show-chat'
+    chatStatus() {
+      if (this.isChatOpen) return 'show-chat'
     },
-    chatIsOpen(){
-      if(this.isChatOpen) return 'hide'
+    chatIsOpen() {
+      if (this.isChatOpen) return 'hide'
     }
   },
   sockets: {
     setRoom: function (room) {
       this.room = room
+      this.roomLikes = this.room.userLikedIds.length
       this.$socket.emit('getUserById', this.room.admin)
     },
-    loadPlaylist (playlist) {
+    loadPlaylist(playlist) {
       this.room.playlist = playlist
     },
     setUserProfile: function (user) {
       this.adminRoom = user[0]
       this.isAdmin = true
+    },
+    updateUser(currUser) {
+      console.log(currUser)
+      this.$store.commit({ type: 'setCurrUser', currUser })
+      localStorage.setItem('currUser', JSON.stringify(currUser));
+
     }
   },
   watch: {
@@ -161,7 +159,7 @@ export default {
     playlistCmp,
     userPreview
   },
-  destroyed(){
+  destroyed() {
     this.$socket.emit('roomClose')
   }
 };
