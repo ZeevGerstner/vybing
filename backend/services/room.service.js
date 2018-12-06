@@ -12,15 +12,13 @@ module.exports = {
 
 
 
-function query(filter = { byName: '', byType: '' }) {
+function query (filter = { byName: '', byType: '' }) {
     const queryObj = {
         $and: [
             { name: { $regex: `.*${filter.byName}.*` } },
             { type: { $regex: `.*${filter.byType}.*` } },
         ]
     }
-    // const currSort = { [filter.bySort]: +filter.upDown } // .sort(currSort)
-
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');
@@ -28,7 +26,7 @@ function query(filter = { byName: '', byType: '' }) {
         })
 }
 
-function getById(roomId) {
+function getById (roomId) {
     roomId = new ObjectId(roomId)
     return mongoService.connectToDb()
         .then(dbConn => {
@@ -37,7 +35,7 @@ function getById(roomId) {
         })
 }
 
-function updatePlaylist(roomId, playlist) {
+function updatePlaylist (roomId, playlist) {
     roomId = new ObjectId(roomId)
     return mongoService.connectToDb()
         .then(dbConn => {
@@ -69,7 +67,7 @@ function updatePlaylist(roomId, playlist) {
 //         })
 // }
 
-function updateRoomLikes(room, user) {
+function updateRoomLikes (room, user) {
 
     var idx = room.userLikedIds.findIndex(currUserId => {
         return currUserId === user._id
@@ -103,7 +101,7 @@ function updateRoomLikes(room, user) {
 
 
 
-function addRoom(newRoom) {
+function addRoom (newRoom) {
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');
@@ -111,8 +109,7 @@ function addRoom(newRoom) {
         })
 }
 
-// getUserRooms("5bffb9c16e5a7a17bfe08f55")
-function getUserRooms(roomId) {
+function getUserRooms (roomId) {
     const _id = new ObjectId(roomId)
     return mongoService.connectToDb()
         .then(db =>

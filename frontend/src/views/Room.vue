@@ -90,7 +90,7 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike() {
-      if (!this.getUser._id) return
+      if (this.getUser.name==='guest') return
       // this.isLiked = !this.isLiked
 
       // var idx = this.room.userLikedIds.findIndex(userLike => userLike === this.user._id)
@@ -108,7 +108,6 @@ export default {
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
     this.$socket.emit('getPlaylist')
-
   },
   computed: {
     getUser() {
@@ -140,10 +139,8 @@ export default {
       this.isAdmin = true
     },
     updateUser(currUser) {
-      console.log(currUser)
       this.$store.commit({ type: 'setCurrUser', currUser })
       localStorage.setItem('currUser', JSON.stringify(currUser));
-
     }
   },
   watch: {

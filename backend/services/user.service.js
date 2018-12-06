@@ -3,7 +3,6 @@
 const mongoService = require('./mongo.service');
 const ObjectId = require('mongodb').ObjectId;
 
-
 function checkLogin({ user }) {
     return mongoService.connectToDb()
         .then(dbConn => {
@@ -11,7 +10,6 @@ function checkLogin({ user }) {
             return userCollection.findOne({ $and: [{ "name": user.name }, { "password": user.password }] })
         })
 }
-
 
 function addUser({ newUser }) {
     var user = { newUser }
@@ -23,7 +21,6 @@ function addUser({ newUser }) {
     // })
 }
 
-
 function getById(userId) {
     userId = new ObjectId(userId)
     return mongoService.connectToDb()
@@ -32,7 +29,6 @@ function getById(userId) {
             return userCollection.findOne({ _id: userId })
         })
 }
-
 
 function getUserRooms(userId) {
     const _id = new ObjectId(userId)
@@ -63,7 +59,6 @@ function getUserRooms(userId) {
         )
 }
 
-
 function updateRoomsCreatedUser(user, roomId) {
     roomId = new ObjectId(roomId)
 
@@ -83,7 +78,6 @@ function updateRoomsCreatedUser(user, roomId) {
 }
 
 function updateRoomLikes(room, user) {
-    // console.log('user',user)
     var idx = user.roomsLikedIds.findIndex(currRoomId => {
         return currRoomId === room._id
     })
@@ -108,8 +102,6 @@ function updateRoomLikes(room, user) {
         })
 
 }
-
-
 
 module.exports = {
     addUser,

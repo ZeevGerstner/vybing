@@ -5,7 +5,6 @@ const io = require('socket.io')(http)
 const cors = require('cors')
 const history = require('connect-history-api-fallback');
 
-
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
@@ -16,7 +15,7 @@ const connectSocket = require('./services/socket.service')
 
 app.use(cors({
     origin: ['http://localhost:8080'],
-    credentials: true // enable set cookie
+    credentials: true 
 }));
 app.use(bodyParser.json())
 app.use(cookieParser());
@@ -26,7 +25,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }))
-
 
 addUserRoutes(app)
 connectSocket(io)
