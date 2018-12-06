@@ -32,6 +32,7 @@ export default {
       playerVars: {
         start: 0,
         controls: 1,
+        playsinline:1
       },
       currSongTime: 0
     };

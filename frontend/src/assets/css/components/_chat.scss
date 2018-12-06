@@ -6,6 +6,7 @@
     
     @media screen and (max-width:840px) {
         position: fixed;
+        top:60px;
         right: -400px;
         opacity: 0;
         height: calc( 100vh - 60px );
