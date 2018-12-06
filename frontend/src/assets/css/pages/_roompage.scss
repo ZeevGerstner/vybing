@@ -5,12 +5,14 @@
     grid-template-columns: 1fr 300px;
     grid-template-rows: auto auto 1fr;
     grid-gap: 7px;
-    height: calc( 100vh - 60px );
+    height: calc( 100% - 60px );
     width: 100%;
-    
+    overflow: hidden;
+
     @media screen and (max-width:840px) {
-    grid-template-columns: 1fr;       
+        grid-template-columns: 1fr;       
     }
+
 }
 
 .nav-room{
