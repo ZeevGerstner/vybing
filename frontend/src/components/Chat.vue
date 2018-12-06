@@ -87,7 +87,6 @@ export default {
         },
     },
     created(){
-      this.$socket.emit('chatRoomJoined', this.room)
     },
     components: {
       AddGif,

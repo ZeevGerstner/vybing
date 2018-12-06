@@ -28,7 +28,7 @@
     box-shadow: inset 0px -1px 20px 0px black;
     @media screen and (max-width: 640px) {
         height: 55vh;  
-    
+    }
     @supports not (-webkit-overflow-scrolling: touch) {
         background-attachment: fixed;
       /* CSS for other than iOS devices */ 

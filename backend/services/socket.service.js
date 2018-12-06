@@ -38,13 +38,13 @@ function connectSocket(io) {
                 })
         })
         socket.on('getTime', () => {
-            socket.broadcast.emit('getStatusTime')
+            console.log('userRoomuserRoomuserRoom',userRoom)
+            io.to(userRoom._id).emit('getStatusTime')
         })
         socket.on('setStatusTime', (time) => {
             io.emit('setCurrTime', time)
         })
         socket.on('searchRoom', (filter) => {
-
             roomService.query(filter)
                 .then(filteredRooms => {
                     socket.emit('setRoomsFilter', filteredRooms)

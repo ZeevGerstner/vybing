@@ -98,6 +98,9 @@ export default {
     }
   },
   created() {
+    if(this.room){
+    }
+
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
     this.$socket.emit('getPlaylist')
@@ -121,6 +124,7 @@ export default {
   sockets: {
     setRoom: function (room) {
       this.room = room
+      this.$socket.emit('chatRoomJoined', room)
       this.roomLikes = this.room.userLikedIds.length
       this.$socket.emit('getUserById', this.room.admin)
       

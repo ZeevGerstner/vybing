@@ -68,7 +68,6 @@ export default {
     this.$socket.emit('getTime');
   },
   sockets: {
-    connect: function() {},
     getStatusTime: function() {
       this.player.getCurrentTime().then(time => {
         this.$socket.emit('setStatusTime', time);
