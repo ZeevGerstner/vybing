@@ -68,6 +68,7 @@ export default {
 
 
  #search-img-wrapper {
-   overflow: hidden;
+  overflow: hidden;
+  text-align: center;
  }
 </style>

@@ -21,7 +21,6 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -29,8 +28,13 @@
     box-shadow: inset 0px -1px 20px 0px black;
     @media screen and (max-width: 640px) {
         height: 55vh;  
+    
+    @supports not (-webkit-overflow-scrolling: touch) {
+        background-attachment: fixed;
+      /* CSS for other than iOS devices */ 
     }
 }
+
 .home-img2{
     background-image: url('../imgs/home-img2.png');
     width: 100%;
