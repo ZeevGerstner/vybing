@@ -17,19 +17,10 @@
 
         <div class="room-icon">
           <i class="fas fa-eye font-awesome"></i>
-          <!-- <img
-            class="icon-img"
-            src="../assets/imgs/LISTENERS-ICON.png"
-          >-->
           <h4 class="icon-count">{{room.listeners.length}}</h4>
         </div>
         <div class="room-icon" @click="toggleLike">
-          <i class="fas fa-thumbs-up btn-room-like"></i>
-          <!-- <img
-            :class="userLiked"
-            class="icon-img"
-            src="../assets/imgs/EAR-ICON.png"
-          >-->
+          <i class="fas fa-thumbs-up btn-room-like"></i>  
           <h4 class="icon-count">{{roomLikes}}</h4>
         </div>
       </div>
@@ -90,6 +81,7 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike() {
+<<<<<<< HEAD
       if (this.getUser.name==='guest') return
       // this.isLiked = !this.isLiked
 
@@ -98,6 +90,9 @@ export default {
       // if (this.isLiked) this.roomLikes++
       // else  this.roomLikes--
       
+=======
+      if (!this.getUser._id) return
+>>>>>>> eae935d1be8b8d0ed5c8516b27bd7fb7b1711723
       this.$socket.emit('updateLiked', { room: this.room, user: this.getUser })
     },
     toggleChat() {
@@ -130,6 +125,7 @@ export default {
       this.room = room
       this.roomLikes = this.room.userLikedIds.length
       this.$socket.emit('getUserById', this.room.admin)
+      
     },
     loadPlaylist(playlist) {
       this.room.playlist = playlist
