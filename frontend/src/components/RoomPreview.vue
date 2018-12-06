@@ -96,16 +96,6 @@ export default {
       this.$parent.togglePlayer(this)
     }
   },
-  // sockets: {
-  //     setUserProfile: function (user) {
-  //     this.adminRoom = user[0]
-  //     console.log(this.adminRoom)
-  //   }
-  // },
-  // created() {
-  //   if (this.room.admin) this.$socket.emit('getUserById', this.room.admin)
-  // }
-
 };
 </script>
 

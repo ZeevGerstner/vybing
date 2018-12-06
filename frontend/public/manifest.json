@@ -1,9 +1,10 @@
 {
-  "name": "frontend",
-  "short_name": "frontend",
+  "name": "vybing",
+  "short_name": "vybing",
+  "description": "Share your vib and playlist live with everyone. Interactive live playlist!",
   "icons": [
     {
-      "src": "./img/icons/android-chrome-192x192.png",
+      "src": "./assets/logo2.png",
       "sizes": "192x192",
       "type": "image/png"
     },

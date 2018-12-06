@@ -61,8 +61,6 @@ export default {
     emitUpdatePlaylist() {
       this.$emit('updatePlaylist', this.playlist)
     },
-    getUserById(userId){
-    }
   },
 
   created() {

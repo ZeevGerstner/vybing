@@ -1,6 +1,6 @@
 const userService = require('../services/user.service')
 
-function addRoutes(app) {
+function addRoutes (app) {
     app.post('/singup', (req, res) => {
         const newUser = req.body.newUser
         userService.addUser({ newUser })
@@ -13,13 +13,12 @@ function addRoutes(app) {
             .then(currUser => {
                 currUser.password = null;
                 req.session.user = currUser
-                console.log('curruser:', currUser)
                 res.json(currUser)
             })
     })
 }
 
-  
+
 
 module.exports = addRoutes;
 
