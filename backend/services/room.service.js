@@ -50,13 +50,22 @@ function updatePlaylist (roomId, playlist) {
 }
 
 function updateRoomLikes (room, user) {
-    if (!room.userLikedIds) room.userLikedIds = []
-    var idx = room.userLikedIds.findIndex(currUserId => {
+    // console.log('service',room.userLikedIds);
+    var idx =room.userLikedIds.findIndex(currUserId => {
+        // console.log('a',currUserId);
+        // console.log('b',user._id);
+        
         return currUserId === user._id
     })
+    // console.log('ighghdx',idx);
+    
     if (idx === -1) room.userLikedIds.push(user._id)
     else room.userLikedIds.splice(idx, 1)
     room._id = new ObjectId(room._id)
+    console.log('u',typeof(room._id));
+    // console.log(room.userLikedIds);
+    
+
     return mongoService.connectToDb()
         .then(dbConn => {
             const roomCollection = dbConn.collection('room');

@@ -104,10 +104,11 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike () {
-      if (!this.getUser) return
+      if (!this.getUser._id) return
       this.isLiked = !this.isLiked
-      if(this.isLiked) this.room.userLikedIds.length++
-      else this.room.userLikedIds.length-- 
+      // if(this.isLiked) this.room.userLikedIds.length
+      // else this.room.userLikedIds.length-- 
+      // console.log(this.room, this.getUser)
       this.$socket.emit('updateLiked', this.room, this.getUser)
     },
     toggleChat () {

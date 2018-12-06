@@ -93,9 +93,9 @@ function connectSocket(io) {
         })
 
         socket.on('updateLiked', (room,user) => {
-            
             roomService.updateRoomLikes(room,user)
             userService.updateRoomLikes(room,user)
+            .then(console.log)
         })
 
         socket.on('getUserById', (userId) => {
