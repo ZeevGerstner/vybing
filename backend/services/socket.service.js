@@ -11,11 +11,7 @@ function connectSocket (io) {
             socket.join(userRoom._id)
         })
         socket.on('roomClose', () => {
-<<<<<<< HEAD
             if (!userRoom._id) return
-=======
-            if(userRoom._id) return
->>>>>>> eae935d1be8b8d0ed5c8516b27bd7fb7b1711723
             socket.leave(userRoom._id)
         })
         socket.on('sendMsg', (newMsg) => {
@@ -96,15 +92,9 @@ function connectSocket (io) {
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
-<<<<<<< HEAD
                     console.log(user);
                     
                     user[0].password = null
-=======
-                    if(user.length === 0) user.push({name: 'guest'})
-                    console.log('userrrrr',user)
-                    if(user[0].password) user[0].password = null
->>>>>>> eae935d1be8b8d0ed5c8516b27bd7fb7b1711723
                     socket.emit('setUserProfile', user)
                 })
 
