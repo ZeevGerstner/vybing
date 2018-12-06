@@ -12,6 +12,7 @@ function connectSocket(io) {
         })
 
         socket.on('roomClose', () => {
+            if(userRoom._id) return
             socket.leave(userRoom._id)
         })
 
@@ -108,7 +109,9 @@ function connectSocket(io) {
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
-                    user[0].password = null
+                    if(user.length === 0) user.push({name: 'guest'})
+                    console.log('userrrrr',user)
+                    if(user[0].password) user[0].password = null
                     socket.emit('setUserProfile', user)
                 })
 
