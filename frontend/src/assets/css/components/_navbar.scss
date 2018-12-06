@@ -15,8 +15,19 @@
 .nav-logo {
     cursor: pointer;    
     max-width: 100px;
+    @media screen and (max-width: 640px) {
+        display: none;
+    }
 }
+.nav-logo-mini{
+    display: none;
+    max-width: 40px;
+    cursor: pointer;    
 
+    @media screen and (max-width: 640px) {
+        display: unset;
+    }
+}
 .nav-link {
     display: flex;
     list-style-type: none;
@@ -46,7 +57,7 @@
 }
 .search {
     position: relative;
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 640px) {
         display: none;
     }
 }
@@ -170,7 +181,7 @@
     color: $off-white;
     line-height: normal;
     @media screen and (max-width: 940px) {        
-        font-size: 24px;
+        margin-top: 5px;
     }
 }
 .navbar-userName:hover{

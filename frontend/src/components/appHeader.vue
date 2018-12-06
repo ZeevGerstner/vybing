@@ -2,6 +2,8 @@
   <div class="nav">
     <div class="nav-container flex align-center space-between container">
       <img @click="goToRooms" class="nav-logo" src="../assets/logo2.png">
+      <img @click="goToRooms" class="nav-logo-mini" src="../assets/vybingmini.png">
+
       <div ref="search" class="search">
         <input @input="searchRooms" v-model="filter.byName" placeholder="search">
         <span class="fa fa-search"></span>
