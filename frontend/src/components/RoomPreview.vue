@@ -41,7 +41,7 @@
           <h3 class="room-item-genre">{{room.type}}</h3>
           <div class="room-icon room-item-icon">
             <i class="fas fa-eye font-awesome"></i>
-            <h4 class="icon-count room-item-count">{{room.listeners.length}}</h4>
+            <h4 class="icon-count room-item-count">{{roomCount}}</h4>
           </div>
 
           <div class="room-icon room-item-icon">
@@ -76,6 +76,7 @@ export default {
     return {
       isOpen: false,
       adminRoom: null,
+      roomCount: 0
     }
   },
   computed: {
@@ -96,6 +97,15 @@ export default {
       this.$parent.togglePlayer(this)
     }
   },
+  sockets: {
+    updateRoomCounts(roomCounts) {
+      const roomCount = roomCounts[this.room._id]
+      this.roomCount = roomCount || 0
+    }
+  },
+  created() {
+    this.$socket.emit('getRoomCounts')
+  }
 };
 </script>
 

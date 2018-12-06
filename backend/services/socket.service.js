@@ -3,16 +3,18 @@ const roomService = require('./room.service')
 const userService = require('./user.service')
 
 
-function connectSocket (io) {
+function connectSocket(io) {
     io.on('connection', (socket) => {
         var userRoom;
         socket.on('chatRoomJoined', (room) => {
             userRoom = room
             socket.join(userRoom._id)
+            updateRoomCount(io, userRoom._id)
         })
         socket.on('roomClose', () => {
-            if (!userRoom._id) return
+            if (!userRoom) return
             socket.leave(userRoom._id)
+            updateRoomCount(io, userRoom._id)
         })
         socket.on('sendMsg', (newMsg) => {
             io.to(userRoom._id).emit('setNewMsg', newMsg)
@@ -40,8 +42,6 @@ function connectSocket (io) {
         })
         socket.on('setStatusTime', (time) => {
             io.emit('setCurrTime', time)
-        })
-        socket.on('disconnect', () => {
         })
         socket.on('searchRoom', (filter) => {
 
@@ -92,15 +92,41 @@ function connectSocket (io) {
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
-                    console.log(user);
-                    
+                    // console.log(user);
+
                     user[0].password = null
                     socket.emit('setUserProfile', user)
                 })
 
         })
+        socket.on('getRoomCounts', () => {
+            updateRoomCounts(io)
+        })
+        socket.on('disconnect', () => {
+            if (!userRoom) return
+            socket.leave(userRoom._id)
+            updateRoomCount(io, userRoom._id)
+        })
 
     })
+}
+
+function updateRoomCount(io, roomId) {
+    updateRoomCounts(io)
+    const ioRoom = io.sockets.adapter.rooms[roomId]
+    if (!ioRoom) return
+    io.to(roomId).emit('updateRoomCount', ioRoom.length)
+}
+
+function updateRoomCounts(io) {
+    const rooms = io.sockets.adapter.rooms
+    const roomCounts = Object.keys(rooms)
+        .filter(key => key.length === 24)
+        .reduce((countMap, key) => {
+            countMap[key] = rooms[key].length
+            return countMap
+        }, {})
+    io.emit('updateRoomCounts', roomCounts)
 }
 
 

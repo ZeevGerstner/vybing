@@ -32,6 +32,7 @@
     display: flex;
     list-style-type: none;
     position: relative;
+    align-items: center;
 }
 
 .nav li {
@@ -180,9 +181,6 @@
     cursor: pointer;
     color: $off-white;
     line-height: normal;
-    @media screen and (max-width: 940px) {        
-        margin-top: 5px;
-    }
 }
 .navbar-userName:hover{
     color: $lime-green;

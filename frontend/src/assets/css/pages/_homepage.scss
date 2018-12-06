@@ -27,6 +27,9 @@
     justify-content: center;
     align-items: center;
     box-shadow: inset 0px -1px 20px 0px black;
+    @media screen and (max-width: 640px) {
+        height: 55vh;  
+    }
 }
 .home-img2{
     background-image: url('../imgs/home-img2.png');
@@ -40,6 +43,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 640px) {
+        height: 55vh;  
+    }
 }
 .home-title-txt{
     font-family: roboto-bold;

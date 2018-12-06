@@ -17,7 +17,8 @@
 
         <div class="room-icon">
           <i class="fas fa-eye font-awesome"></i>
-          <h4 class="icon-count">{{room.listeners.length}}</h4>
+          <!-- <h4 class="icon-count">{{room.listeners.length}}</h4> -->
+          <h4 class="icon-count">{{roomCount}}</h4>
         </div>
         <div class="room-icon" @click="toggleLike">
           <i class="fas fa-thumbs-up btn-room-like"></i>  
@@ -61,6 +62,7 @@ export default {
       isLiked: false,
       isChatOpen: false,
       roomLikes: 0,
+      roomCount: 0
     };
   },
   methods: {
@@ -133,6 +135,10 @@ export default {
     updateUser(currUser) {
       this.$store.commit({ type: 'setCurrUser', currUser })
       localStorage.setItem('currUser', JSON.stringify(currUser));
+    },
+    updateRoomCount(count) {
+      console.log('inside updateRoomCount. Count is:', count)
+      this.roomCount = count
     }
   },
   watch: {
