@@ -1,6 +1,8 @@
 <template>
   <section class="profile ">
     <h2 class="profile-name container">{{user.name}}</h2>
+        <h2 class="profile-name container">Following: {{user.followersIds.length}}</h2>
+
     <h2 class="profile-name container">Created Room:</h2>
     <div class="room-list container">
       <room-preview v-for="room in user.roomsCreated" :key="room._id" :room="room"/>

@@ -9,7 +9,6 @@ function login(user){
 }
 
 function signup(newUser){
-    console.log(newUser)
     return axios.post(`${BASE_URL}/singup`,{ newUser })
     .then(res => res.data)
 }

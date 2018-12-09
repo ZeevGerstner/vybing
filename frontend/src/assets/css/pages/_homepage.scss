@@ -25,9 +25,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: inset 0px -1px 20px 0px black;
     @media screen and (max-width: 640px) {
         height: 55vh;  
+        .home-title-txt{
+        	background: linear-gradient(to right, #99cc00 0%, #99cc00 20%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
     @supports not (-webkit-overflow-scrolling: touch) {
         background-attachment: fixed;
@@ -52,10 +56,15 @@
     }
 }
 .home-title-txt{
+
     font-family: roboto-bold;
-    color: $off-white;
+	background: linear-gradient(to right, rgb(255, 255, 255) 0%, #99cc00 70%);
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // color: $off-white;
+
     font-size: 6vw;
     span{
-        color: $lime-green;
+        color: $off-white;
     }
 }

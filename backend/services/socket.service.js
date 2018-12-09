@@ -38,7 +38,6 @@ function connectSocket(io) {
                 })
         })
         socket.on('getTime', () => {
-            console.log('userRoomuserRoomuserRoom',userRoom)
             io.to(userRoom._id).emit('getStatusTime')
         })
         socket.on('setStatusTime', (time) => {
@@ -92,8 +91,6 @@ function connectSocket(io) {
         socket.on('getUserById', (userId) => {
             userService.getUserRooms(userId)
                 .then(user => {
-                    // console.log(user);
-
                     user[0].password = null
                     socket.emit('setUserProfile', user)
                 })
@@ -101,6 +98,12 @@ function connectSocket(io) {
         })
         socket.on('getRoomCounts', () => {
             updateRoomCounts(io)
+        })
+        socket.on('followUser', ({follower, following})=>{
+            userService.followUser(follower, following)
+            .then(currUser => {
+                socket.emit('updateUser', currUser)
+            })
         })
         socket.on('disconnect', () => {
             if (!userRoom) return

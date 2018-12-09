@@ -51,7 +51,7 @@ export default {
         }
     },
     sockets: {
-        setNewRoom: function(room){
+        setNewRoom(room){
             let user = this.getUser
             this.$socket.emit('updateRoomsCreatedUser', user, room._id)
             this.$router.push('/room/'+room._id)

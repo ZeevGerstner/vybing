@@ -43,7 +43,7 @@ export default {
       this.rooms = rooms
       this.$nextTick(() => {
         window.scrollTo({
-          top: 70,
+          top: 100,
           left: 0,
           behavior: 'smooth'
         });
@@ -63,8 +63,6 @@ export default {
         .sort((a, b) => b.likes - a.likes).slice(0, 4)
     },
     togglePlayer(room) {
-      console.log('home', room);
-
       this.$children.forEach(currRoom => {
         currRoom.$children.forEach(roomCh => {
           if (roomCh !== room) roomCh.isOpen = false;
