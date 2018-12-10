@@ -21,7 +21,7 @@
           <h4 class="icon-count">{{roomCount}}</h4>
         </div>
         <div class="room-icon" @click="toggleLike">
-          <i class="fas fa-thumbs-up btn-room-like"></i>
+          <i class="fas fa-thumbs-up btn-room-like" :class="(!userLiked) ? '' : 'unlike'"></i>
           <h4 class="icon-count">{{roomLikes}}</h4>
         </div>
       </div>
@@ -107,14 +107,17 @@ export default {
       else return { name: 'guest' }
     },
     userLiked() {
-      if (this.isLiked) return 'unlike'
+      return this.getUser.roomsLikedIds.find(currId =>{
+        return currId === this.room._id
+      })
     },
     chatStatus() {
       if (this.isChatOpen) return 'show-chat'
     },
     chatIsOpen() {
       if (this.isChatOpen) return 'hide'
-    }
+    },
+
   },
   sockets: {
     setRoom(room) {

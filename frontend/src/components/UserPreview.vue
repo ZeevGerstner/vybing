@@ -1,7 +1,8 @@
 <template>
   <section class="user-preview">
     <div v-if="user">
-      <i @click="followUser" class="fas fa-user-plus icon-user-prev"></i>
+      <i v-if="isFollow" @click="followUser" class="fas fa-user-slash icon-user-prev"></i>
+      <i v-else @click="followUser" class="fas fa-user-plus icon-user-prev"></i>
       <i @click="goToUserProfile" class="fas fa-info-circle icon-user-prev"></i>
       <i class="fas fa-comments icon-user-prev"></i>
     </div>
@@ -11,6 +12,10 @@
 <script>
 export default {
   props: ['user'],
+  data() {
+    return {
+    }
+  },
   methods: {
     goToUserProfile() {
       this.$router.push('/profile/' + this.user._id)
@@ -18,9 +23,12 @@ export default {
     followUser() {
       if (this.getUser.name === 'guest') return
       else {
-        this.$socket.emit('followUser', {follower: this.user,following: this.getUser})
+        this.$socket.emit('followUser', { follower: this.user, following: this.getUser })
       }
     }
+  },
+  created() {
+
   },
   computed: {
     getUser() {
@@ -28,6 +36,13 @@ export default {
       if (currUser) return currUser
       else return { name: 'guest' }
     },
+    isFollow() {
+      var idx = this.getUser.followersIds.findIndex(currFollowerId => {
+        return currFollowerId === this.user._id
+      })
+      if (idx !== -1) return true
+      else return false
+    }
   }
 }
 </script>
