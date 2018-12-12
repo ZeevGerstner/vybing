@@ -21,7 +21,7 @@
           <h4 class="icon-count">{{roomCount}}</h4>
         </div>
         <div class="room-icon" @click="toggleLike">
-          <i class="fas fa-thumbs-up btn-room-like"></i>  
+          <i class="fas fa-thumbs-up btn-room-like" :class="(!userLiked) ? '' : 'unlike'"></i>
           <h4 class="icon-count">{{roomLikes}}</h4>
         </div>
       </div>
@@ -31,14 +31,17 @@
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist"></youtube-player>
     </div>
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
-    <chat-room :room="room" :class="chatStatus"/>
+    <chat-room @newMsg="notifications++" :room="room" :class="chatStatus"/>
     <div
       v-if="!isChatOpen"
       class="open-chat-btn flex justify-center align-center"
       @click="toggleChat"
     >
+      <h2 v-show="notifications > 0" class="notifications">{{notifications}}</h2>
+
       <i class="fas fa-comments"></i>
     </div>
+
     <div v-else class="close-chat-btn" @click="toggleChat">
       <i class="fas fa-times"></i>
     </div>
@@ -62,7 +65,8 @@ export default {
       isLiked: false,
       isChatOpen: false,
       roomLikes: 0,
-      roomCount: 0
+      roomCount: 0,
+      notifications: 0,
     };
   },
   methods: {
@@ -83,24 +87,15 @@ export default {
       this.$socket.emit('modifyPlaylist', this.room._id, playlist)
     },
     toggleLike() {
-      if (this.getUser.name==='guest') return
-      // this.isLiked = !this.isLiked
-
-      // var idx = this.room.userLikedIds.findIndex(userLike => userLike === this.user._id)
-      // console.log(idx)
-      // if (this.isLiked) this.roomLikes++
-      // else  this.roomLikes--
-      
+      if (this.getUser.name === 'guest') return
       this.$socket.emit('updateLiked', { room: this.room, user: this.getUser })
     },
     toggleChat() {
       this.isChatOpen = !this.isChatOpen
+      this.notifications = 0
     }
   },
   created() {
-    if(this.room){
-    }
-
     const roomId = this.$route.params.roomId;
     this.$socket.emit('getRoomById', roomId)
     this.$socket.emit('getPlaylist')
@@ -112,27 +107,30 @@ export default {
       else return { name: 'guest' }
     },
     userLiked() {
-      if (this.isLiked) return 'unlike'
+      return this.getUser.roomsLikedIds.find(currId =>{
+        return currId === this.room._id
+      })
     },
     chatStatus() {
       if (this.isChatOpen) return 'show-chat'
     },
     chatIsOpen() {
       if (this.isChatOpen) return 'hide'
-    }
+    },
+
   },
   sockets: {
-    setRoom: function (room) {
+    setRoom(room) {
       this.room = room
       this.$socket.emit('chatRoomJoined', room)
       this.roomLikes = this.room.userLikedIds.length
       this.$socket.emit('getUserById', this.room.admin)
-      
+
     },
     loadPlaylist(playlist) {
       this.room.playlist = playlist
     },
-    setUserProfile: function (user) {
+    setUserProfile(user) {
       this.adminRoom = user[0]
       this.isAdmin = true
     },
@@ -141,7 +139,6 @@ export default {
       localStorage.setItem('currUser', JSON.stringify(currUser));
     },
     updateRoomCount(count) {
-      console.log('inside updateRoomCount. Count is:', count)
       this.roomCount = count
     }
   },

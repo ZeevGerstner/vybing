@@ -108,7 +108,6 @@ export default {
       else this.isOpen = val
     },
     searchRooms() {
-      console.log('search: ', this.filter)
       this.$socket.emit('searchRoom', this.filter)
       this.isSearch = true
       if (this.filter.byName === '') this.isSearch = false
@@ -140,7 +139,7 @@ export default {
     },
     goTop() {
       window.scrollTo({
-        top: 0,
+        top: 100,
         left: 0,
         behavior: 'smooth'
       });
@@ -159,7 +158,6 @@ export default {
     $route: {
       immediate: true,
       handler(route) {
-        console.log('inside route watch', route)
         if (route.name === 'home') {
           window.addEventListener('scroll', this.changeCss);
           // this.$refs.navbar.classList.add('start-navbar')
@@ -184,7 +182,6 @@ export default {
   },
   sockets: {
     setRoomsFilter: function (filteredRoom) {
-      console.log(filteredRoom)
       this.roomsResults = filteredRoom
     }
   },

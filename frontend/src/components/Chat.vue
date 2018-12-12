@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     sendMsg() {
+      if(!this.newMsg) return
       this.$socket.emit("sendMsg", { txt: this.newMsg, user: this.getUser});
       this.newMsg = "";
     },
@@ -49,7 +50,6 @@ export default {
           else return 'other-chat-user'
       },
       toggleUserPrev(idx){
-        console.log('idx',idx)
         if(this.isUserPrev === null){
           this.isUserPrev = idx;
         }else if(this.isUserPrev === idx){
@@ -60,7 +60,7 @@ export default {
       }
   },
   sockets: {
-    setNewMsg: function(newMsg) {
+    setNewMsg(newMsg) {
       if(newMsg.user.name === 'guest'){
          newMsg.isMyUser = 'guest';
       }else{
@@ -71,8 +71,7 @@ export default {
         }
       }
       this.msgs.push(newMsg);
-      
-      //scroll the chat down
+      this.$emit('newMsg')
       this.$nextTick(() => {
           const elNewMsg = this.$refs.msgs.lastChild
           elNewMsg.scrollIntoView();
@@ -85,8 +84,6 @@ export default {
             if(currUser) return currUser
             else return {name: 'guest'} 
         },
-    },
-    created(){
     },
     components: {
       AddGif,

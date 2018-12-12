@@ -100,6 +100,31 @@ function updateRoomLikes(room, user) {
             )
                 .then(res => user)
         })
+}
+function followUser(follower, following) {
+    var idx = following.followersIds.findIndex(currFollowerId => {
+        return currFollowerId === follower._id
+    })
+    var action;
+    if (idx === -1) {
+        action = '$push'
+        following.followersIds.push(ObjectId(follower._id))
+        
+    }
+    else {
+        action = '$pull'
+        following.followersIds.splice(idx, 1)
+    }
+
+    return mongoService.connectToDb()
+        .then(dbConn => {
+            const userCollection = dbConn.collection('user');
+            return userCollection.updateOne(
+                { _id: ObjectId(following._id) },
+                { [action]: { followersIds: ObjectId(follower._id) } }
+            )
+                .then(res => following)
+        })
 
 }
 
@@ -110,4 +135,5 @@ module.exports = {
     getUserRooms,
     updateRoomsCreatedUser,
     updateRoomLikes,
+    followUser,
 }

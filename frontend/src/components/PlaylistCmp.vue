@@ -65,7 +65,6 @@ export default {
 
     routeAddSong () {
       var roomId = this.$route.params.roomId
-      console.log(roomId)
       this.$router.push(`/room/${roomId}/addsong`)
     },
   }
