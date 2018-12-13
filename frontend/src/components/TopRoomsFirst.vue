@@ -13,7 +13,7 @@
         @click="changeSlide(idx)"
       >
         <h2 class="room-name-first">{{room.name}}</h2>
-        <room-preview-first @togglePlayer="togglePlayer" v-if="idx === 0" :room="room"/>
+        <room-preview-first @playing="togglePlaying" v-if="idx === 0" :room="room"/>
       </div>
     </transition-group>
   </div>
@@ -26,11 +26,12 @@ export default {
   name: 'topRoomsFirst',
   props: {
     rooms: Array,
-    type: String
+    type: String,
   },
   data() {
     return {
-      currRooms: this.rooms.slice()
+      currRooms: this.rooms.slice(),
+      isPlaying: true
     }
   },
   methods: {
@@ -46,6 +47,24 @@ export default {
         this.currRooms.unshift(currRoom[0])
       }
     },
+    togglePlaying() {
+      this.isPlaying = !this.isPlaying
+      if (this.isPlaying) {
+        this.slideMove(true)
+      } else {
+        this.slideMove(false)
+      }
+    },
+    slideMove(val) {
+      if (val) {
+        this.interval = setInterval(() => {
+          let currRoom = this.currRooms.shift()
+          this.currRooms.push(currRoom)
+        }, 5000)
+      } else {
+        clearInterval(this.interval)
+      }
+    },
     setPlayer(playlist) {
       this.$store.dispatch('setPrevPlaylist')
       if (this.isClicked) this.isClicked = false
@@ -58,13 +77,16 @@ export default {
   watch: {
     rooms() {
       this.currRooms = this.rooms.slice()
-    }
+    },
+    'this.isPlaying': {
+      immediate: true,
+      handler(play) {
+
+      }
+    },
   },
   mounted() {
-    setInterval(() => {
-      let currRoom = this.currRooms.shift()
-      this.currRooms.push(currRoom)
-    }, 10000)
+    this.slideMove(true)
   }
 }
 </script>

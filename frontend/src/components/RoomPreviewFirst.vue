@@ -73,6 +73,7 @@ export default {
     },
     openPlayer() {
       eventBus.$emit(TOGGLE_PLAYER, this)
+      this.$emit('playing')
     }
   },
   sockets: {
