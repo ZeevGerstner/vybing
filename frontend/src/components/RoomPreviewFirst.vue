@@ -26,24 +26,6 @@
           <i class="fas fa-eye font-awesome"></i>
           <h4 class="icon-count room-item-count">{{roomCount}}</h4>
         </div>
-<<<<<<< HEAD
-      </div>
-      <div :class="['room-details-first', isOpen? 'room-pause-mode' : '']">
-        <h3
-          v-if="room.playlist.length"
-          :class="['song-title song-title-first', isOpen? 'song-title-pause-mode' : '', setMove]"
-          v-for="(song, idx) in room.playlist"
-          :key="idx"
-          v-show="idx<5"
-        >{{song.title}}</h3>
-        <div class="room-icons-first">
-          <h3 class="room-item-genre">{{room.type}}</h3>
-          <div class="room-icon room-item-icon">
-            <i class="fas fa-eye font-awesome"></i>
-            <h4 class="icon-count room-item-count">{{roomCount}}</h4>
-          </div>
-=======
->>>>>>> c5affdb21bff3d9f556821832a80252bf7839d1e
 
         <div class="room-icon room-item-icon">
           <i class="fas fa-thumbs-up font-awesome"></i>

@@ -135,7 +135,7 @@ export default {
     },
     shuffle () {
       this.room.playlist = [this.room.playlist[0], ...shuffle(this.room.playlist.slice(1))]
-      this.$emit('moveSong', this.room.playlist)
+      this.$socket.emit('modifyPlaylist', this.room._id, this.room.playlist)
     }
   },
   created () {
@@ -149,9 +149,9 @@ export default {
       if (currUser) return currUser
       else return { name: 'guest' }
     },
-    userLiked() {
-      if(this.getUser.name === 'guest') return
-      return this.getUser.roomsLikedIds.find(currId =>{
+    userLiked () {
+      if (this.getUser.name === 'guest') return
+      return this.getUser.roomsLikedIds.find(currId => {
         return currId === this.room._id
       })
     },
