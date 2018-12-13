@@ -3,38 +3,35 @@
     <router-link
       class="room-item-link"
       tag="div"
-      :to="'/room/'+room._id"
-    >
+      :to="'/room/'+room._id">
+      
       <div
         v-if="room.playlist.length"
         class="room-item-youtube-img"
-        :style="{background:'url('+ room.playlist[0].img+') center no-repeat', backgroundSize: 'cover'}"
-      >
+        :style="{background:'url('+ room.playlist[0].img+') center no-repeat', backgroundSize: 'cover'}">
+
         <div
           :class="['video-btn', !isOpen? 'play-mode': 'pause-mode']"
-          @click.stop="openPlayer"
-        >
+          @click.stop="openPlayer">
+
           <i
             v-if="!isOpen"
-            class="fa fa-play"
-          ></i>
+            class="fa fa-play"></i>
           <i
             v-else
-            class="fa fa-pause"
-          ></i>
+            class="fa fa-pause"></i>
         </div>
       </div>
       <div :class="['room-details', 'room-item-details', isOpen? 'room-pause-mode' : '']">
         <h3
           v-if="room.playlist.length"
-          :class="['song-title', isOpen? 'song-title-pause-mode' : '', setMove]"
-        >
+          :class="['song-title', isOpen? 'song-title-pause-mode' : '', setMove]">          
           {{room.playlist[0].title}}
         </h3>
         <div
           v-if="room.playlist.length"
-          class="player-status"
-        >
+          class="player-status">
+
           <h1 class="room-name room-item-name">{{room.name}}</h1>
         </div>
         <div class="room-icons">
@@ -89,7 +86,6 @@ export default {
   },
   methods: {
     setPlayer (playlist) {
-      this.$store.dispatch('setPrevPlaylist')
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },

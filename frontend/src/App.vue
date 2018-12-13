@@ -13,18 +13,18 @@ export default {
   components: {
     appHeader
   },
-  created () {
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  
+  created(){
     var currUser = JSON.parse(localStorage.getItem('currUser'));
-    if (currUser) {
-      this.$store.commit({ type: 'setCurrUser', currUser })
+    if(currUser){
+      this.$store.commit({type: 'setCurrUser', currUser})
     }
   }
 };
+
 </script>
 
 
 <style lang="scss">
+
 </style>
