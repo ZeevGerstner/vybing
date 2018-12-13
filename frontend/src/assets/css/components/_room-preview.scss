@@ -25,39 +25,39 @@
     position: relative;
     font-size: 1.4em;
 
-      .video-btn {
-        left: 0px;
-        bottom: 0px;
-        height: 30px;
-        width: 30px;
-        color: $lime-green;
-        position: absolute;
-        transition: all .4s;
-        font-size: 1em;
-        i{
-          margin: 4px 0px 0px 8px ;
-          text-align: center;
-        }
-        &:hover {
-          color: #99cc009d;
-        }
-      }
-      .video-btn.play-mode {
-        visibility: hidden;
-        opacity: 0;
-
-        @media screen and (max-width:780px) {
-          visibility: visible;
-          opacity: 1;
-        }
-      }
-      .video-btn.pause-mode {
-        visibility: visible;
-        opacity: 1;
-
-      }
+      
   }
+  .video-btn {
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 30px;
+    color: $lime-green;
+    position: absolute;
+    transition: all .4s;
+    font-size: 1em;
+    i{
+      margin: 4px 0px 0px 8px ;
+      text-align: center;
+    }
+    &:hover {
+      color: #99cc009d;
+    }
+  }
+  .video-btn.play-mode {
+    visibility: hidden;
+    opacity: 0;
 
+    @media screen and (max-width:780px) {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .video-btn.pause-mode {
+    visibility: visible;
+    opacity: 1;
+
+  }
   .room-item-details {
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@
 
   }
 
-  .room-item-details.room-pause-mode {
+  .room-pause-mode {
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
     background-size: 400% 400%;
     animation: Gradient 3s ease infinite;
@@ -158,12 +158,6 @@
     h5:hover {
       color: $lime-green;
     }
-  }
-
-  
-  .player-status:hover {
-    color:  $off-white;
-  
   }
 
   @keyframes Gradient {

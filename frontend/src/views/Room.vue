@@ -78,7 +78,7 @@
     <div
       v-else
       class="close-chat-btn"
-      @click="toggleChat"
+      @click.stop="toggleChat"
     >
       <i class="fas fa-times"></i>
     </div>
@@ -135,7 +135,7 @@ export default {
     },
     shuffle () {
       this.room.playlist = [this.room.playlist[0], ...shuffle(this.room.playlist.slice(1))]
-      this.$emit('moveSong', this.room.playlist)
+      this.$socket.emit('modifyPlaylist', this.room._id, this.room.playlist)
     }
   },
   created () {
@@ -150,6 +150,7 @@ export default {
       else return { name: 'guest' }
     },
     userLiked () {
+      if (this.getUser.name === 'guest') return
       return this.getUser.roomsLikedIds.find(currId => {
         return currId === this.room._id
       })
@@ -207,11 +208,5 @@ export default {
 <style lang="scss" scoped>
 .room-player {
   position: relative;
-}
-.btn-shuffle {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: #99cc00;
 }
 </style>

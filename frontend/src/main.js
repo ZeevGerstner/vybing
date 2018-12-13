@@ -12,7 +12,7 @@ const SOCKET_URL = process.env.NODE_ENV !== 'development'
     : '//localhost:3000'
 
 Vue.use(new VueSocketIO({
-    debug: true,
+    debug: false,
     connection: SOCKET_URL,
     vuex: {
         store,

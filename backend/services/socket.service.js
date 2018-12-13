@@ -17,7 +17,9 @@ function connectSocket(io) {
             updateRoomCount(io, userRoom._id)
         })
         socket.on('sendMsg', (newMsg) => {
-            io.to(userRoom._id).emit('setNewMsg', newMsg)
+            if (userRoom._id) {
+                io.to(userRoom._id).emit('setNewMsg', newMsg)
+            }
         })
         socket.on('getRoomList', () => {
             return roomService.query()
@@ -38,6 +40,7 @@ function connectSocket(io) {
                 })
         })
         socket.on('getTime', () => {
+            if (!userRoom) return
             io.to(userRoom._id).emit('getStatusTime')
         })
         socket.on('setStatusTime', (time) => {
@@ -99,11 +102,11 @@ function connectSocket(io) {
         socket.on('getRoomCounts', () => {
             updateRoomCounts(io)
         })
-        socket.on('followUser', ({follower, following})=>{
+        socket.on('followUser', ({ follower, following }) => {
             userService.followUser(follower, following)
-            .then(currUser => {
-                socket.emit('updateUser', currUser)
-            })
+                .then(currUser => {
+                    socket.emit('updateUser', currUser)
+                })
         })
         socket.on('disconnect', () => {
             if (!userRoom) return
