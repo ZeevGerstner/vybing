@@ -8,14 +8,9 @@
       </h2>
     </div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
-<<<<<<< HEAD
-    <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
-    <top-rooms class="container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
-=======
 
     <top-rooms-first class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>>
 
->>>>>>> 53c5fa52dd4313444a96bb24f0cbff7c84de2f17
     <top-rooms
       v-for="(genre,idx) in getGenre"
       v-if="getRoomsBy(genre).length !== 0"
@@ -27,22 +22,14 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import topRooms from "../components/TopRooms";
-=======
 import topRooms from '../components/TopRooms'
 import topRoomsFirst from '../components/TopRoomsFirst'
->>>>>>> 53c5fa52dd4313444a96bb24f0cbff7c84de2f17
 
 export default {
   name: 'home',
   components: {
-<<<<<<< HEAD
-    topRooms
-=======
     topRooms,
     topRoomsFirst
->>>>>>> 53c5fa52dd4313444a96bb24f0cbff7c84de2f17
   },
   data() {
     return {
@@ -89,17 +76,6 @@ export default {
           .sort((a, b) => b.likes - a.likes)
           .slice(0, 4);
     },
-<<<<<<< HEAD
-    togglePlayer(room) {
-      this.$children.forEach(currRoom => {
-        currRoom.$children.forEach(roomCh => {
-          if (roomCh !== room) roomCh.isOpen = false;
-        });
-      });
-      room.isOpen = !room.isOpen;
-    }
-=======
->>>>>>> 53c5fa52dd4313444a96bb24f0cbff7c84de2f17
   },
   computed: {
     getGenre() {

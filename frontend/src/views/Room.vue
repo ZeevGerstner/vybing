@@ -28,7 +28,7 @@
 
     <div class="room-player">
       <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist">
-        <button @click="shuffle" class="btn-shuffle">
+        <button @click="shuffle">
           <i class="fas fa-random"></i>
         </button>
       </youtube-player>
@@ -100,7 +100,7 @@ export default {
     },
     shuffle() {
       this.room.playlist = [this.room.playlist[0], ...shuffle(this.room.playlist.slice(1))]
-      this.$emit('moveSong', this.room.playlist)
+      this.$socket.emit('modifyPlaylist', this.room._id, this.room.playlist)
     }
   },
   created() {
@@ -172,11 +172,5 @@ export default {
 <style lang="scss" scoped>
 .room-player {
   position: relative;
-}
-.btn-shuffle {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: #99cc00;
 }
 </style>
