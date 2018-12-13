@@ -107,6 +107,7 @@ export default {
       else return { name: 'guest' }
     },
     userLiked() {
+      if(this.getUser.name === 'guest') return
       return this.getUser.roomsLikedIds.find(currId =>{
         return currId === this.room._id
       })

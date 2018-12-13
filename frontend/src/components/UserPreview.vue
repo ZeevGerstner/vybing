@@ -37,6 +37,7 @@ export default {
       else return { name: 'guest' }
     },
     isFollow() {
+      if(this.getUser.name === 'guest') return
       var idx = this.getUser.followersIds.findIndex(currFollowerId => {
         return currFollowerId === this.user._id
       })

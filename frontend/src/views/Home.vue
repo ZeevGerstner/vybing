@@ -6,7 +6,9 @@
     </div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 
-    <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>
+    <top-rooms-first class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>>
+
+    <!-- <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/> -->
 
     <top-rooms class="container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
 
@@ -22,11 +24,13 @@
 
 <script>
 import topRooms from '../components/TopRooms'
+import topRoomsFirst from '../components/TopRoomsFirst'
 
 export default {
   name: "home",
   components: {
     topRooms,
+    topRoomsFirst
   },
   data() {
     return {

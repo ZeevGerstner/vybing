@@ -52,7 +52,7 @@ export default {
       this.setSong()
     },
     setSong() {
-      if(this.playlist[0].addedBy) this.$socket.emit('getUserById', this.playlist[0].addedBy)
+      if(this.playlist[0].addedBy !== 'guest') this.$socket.emit('getUserById', this.playlist[0].addedBy)
       else this.currAddBy = {name: 'guest'} 
       this.videoId = this.playlist[0].id
       console.log(this.currSongTime)
