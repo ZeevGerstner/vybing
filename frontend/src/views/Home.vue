@@ -8,10 +8,6 @@
 
     <top-rooms-first class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>>
 
-    <!-- <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/> -->
-
-    <top-rooms class="container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
-
     <top-rooms
       v-for="(genre,idx) in getGenre"
       v-if="getRoomsBy(genre).length !== 0"
@@ -27,7 +23,7 @@ import topRooms from '../components/TopRooms'
 import topRoomsFirst from '../components/TopRoomsFirst'
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
     topRooms,
     topRoomsFirst
@@ -66,14 +62,6 @@ export default {
       else return this.rooms.slice().filter(room => room.type === type)
         .sort((a, b) => b.likes - a.likes).slice(0, 4)
     },
-    togglePlayer(room) {
-      this.$children.forEach(currRoom => {
-        currRoom.$children.forEach(roomCh => {
-          if (roomCh !== room) roomCh.isOpen = false;
-        })
-      });
-      room.isOpen = !room.isOpen;
-    }
   },
   computed: {
     getGenre() {

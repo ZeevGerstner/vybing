@@ -22,7 +22,7 @@
 import roomPreview from '../components/RoomPreview'
 
 export default {
-  name: "RoomSearch",
+  name: 'roomSearch',
   components: {
     roomPreview
   },
@@ -32,7 +32,6 @@ export default {
       genre: '',
     }
   },
-
   created () {
     const genre = this.$route.params.genreName;
     if (genre) {
@@ -50,17 +49,6 @@ export default {
     setRoomsFilter: function (filterdRoom) {
       this.rooms = filterdRoom
     }
-  },
-  methods: {
-    togglePlayer (room) {
-      this.$children.forEach(currRoom => {
-        if (currRoom !== room) currRoom.isOpen = false;
-      });
-      room.isOpen = !room.isOpen;
-    }
   }
 }
 </script>
-
-<style>
-</style>

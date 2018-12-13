@@ -37,17 +37,11 @@ export default {
       this.$socket.emit('searchRoom', { byName: '', byType: genre })
       this.$router.push(`/RoomSearch/${genre}`)
     },
-    togglePlayer(room) {
-      this.$parent.togglePlayer(room)
-    },
     setPlayer(playlist) {
       this.$store.dispatch('setPrevPlaylist')
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },
-    openPlayer() {
-      this.$parent.togglePlayer(this)
-    }
   },
   components: {
     roomPreviewFirst
@@ -65,6 +59,7 @@ export default {
   }
 }
 </script>
+
 <style>
 .top-room-first {
   display: grid;

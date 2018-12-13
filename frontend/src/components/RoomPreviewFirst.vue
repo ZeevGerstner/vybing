@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import eventBus, { TOGGLE_PLAYER } from '../services/event.bus.js'
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 
 export default {
@@ -67,8 +68,8 @@ export default {
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },
-    openPlayer() {
-      this.$parent.togglePlayer(this)
+    openPlayer () {
+      eventBus.$emit(TOGGLE_PLAYER, this)
     }
   },
   sockets: {
@@ -79,6 +80,10 @@ export default {
   },
   created() {
     this.$socket.emit('getRoomCounts')
+    eventBus.$on(TOGGLE_PLAYER, vm => {
+      if (this !== vm) this.isOpen = false
+      else this.isOpen = !this.isOpen
+    })
   }
 };
 </script>
