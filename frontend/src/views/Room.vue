@@ -78,7 +78,7 @@
     <div
       v-else
       class="close-chat-btn"
-      @click="toggleChat"
+      @click.stop="toggleChat"
     >
       <i class="fas fa-times"></i>
     </div>
@@ -208,11 +208,5 @@ export default {
 <style lang="scss" scoped>
 .room-player {
   position: relative;
-}
-.btn-shuffle {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: #99cc00;
 }
 </style>

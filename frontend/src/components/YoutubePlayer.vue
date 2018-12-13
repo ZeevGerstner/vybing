@@ -18,8 +18,19 @@
         v-if="currAddBy"
       >ADDED BY: {{currAddBy.name}}</h4>
     </div>
-    <slot />
-    <button  class="btn-player" @click="toggleMute"><i v-if="isMute" class="fas fa-volume-mute"></i><i v-else class="fas fa-volume-off"></i></button>
+    <div class="btn-container">
+      <button
+        class="btn-player"
+        @click.stop="toggleMute"
+      ><i
+          v-if="isMute"
+          class="fas fa-volume-mute"
+        ></i><i
+          v-else
+          class="fas fa-volume-off"
+        ></i></button>
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -98,7 +109,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-player{
-  color: green;
+.btn-container {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.btn-container button {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #99cc00;
 }
 </style>
