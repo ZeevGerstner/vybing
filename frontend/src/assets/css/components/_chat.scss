@@ -10,6 +10,7 @@
         right: -400px;
         opacity: 0;
         height: calc( 100vh - 60px );
+        height: calc(var(--vh, 1vh) * 100 - 60px);
         width: 40vw;
         transition: all .8s;
     }
