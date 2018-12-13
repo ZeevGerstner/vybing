@@ -15,7 +15,6 @@
           :key="idx"
           v-show="idx<5"
         >{{song.title}}</h3>
-        <div v-if="room.playlist.length" class="player-status"></div>
         <div class="room-icons-first">
           <h3 class="room-item-genre">{{room.type}}</h3>
           <div class="room-icon room-item-icon">

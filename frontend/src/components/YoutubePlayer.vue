@@ -119,5 +119,6 @@ export default {
   cursor: pointer;
   font-size: 1.2em;
   color: #99cc00;
+  outline: 0;
 }
 </style>

@@ -31,12 +31,7 @@
         >
           {{room.playlist[0].title}}
         </h3>
-        <div
-          v-if="room.playlist.length"
-          class="player-status"
-        >
           <h1 class="room-name room-item-name">{{room.name}}</h1>
-        </div>
         <div class="room-icons">
           <h3 class="room-item-genre">{{room.type}}</h3>
           <div class="room-icon room-item-icon">

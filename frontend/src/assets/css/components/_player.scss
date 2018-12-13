@@ -2,6 +2,10 @@
     background-color: black;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width:400px){
+        flex-direction: column;
+    }
 }
 
 .player-details{
