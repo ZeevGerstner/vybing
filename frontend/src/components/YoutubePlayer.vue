@@ -14,7 +14,7 @@
         <h2 class="song-name">{{playlist[0].title}}</h2>
         <h4 class="player-txt" v-if="currAddBy">ADDED BY: {{currAddBy.name}}</h4>
     </div>
-
+    <slot/>
   </div>
 </template>
 

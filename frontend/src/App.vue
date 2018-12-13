@@ -13,10 +13,13 @@ export default {
   components: {
     appHeader
   },
-  created(){
+  created () {
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
     var currUser = JSON.parse(localStorage.getItem('currUser'));
-    if(currUser){
-      this.$store.commit({type: 'setCurrUser', currUser})
+    if (currUser) {
+      this.$store.commit({ type: 'setCurrUser', currUser })
     }
   }
 };
@@ -24,5 +27,4 @@ export default {
 
 
 <style lang="scss">
-
 </style>

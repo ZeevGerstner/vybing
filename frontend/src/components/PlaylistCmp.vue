@@ -4,7 +4,11 @@
       class="add-song-btn flex justify-center align-center"
       @click="routeAddSong"
     ><i class="fas fa-plus"></i></div>
-    <ul class="search-res">
+    <transition-group
+      name="flip-list"
+      tag="ul"
+      class="search-res"
+    >
       <li
         class="song-item"
         v-for="song in playlistToShow"
@@ -13,20 +17,20 @@
         <div class="playlist-controls flex flex-column">
           <button
             class="playlist-up-arrow"
-            @click="moveSong('up', song)"
+            @click="moveSong('up', song, $event)"
           ><i class="fas fa-arrow-circle-up control-arrows"></i></button>
           <button
             class="playlist-down-arrow"
             @click="moveSong('down', song)"
           ><i class="fas fa-arrow-circle-down control-arrows"></i></button>
         </div>
-          <h3 class="youtube-title">{{song.title}}</h3>
-          <img
-            class="youtube-img"
-            :src="song.img"
-          />
+        <h3 class="youtube-title">{{song.title}}</h3>
+        <img
+          class="youtube-img"
+          :src="song.img"
+        />
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -44,7 +48,7 @@ export default {
     },
   },
   methods: {
-    moveSong (direction, song) {
+    moveSong (direction, song, el) {
       var songIdx = this.playlist.findIndex(playlistSong => {
         return song.id === playlistSong.id
       })
@@ -56,6 +60,7 @@ export default {
         if (songIdx === this.playlist.length - 1) return;
         newIndex = songIdx + 1;
       }
+
       let temp = this.playlist[songIdx]
       this.playlist[songIdx] = this.playlist[newIndex]
       this.playlist[newIndex] = temp
@@ -67,6 +72,14 @@ export default {
       var roomId = this.$route.params.roomId
       this.$router.push(`/room/${roomId}/addsong`)
     },
-  }
+  },
 }
 </script>
+
+<style scoped>
+.flip-list-move {
+  transition: transform 0.6s;
+}
+
+</style>
+

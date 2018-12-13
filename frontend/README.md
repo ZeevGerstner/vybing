@@ -1,3 +1,7 @@
+Demo - http://vybing.herokuapp.com/
+
+
+
 This app was build by :
 Amit Wagner - https://github.com/boogeh
 Tom Manger - https://github.com/tommanger
