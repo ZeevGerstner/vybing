@@ -1,7 +1,7 @@
 const userService = require('../services/user.service')
 
 function addRoutes (app) {
-    app.post('/singup', (req, res) => {
+    app.post('/signup', (req, res) => {
         const newUser = req.body.newUser
         userService.addUser({ newUser })
             .then(user => res.json(user))

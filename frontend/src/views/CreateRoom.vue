@@ -29,7 +29,7 @@ export default {
                 playlist: [
                     {title: 'Rick Astley - Never Gonna Give You Up (Video)',
                      id: 'dQw4w9WgXcQ',
-                     img: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg'
+                     img: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg'
                      }
                 ],
             },

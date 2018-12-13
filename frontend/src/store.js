@@ -10,20 +10,11 @@ export default new Vuex.Store({
     searchMoudle,
     userModule,
   },
-  state:{
-    genre: ['Hip Hop', 'Rock', 'Disco', 'DubStep', 'Techno', 'Funk', 'Trap', 'World','Dance',
-  'Classic','Pop','Other'],
-  currPrevPlaylist: false
+  state: {
+    genre: ['Hip Hop', 'Rock', 'Disco', 'DubStep', 'Techno', 'Funk', 'Trap', 'World', 'Dance',
+      'Classic', 'Pop', 'Other'],
   },
-  getters:{
-    getGenre: (state)=> state.genre
+  getters: {
+    getGenre: (state) => state.genre
   },
-  actions: {
-    setPrevPlaylist(state){
-      if(state.currPrevPlaylist) {
-        
-      }
-    }
-  },
-
 })
