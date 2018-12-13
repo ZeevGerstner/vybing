@@ -1,25 +1,23 @@
 <template>
   <div class="room-preview-first">
-    <div v-if="room.playlist.length">
-      <div
-        :class="['video-btn-preview', !isOpen? 'play-mode': 'pause-mode']"
-        @click.stop="openPlayer"
-      >
-        <i v-if="!isOpen" class="fa fa-play"></i>
-        <i v-else class="fa fa-pause"></i>
-      </div>
+    <div
+      v-if="room.playlist.length"
+      :class="['video-btn-preview', !isOpen? 'play-mode': 'pause-mode']"
+      @click.stop="openPlayer"
+    >
+      <span>Listen to this room</span>
+      <i v-if="!isOpen" class="fa fa-play"></i>
+      <i v-else class="fa fa-pause"></i>
     </div>
-    
-    <div :class="['room-details-first', isOpen? 'room-pause-mode' : '']">
 
+    <div :class="['room-details-first', isOpen? 'room-pause-mode-first' : '']">
       <h3
         v-if="room.playlist.length"
-        class="song-title-first"
         v-for="(song, idx) in room.playlist"
+        :class="['song-title-first', (idx === 0) ?'song-title-first-bold' : '']"
         :key="idx"
-        v-show="idx<5"
+        v-show="idx<3"
       >{{song.title}}</h3>
-
 
       <div class="room-icons-first">
         <h3 class="room-item-genre">{{room.type}}</h3>
@@ -41,6 +39,7 @@
 </template>
 
 <script>
+import eventBus, { TOGGLE_PLAYER } from '../services/event.bus.js'
 import youtubePlayer from "@/components/YoutubePlayer.vue";
 
 export default {
@@ -73,7 +72,7 @@ export default {
       else this.isClicked = true
     },
     openPlayer() {
-      this.$emit('togglePlayer', this)
+      eventBus.$emit(TOGGLE_PLAYER, this)
     }
   },
   sockets: {
@@ -84,44 +83,67 @@ export default {
   },
   created() {
     this.$socket.emit('getRoomCounts')
+    eventBus.$on(TOGGLE_PLAYER, vm => {
+      if (this !== vm) this.isOpen = false
+      else this.isOpen = !this.isOpen
+    })
   }
 };
 </script>
 
 <style scoped lang="scss">
 .room-preview-first {
-  position: relative;
-}
-.room-details-first {
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 51%,
+    rgba(0, 0, 0, 1) 70%,
     rgba(0, 0, 0, 1) 100%
   );
-
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
+.room-pause-mode-first {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 3s ease infinite;
+  animation: Gradient 3s ease infinite;
+}
+
 .room-icons-first {
   display: flex;
-  padding: 11px;
+  padding: 7px;
+  padding-left: 12px;
 }
 .song-title-first {
   padding: 6;
   font-family: "roboto-thin";
   font-size: 1em;
   color: #f4f4f4;
-  -ms-flex-item-align: baseline;
-  align-self: baseline;
-  margin-left: 7px;
-  position: relative;
-  overflow: hidden;
-  width: 95%;
-  text-overflow: ellipsis;
+  margin: 7px;
+  margin-left: 15px;
+}
+.song-title-first-bold{
+  font-family: "roboto-bold";
+
 }
 .video-btn-preview {
   color: #99cc009d;
   transition: all 0.4s;
   font-size: 2em;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 7px;
+  span {
+    font-family: "roboto-bold";
+    font-size: 1em;
+    font-size: 0.5em;
+    margin-left: 15px;
+  }
   i {
     margin: 4px 0px 0px 8px;
     text-align: center;

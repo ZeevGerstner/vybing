@@ -1,7 +1,7 @@
 <template>
   <div v-if="rooms">
     <div class="top-roms-header container">
-      <h1 class="top-roms-title">Top {{type}}</h1>
+      <h1 class="">Top {{type}}</h1>
       <button
         v-if="(type !== 'listeners' && type !== 'likes')"
         @click="goToGenre(type)"
@@ -28,9 +28,6 @@ export default {
       this.$socket.emit('searchRoom', { byName: '', byType: genre })
       this.$router.push(`/RoomSearch/${genre}`)
     },
-    togglePlayer(room) {
-      this.$parent.togglePlayer(room)
-    }
   },
   components: {
     roomPreview
