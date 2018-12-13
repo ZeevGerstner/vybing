@@ -1,5 +1,5 @@
 <template>
-  <div v-if="rooms">
+  <div v-if="rooms" class="top-rooms-first">
     <h1 class="top-roms-title">Top {{type}}</h1>
 
       <transition-group name="component-fade" mode="out-in" tag="div" class="top-room-first">
@@ -10,9 +10,10 @@
           :key="room._id"
           :id="'slide'+idx"
           :style="{background:'url('+ room.playlist[0].img+') center no-repeat', backgroundSize: 'cover'}"
+          @click="changeSlide(idx)"
         >
           <h1 class="room-name">{{room.name}}</h1>
-          <room-preview-first v-if="idx === 0" :room="room"/>
+          <room-preview-first @togglePlayer="togglePlayer" v-if="idx === 0" :room="room"/>
         </div>
       </transition-group>
   </div>
@@ -40,13 +41,14 @@ export default {
     togglePlayer(room) {
       this.$parent.togglePlayer(room)
     },
-    setPlayer(playlist) {
-      this.$store.dispatch('setPrevPlaylist')
-      if (this.isClicked) this.isClicked = false
-      else this.isClicked = true
-    },
-    openPlayer() {
-      this.$parent.togglePlayer(this)
+   
+    changeSlide(idx){
+      if(idx === 0){
+        this.$router.push('/room/'+this.currRooms[0]._id)
+      }else{
+        let currRoom = this.currRooms.splice(idx,1)
+        this.currRooms.unshift(currRoom[0])
+      }
     }
   },
   components: {
@@ -61,7 +63,7 @@ export default {
     setInterval(() => {
       let currRoom = this.currRooms.shift()
       this.currRooms.push(currRoom)
-    }, 500000)
+    }, 8000000)
   }
 }
 </script>
@@ -71,6 +73,7 @@ export default {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(3, minmax(20px, 100px));
   grid-gap: 10px;
+  cursor: pointer;
 }
 .top-room-first-other {
   transition: all 0.4s;
@@ -79,7 +82,7 @@ export default {
   grid-area: 1 / 1 / span 3/1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .component-fade-enter-active, .component-fade-leave-active {

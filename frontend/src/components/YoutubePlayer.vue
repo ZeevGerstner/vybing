@@ -55,7 +55,6 @@ export default {
       if(this.playlist[0].addedBy !== 'guest') this.$socket.emit('getUserById', this.playlist[0].addedBy)
       else this.currAddBy = {name: 'guest'} 
       this.videoId = this.playlist[0].id
-      console.log(this.currSongTime)
       this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
     emitUpdatePlaylist() {

@@ -9,11 +9,7 @@
       >See all by {{type}}</button>
     </div>
     <div class="room-list container">
-      <room-preview
-        v-for="room in rooms"
-        :key="room._id"
-        :room="room"
-      />
+      <room-preview v-for="room in rooms" :key="room._id" :room="room"/>
     </div>
   </div>
 </template>
@@ -28,11 +24,11 @@ export default {
     type: String
   },
   methods: {
-    goToGenre (genre) {
+    goToGenre(genre) {
       this.$socket.emit('searchRoom', { byName: '', byType: genre })
       this.$router.push(`/RoomSearch/${genre}`)
     },
-    togglePlayer (room) {
+    togglePlayer(room) {
       this.$parent.togglePlayer(room)
     }
   },

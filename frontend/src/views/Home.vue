@@ -2,14 +2,15 @@
   <div class="home">
     <div class="home-img2"></div>
     <div class="home-img">
-      <h2 class="home-title-txt">Pick a room and Join the <span>V</span>ybe!</h2>
+      <h2 class="home-title-txt">
+        Pick a room and Join the
+        <span>V</span>ybe!
+      </h2>
     </div>
     <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Room</router-link>
 
     <top-rooms-first class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>>
-
     <!-- <top-rooms class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/> -->
-
     <top-rooms class="container" :type="'listeners'" :rooms="getRoomsBy('listeners')"/>
 
     <top-rooms
@@ -67,9 +68,12 @@ export default {
         .sort((a, b) => b.likes - a.likes).slice(0, 4)
     },
     togglePlayer(room) {
-      this.$children.forEach(currRoom => {
-        currRoom.$children.forEach(roomCh => {
-          if (roomCh !== room) roomCh.isOpen = false;
+      this.$children.forEach(rooms => {
+        rooms.$children.forEach(currRoom => {
+          if (currRoom !== room) currRoom.isOpen = false;
+          currRoom.$children.forEach(roomCh => {
+            if (roomCh !== room) roomCh.isOpen = false;
+          })
         })
       });
       room.isOpen = !room.isOpen;
