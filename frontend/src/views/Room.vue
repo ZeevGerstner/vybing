@@ -27,7 +27,6 @@
     </nav>
 
     <div class="room-player">
-<<<<<<< HEAD
       <youtube-player
         :playlist="room.playlist"
         @updatePlaylist="updatePlaylist"
@@ -35,12 +34,6 @@
         <button
           @click="shuffle"
         ><i class="fas fa-random"></i></button>
-=======
-      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist">
-        <button @click="shuffle">
-          <i class="fas fa-random"></i>
-        </button>
->>>>>>> c478f823960b29c806d0dc76517ac9f14c73bf71
       </youtube-player>
     </div>
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
