@@ -48,7 +48,6 @@
       >
         <button
           @click="shuffle"
-          class="btn-shuffle"
         ><i class="fas fa-random"></i></button>
       </youtube-player>
     </div>

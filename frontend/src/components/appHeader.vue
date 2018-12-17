@@ -160,13 +160,11 @@ export default {
       handler(route) {
         if (route.name === 'home') {
           window.addEventListener('scroll', this.changeCss);
-          // this.$refs.navbar.classList.add('start-navbar')
           this.$nextTick(() => {
             var nav = document.querySelector('.nav')
             nav.classList.add('start-navbar')
             nav.classList.add('home-nav-bar')
           });
-
         } else {
           this.isGoTop = false
           window.removeEventListener('scroll', this.changeCss)
@@ -177,7 +175,6 @@ export default {
           })
         }
       }
-
     },
   },
   sockets: {
