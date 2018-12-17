@@ -1,27 +1,14 @@
 <template>
   <div class="room-item">
-    <router-link
-      class="room-item-link"
-      tag="div"
-      :to="'/room/'+room._id"
-    >
+    <router-link class="room-item-link" tag="div" :to="'/room/'+room._id">
       <div
         v-if="room.playlist.length"
         class="room-item-youtube-img"
         :style="{background:'url('+ room.playlist[0].img+') center no-repeat', backgroundSize: 'cover'}"
       >
-        <div
-          :class="['video-btn', !isOpen? 'play-mode': 'pause-mode']"
-          @click.stop="openPlayer"
-        >
-          <i
-            v-if="!isOpen"
-            class="fa fa-play"
-          ></i>
-          <i
-            v-else
-            class="fa fa-pause"
-          ></i>
+        <div :class="['video-btn', !isOpen? 'play-mode': 'pause-mode']" @click.stop="openPlayer">
+          <i v-if="!isOpen" class="fa fa-play"></i>
+          <i v-else class="fa fa-pause"></i>
         </div>
       </div>
       <div :class="['room-details', 'room-item-details', isOpen? 'room-pause-mode' : '']">
@@ -47,12 +34,7 @@
       </div>
     </router-link>
 
-    <youtube-player
-      class="prev-player"
-      v-if="isOpen"
-      :playlist="room.playlist"
-    />
-
+    <youtube-player class="prev-player" v-if="isOpen" :playlist="room.playlist"/>
   </div>
 </template>
 
@@ -68,7 +50,7 @@ export default {
   components: {
     youtubePlayer,
   },
-  data () {
+  data() {
     return {
       isOpen: false,
       adminRoom: null,
@@ -76,16 +58,16 @@ export default {
     }
   },
   computed: {
-    player () {
+    player() {
       return this.$refs.youtube.player;
     },
-    setMove () {
+    setMove() {
       if (this.isOpen) return 'move-txt'
     }
   },
+
   methods: {
-    setPlayer (playlist) {
-      this.$store.dispatch('setPrevPlaylist')
+    setPlayer(playlist) {
       if (this.isClicked) this.isClicked = false
       else this.isClicked = true
     },
@@ -93,6 +75,7 @@ export default {
       eventBus.$emit(TOGGLE_PLAYER, this)
     }
   },
+
   sockets: {
     updateRoomCounts (roomCounts) {
       const roomCount = roomCounts[this.room._id]

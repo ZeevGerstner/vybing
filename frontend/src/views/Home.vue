@@ -35,42 +35,53 @@ export default {
     return {
       isLogin: false,
       isSignup: false,
-      rooms: [],
-    }
+      rooms: []
+    };
   },
   created() {
-    this.$socket.emit('getRoomList')
+    this.$socket.emit("getRoomList");
   },
   sockets: {
     setRoomList(rooms) {
-      this.rooms = rooms
+      this.rooms = rooms;
       this.$nextTick(() => {
         window.scrollTo({
           top: 100,
           left: 0,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
-      })
+      });
     }
   },
   methods: {
-
     getRoomsBy(type) {
-      if (type === 'likes') return this.rooms.slice().sort((room1, room2) => {
-        return room2[type] - room1[type]
-      }).slice(0, 4)
-      else if (type === 'listeners') return this.rooms.slice().sort((room1, room2) => {
-        return room2[type].length - room1[type].length
-      }).slice(0, 4)
-      else return this.rooms.slice().filter(room => room.type === type)
-        .sort((a, b) => b.likes - a.likes).slice(0, 4)
+      if (type === "likes")
+        return this.rooms
+          .slice()
+          .sort((room1, room2) => {
+            return room2[type] - room1[type];
+          })
+          .slice(0, 4);
+      else if (type === "listeners")
+        return this.rooms
+          .slice()
+          .sort((room1, room2) => {
+            return room2[type].length - room1[type].length;
+          })
+          .slice(0, 4);
+      else
+        return this.rooms
+          .slice()
+          .filter(room => room.type === type)
+          .sort((a, b) => b.likes - a.likes)
+          .slice(0, 4);
     },
   },
   computed: {
     getGenre() {
-      return this.$store.getters.getGenre
+      return this.$store.getters.getGenre;
     }
-  },
+  }
 };
 </script>
 

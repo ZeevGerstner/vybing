@@ -13,7 +13,7 @@
     </form>
     <div class="login-more">
       <h2 class="go-signup-btn" @click="goToSignup">Signup</h2>
-      <h2 class="worng" v-if="isWorng">Worng!</h2>
+      <h2 class="wrong" v-if="isWrong">Wrong!</h2>
     </div>
   </section>
 </template>
@@ -26,7 +26,7 @@ export default {
         name: '',
         password: ''
       },
-      isWorng: false,
+      isWrong: false,
       currUser: null
     }
   },
@@ -35,9 +35,9 @@ export default {
       this.$store.dispatch({ type: 'login', user: this.user })
         .then(user => {
           if (!user) {
-            this.isWorng = true
+            this.isWrong = true
           } else {
-            this.isWorng = false
+            this.isWrong = false
             this.user = { name: '', password: '' }
             this.$emit('closeLogin')
           }
