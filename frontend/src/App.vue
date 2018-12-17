@@ -13,9 +13,15 @@ export default {
   components: {
     appHeader
   },
+  methods: {
+    setVH() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+  },
   created () {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    this.setVH()
+    window.addEventListener('resize', this.setVH)
     
     var currUser = JSON.parse(localStorage.getItem('currUser'));
     if(currUser){
