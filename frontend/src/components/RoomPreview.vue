@@ -65,7 +65,6 @@ export default {
       if (this.isOpen) return 'move-txt'
     }
   },
-
   methods: {
     setPlayer(playlist) {
       if (this.isClicked) this.isClicked = false
@@ -75,7 +74,6 @@ export default {
       eventBus.$emit(TOGGLE_PLAYER, this)
     }
   },
-
   sockets: {
     updateRoomCounts (roomCounts) {
       const roomCount = roomCounts[this.room._id]

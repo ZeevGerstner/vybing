@@ -55,7 +55,7 @@ export default {
     };
   },
   methods: {
-    ready (ev) {
+    ready () {
       let time = (Date.now() - this.createdTime) / 1000
       this.currSongTime = this.currSongTime + Math.ceil(time)
       this.setSong();

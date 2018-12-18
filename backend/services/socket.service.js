@@ -41,7 +41,7 @@ function connectSocket(io) {
         })
         socket.on('getTime', () => {
             if (!userRoom) return
-            io.to(userRoom._id).emit('getStatusTime')
+            socket.broadcast.to(userRoom._id).emit('getStatusTime');
         })
         socket.on('setStatusTime', (time) => {
             io.emit('setCurrTime', time)
