@@ -27,13 +27,10 @@
     </nav>
 
     <div class="room-player">
-      <youtube-player
-        :playlist="room.playlist"
-        @updatePlaylist="updatePlaylist"
-      >
-        <button
-          @click="shuffle"
-        ><i class="fas fa-random"></i></button>
+      <youtube-player :playlist="room.playlist" @updatePlaylist="updatePlaylist">
+        <button @click="shuffle">
+          <i class="fas fa-random"></i>
+        </button>
       </youtube-player>
     </div>
     <router-view :playlist="room.playlist" @moveSong="moveSong" @addSong="addSong"></router-view>
@@ -118,9 +115,11 @@ export default {
       else return { name: 'guest' }
     },
     userLiked() {
-      return this.getUser.roomsLikedIds.find(currId => {
-        return currId === this.room._id
-      })
+      if (this.getUser._id) {
+        return this.getUser.roomsLikedIds.find(currId => {
+          return currId === this.room._id
+        })
+      }
     },
     chatStatus() {
       if (this.isChatOpen) return 'show-chat'
