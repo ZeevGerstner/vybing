@@ -1,6 +1,6 @@
 <template>
   <section class="chat-container flex">
-      <h2 class="chat-title">ROOM CHAT</h2>
+      <h2 class="chat-title">Station Chat</h2>
       <div ref="msgs" class="chat-txts">
         <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
           <div class="chat-txt">
@@ -15,7 +15,7 @@
     <form class="chat-form" @submit.prevent="sendMsg">
       <input
         class="chat-input"
-        placeholder="Talk with people in this room"
+        placeholder="Talk with people in this Station"
         v-model="newMsg"
         type="text"
       >

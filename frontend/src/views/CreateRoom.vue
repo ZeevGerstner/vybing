@@ -1,8 +1,8 @@
 <template>
     <section class="createroom container">
-        <h2 class="create-title">Create Room</h2>
+        <h2 class="create-title">Station Station</h2>
         <form class="create-form" @submit.prevent="createRoom">
-            <input ref="input" class="create-input" v-model="newRoom.name" placeholder="room name" type="text">
+            <input ref="input" class="create-input" v-model="newRoom.name" placeholder="Station name" type="text">
             <h2 class="create-title" v-if="errName">please enter a name!!</h2>
 
             <select class="create-select" v-model="newRoom.type">

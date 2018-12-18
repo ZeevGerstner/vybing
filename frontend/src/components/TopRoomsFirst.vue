@@ -60,7 +60,7 @@ export default {
         this.interval = setInterval(() => {
           let currRoom = this.currRooms.shift()
           this.currRooms.push(currRoom)
-        }, 5000)
+        }, 500000)
       } else {
         clearInterval(this.interval)
       }

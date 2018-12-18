@@ -34,7 +34,7 @@
           </div>
         </li>
         <li @click="goToRooms">
-          <span class="navbar-txt">Rooms</span>
+          <span class="navbar-txt">Stations</span>
           <span class="navbar-icon">
             <i class="fas fa-home"></i>
           </span>
