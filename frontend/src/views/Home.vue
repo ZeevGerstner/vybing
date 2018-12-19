@@ -21,7 +21,7 @@
 
     <top-rooms
       v-for="(genre,idx) in getGenre"
-      v-if="getRoomsBy(genre).length !== 0"
+      v-if="getRoomsBy(genre).length > 3"
       :key="idx"
       :type="genre"
       :rooms="getRoomsBy(genre)"

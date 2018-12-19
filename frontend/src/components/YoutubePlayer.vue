@@ -83,7 +83,6 @@ export default {
     }
   },
   created () {
-    this.$socket.emit('getTime');
     this.createdTime = Date.now()
   },
   sockets: {
