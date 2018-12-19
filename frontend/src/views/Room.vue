@@ -106,7 +106,6 @@ export default {
   created() {
     const roomId = this.$route.params.roomId;
     this.$socket.emit("getRoomById", roomId);
-    this.$socket.emit("getPlaylist");
   },
   computed: {
     getUser() {
@@ -137,6 +136,9 @@ export default {
       this.$socket.emit('getUserById', this.room.admin)
 
     },
+    joined() {
+      this.$socket.emit('getTime');
+    },
     loadPlaylist(playlist) {
       this.room.playlist = playlist
     },
@@ -155,7 +157,6 @@ export default {
   watch: {
     "$route.params.roomId": function (id) {
       this.$socket.emit("getRoomById", id);
-      this.$socket.emit("getPlaylist");
     }
   },
   components: {

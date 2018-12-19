@@ -9,6 +9,7 @@ function connectSocket(io) {
         socket.on('chatRoomJoined', (room) => {
             userRoom = room
             socket.join(userRoom._id)
+            socket.emit('joined')
             updateRoomCount(io, userRoom._id)
         })
         socket.on('roomClose', () => {
