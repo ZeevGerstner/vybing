@@ -35,6 +35,13 @@
     margin-top: 10px;
     font-weight: bold;
     height: 30px;
+    background: none;
+    border: 0;
+    border-bottom: 4px solid $lime-green;
+    color: white;
+}
+.login-input:focus{
+    outline: none;
 }
 .login-btn{
     height: 50px;
