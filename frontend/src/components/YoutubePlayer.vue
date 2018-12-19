@@ -2,6 +2,7 @@
   <div class="player-container">
     <div class="youtube-container">
       <youtube
+      v-if="currSongTime !== null"
         width="200"
         height="113"
         :player-vars="playerVars"
@@ -51,7 +52,8 @@ export default {
       },
       currSongTime: null,
       createdTime: 0,
-      isMute: false
+      isMute: false,
+      isReady: false
     };
   },
   methods: {
@@ -95,6 +97,7 @@ export default {
     },
     setCurrTime (currTime) {
       this.currSongTime = currTime;
+      this.isReady = true;
     },
     setUserProfile (user) {
       this.currAddBy = user[0]

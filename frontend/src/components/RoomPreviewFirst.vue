@@ -5,7 +5,7 @@
       :class="['video-btn-preview', !isOpen? 'play-mode': 'pause-mode']"
       @click.stop="openPlayer"
     >
-      <span>Listen to this room</span>
+      <span>Listen to this station</span>
       <i v-if="!isOpen" class="fa fa-play"></i>
       <i v-else class="fa fa-pause"></i>
     </div>

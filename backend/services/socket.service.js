@@ -1,18 +1,32 @@
 
 const roomService = require('./room.service')
 const userService = require('./user.service')
-
+var gRooms = []
 
 function connectSocket(io) {
     io.on('connection', (socket) => {
         var userRoom;
         socket.on('chatRoomJoined', (room) => {
+            
+            var idx = gRooms.findIndex(currRoom => currRoom._id === room._id)
+            gRooms.push(room)
+            console.log('conected', gRooms)
+            if(idx === -1){
+                io.emit('setCurrTime', 0)
+                console.log('first')
+            }else{
+                socket.emit('joined')
+                console.log('secend')
+            }
             userRoom = room
             socket.join(userRoom._id)
-            socket.emit('joined')
             updateRoomCount(io, userRoom._id)
         })
         socket.on('roomClose', () => {
+            var idx = gRooms.findIndex(currRoom => currRoom._id === userRoom._id)
+            console.log(idx)
+            gRooms.splice(idx,1)
+            console.log('disconected',gRooms)
             if (!userRoom) return
             socket.leave(userRoom._id)
             updateRoomCount(io, userRoom._id)
@@ -110,6 +124,10 @@ function connectSocket(io) {
                 })
         })
         socket.on('disconnect', () => {
+            var idx = gRooms.findIndex(currRoom => currRoom._id === userRoom._id)
+            console.log(idx)
+            console.log('disconected',gRooms)
+            gRooms.splice(idx,1)
             if (!userRoom) return
             socket.leave(userRoom._id)
             updateRoomCount(io, userRoom._id)
