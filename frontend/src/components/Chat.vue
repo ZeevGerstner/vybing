@@ -1,16 +1,14 @@
 <template>
   <section class="chat-container flex">
-      <h2 class="chat-title">Station Chat</h2>
-      <div ref="msgs" class="chat-txts">
-        <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
-          <div class="chat-txt">
-            <span :class="setColorToUser(msg)" @click="toggleUserPrev(idx)">{{msg.user.name}}</span>
-            <user-preview v-show="msg.user._id" v-if="isUserPrev === idx" :user="msg.user"></user-preview>
-            <span class="msg-txt">: {{msg.txt}}</span>
-          </div>
-          <div class="chat-line"></div>
-        </div>
+    <h2 class="chat-title">Station Chat</h2>
+    <div ref="msgs" class="chat-txts">
+      <div class="chat-txt-container" v-for="(msg, idx) in msgs" :key="idx">
         <div class="chat-line"></div>
+        <div class="chat-txt">
+          <span :class="setColorToUser(msg)" @click="toggleUserPrev(idx)">{{msg.user.name}}</span>
+          <user-preview v-show="msg.user._id" v-if="isUserPrev === idx" :user="msg.user"></user-preview>
+          <span class="msg-txt">: {{msg.txt}}</span>
+        </div>
       </div>
     </div>
 
@@ -19,7 +17,8 @@
         class="chat-input"
         placeholder="Talk with people in this Station"
         v-model="newMsg"
-        type="text">
+        type="text"
+      >
     </form>
   </section>
 </template>
