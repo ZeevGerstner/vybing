@@ -49,15 +49,13 @@ export default {
         controls: 1,
         playsinline: 1
       },
-      currSongTime: 0,
+      currSongTime: null,
       createdTime: 0,
       isMute: false
     };
   },
   methods: {
     ready () {
-      let time = (Date.now() - this.createdTime) / 1000
-      this.currSongTime = this.currSongTime + Math.ceil(time)
       this.setSong();
     },
     ended () {
@@ -72,6 +70,8 @@ export default {
       if (this.playlist[0].addedBy !== 'guest') this.$socket.emit('getUserById', this.playlist[0].addedBy)
       else this.currAddBy = { name: 'guest' }
       this.videoId = this.playlist[0].id
+      console.log('lt',this.currSongTime);
+      
       this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
     emitUpdatePlaylist () {
@@ -89,11 +89,13 @@ export default {
   sockets: {
     getStatusTime () {
       this.player.getCurrentTime().then(time => {
-        this.$socket.emit('setStatusTime', time);
+        console.log('get',Math.ceil(time));
+        
+        this.$socket.emit('setStatusTime', Math.ceil(time));
       });
     },
     setCurrTime (currTime) {
-      this.currSongTime = Math.ceil(currTime);
+      this.currSongTime = currTime;
     },
     setUserProfile (user) {
       this.currAddBy = user[0]

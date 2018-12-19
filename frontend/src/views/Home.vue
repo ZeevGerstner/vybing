@@ -7,9 +7,17 @@
         <span>V</span>ybe!
       </h2>
     </div>
-    <router-link class="tag-genre add-room-btn" tag="div" to="/createroom">Create Station</router-link>
+    <router-link
+      class="tag-genre add-room-btn"
+      tag="div"
+      to="/createroom"
+    >Create Station</router-link>
 
-    <top-rooms-first class="container" :type="'likes'" :rooms="getRoomsBy('likes')"/>>
+    <top-rooms-first
+      class="container"
+      :type="'likes'"
+      :rooms="getRoomsBy('likes')"
+    />
 
     <top-rooms
       v-for="(genre,idx) in getGenre"
@@ -31,7 +39,7 @@ export default {
     topRooms,
     topRoomsFirst
   },
-  data() {
+  data () {
     return {
       isLogin: false,
       isSignup: false,
@@ -39,13 +47,13 @@ export default {
       isFirstLoaded: true,
     }
   },
-  created() {
+  created () {
     this.$socket.emit("getRoomList");
   },
   sockets: {
-    setRoomList(rooms) {
+    setRoomList (rooms) {
       this.rooms = rooms
-      if(this.isFirstLoaded){
+      if (this.isFirstLoaded) {
         this.isFirstLoaded = false
         this.$nextTick(() => {
           window.scrollTo({
@@ -53,36 +61,24 @@ export default {
             left: 0,
             behavior: 'smooth'
           });
-        })       
+        })
       }
     }
   },
   methods: {
-    getRoomsBy(type) {
-      if (type === "likes")
-        return this.rooms
-          .slice()
-          .sort((room1, room2) => {
-            return room2[type] - room1[type];
-          })
-          .slice(0, 4);
-      else if (type === "listeners")
-        return this.rooms
-          .slice()
-          .sort((room1, room2) => {
-            return room2[type].length - room1[type].length;
-          })
-          .slice(0, 4);
-      else
-        return this.rooms
-          .slice()
+    getRoomsBy (type) {
+      var roomsToshow = this.rooms.slice();
+      if (type !== 'likes') {
+        roomsToshow = this.rooms
           .filter(room => room.type === type)
-          .sort((a, b) => b.likes - a.likes)
-          .slice(0, 4);
+      }
+      return roomsToshow
+        .sort((a, b) => b.userLikedIds.length - a.userLikedIds.length)
+        .slice(0, 4);
     },
   },
   computed: {
-    getGenre() {
+    getGenre () {
       return this.$store.getters.getGenre;
     }
   }
