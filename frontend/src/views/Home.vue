@@ -3,8 +3,7 @@
     <div class="home-img2"></div>
     <div class="home-img">
       <h2 class="home-title-txt">
-        Pick a station and Join the
-        <span>V</span>ybe!
+        Pick a station and Join the Vybe!
       </h2>
     </div>
     <router-link
