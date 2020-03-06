@@ -7,9 +7,9 @@
     "build": "vue-cli-service build --dest ../backend/public"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "register-service-worker": "^1.0.0",
-    "serve": "^10.1.1",
+    "serve": "^10.1.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^3.0.3",
@@ -19,8 +19,8 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
     "@vue/cli-plugin-pwa": "^3.1.2",
-    "@vue/cli-service": "^3.1.4",
-    "node-sass": "^4.9.0",
+    "@vue/cli-service": "^4.2.3",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   },

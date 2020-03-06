@@ -2,7 +2,6 @@
   <div class="player-container">
     <div class="youtube-container">
       <youtube
-      v-if="currSongTime !== null"
         width="200"
         height="113"
         :player-vars="playerVars"
@@ -50,7 +49,7 @@ export default {
         controls: 1,
         playsinline: 1
       },
-      currSongTime: null,
+      currSongTime: 0,
       createdTime: 0,
       isMute: false,
       isReady: false
@@ -72,8 +71,6 @@ export default {
       if (this.playlist[0].addedBy !== 'guest') this.$socket.emit('getUserById', this.playlist[0].addedBy)
       else this.currAddBy = { name: 'guest' }
       this.videoId = this.playlist[0].id
-      console.log('lt',this.currSongTime);
-      
       this.player.loadVideoById(this.playlist[0].id, this.currSongTime);
     },
     emitUpdatePlaylist () {
@@ -90,8 +87,6 @@ export default {
   sockets: {
     getStatusTime () {
       this.player.getCurrentTime().then(time => {
-        console.log('get',Math.ceil(time));
-        
         this.$socket.emit('setStatusTime', Math.ceil(time));
       });
     },
